@@ -274,12 +274,202 @@ UKR-BLR:-60 UKR-POL:50 UKR-HUN:-20 IND-PAK:-70 IND-BGD:0 IND-ARE:45 IND-ISR:40 I
 SAU-IRN:-20 SAU-YEM:-30 SAU-QAT:30 ARE-IRN:-10 IRN-YEM:40 IRN-SYR:-30 IRN-IRQ:40 IRN-AZE:-20 KOR-PRK:-70 JPN-PRK:-70 JPN-KOR:20 ARM-AZE:-20 GRC-TUR:-10 CYP-TUR:-40 MAR-DZA:-50 ETH-ERI:-45 EGY-ETH:-30 SRB-XKX:-60 SDN-ARE:-30 COD-RWA:-50 VEN-GUY:-40 VEN-CUB:70 AFG-IRN:-15 TUR-SYR:30 TUR-AZE:70 PAK-IRN:5
 CHN-USA:-35 TWN-JPN:40 VNM-KHM:20 THA-KHM:-35 GBR-FRA:50 DEU-FRA:70 POL-DEU:40 HUN-EU:0 MEX-GTM:20 COL-VEN:-10 ARG-GBR:-10 ARG-BRA:15 BOL-CHL:-10 PER-ECU:15 KEN-SOM:-5 NGA-NER:-25 MLI-DZA:-40 SOM-ETH:-20 SSD-SDN:-20 CHN-USA:-35`;
 
+// ============================================================================ CITIES (v7)
+// Capital first, then other major cities. name,lat,lon,population (millions, metro area, rough).
+const CITY_ROWS = `
+USA:Washington,38.9,-77.04,6.3;New York,40.71,-74.0,19.5;Los Angeles,34.05,-118.24,12.8;Chicago,41.88,-87.63,9.4;Houston,29.76,-95.37,7.3;Miami,25.76,-80.19,6.1;Seattle,47.61,-122.33,4;San Diego,32.72,-117.16,3.3;Denver,39.74,-104.99,3;Atlanta,33.75,-84.39,6.2;Norfolk,36.85,-76.29,1.8;Anchorage,61.22,-149.9,.4;Honolulu,21.31,-157.86,1
+CAN:Ottawa,45.42,-75.7,1.5;Toronto,43.65,-79.38,6.7;Montreal,45.5,-73.57,4.3;Vancouver,49.28,-123.12,2.7;Calgary,51.05,-114.07,1.6;Halifax,44.65,-63.58,.5;Winnipeg,49.9,-97.14,.9
+MEX:Mexico City,19.43,-99.13,22;Guadalajara,20.66,-103.35,5.3;Monterrey,25.69,-100.32,5.3;Tijuana,32.51,-117.04,2.2;Veracruz,19.17,-96.13,.9;Merida,20.97,-89.62,1.3
+GTM:Guatemala City,14.63,-90.51,3;Quetzaltenango,14.84,-91.52,.3
+BLZ:Belmopan,17.25,-88.76,.03;Belize City,17.5,-88.2,.07
+SLV:San Salvador,13.69,-89.19,1.1;Santa Ana,13.99,-89.56,.3
+HND:Tegucigalpa,14.07,-87.19,1.3;San Pedro Sula,15.5,-88.03,.9
+NIC:Managua,12.11,-86.24,1.1;Leon,12.43,-86.88,.2
+CRI:San Jose,9.93,-84.08,1.4;Limon,9.99,-83.03,.1
+PAN:Panama City,8.98,-79.52,1.9;Colon,9.36,-79.9,.2
+CUB:Havana,23.11,-82.37,2.1;Santiago de Cuba,20.02,-75.82,.5
+HTI:Port-au-Prince,18.59,-72.31,2.9;Cap-Haitien,19.76,-72.2,.3
+DOM:Santo Domingo,18.49,-69.93,3.5;Santiago,19.45,-70.7,1
+JAM:Kingston,17.97,-76.79,1.2;Montego Bay,18.47,-77.92,.1
+BHS:Nassau,25.05,-77.35,.3
+TTO:Port of Spain,10.66,-61.51,.5
+COL:Bogota,4.71,-74.07,11.5;Medellin,6.24,-75.58,4.1;Cali,3.45,-76.53,2.8;Barranquilla,10.96,-74.8,2.2;Cartagena,10.39,-75.48,1.1
+VEN:Caracas,10.48,-66.9,3;Maracaibo,10.64,-71.64,2.2;Valencia,10.16,-68,1.6;Ciudad Guayana,8.35,-62.64,.9
+GUY:Georgetown,6.8,-58.16,.2
+SUR:Paramaribo,5.85,-55.2,.3
+ECU:Quito,-0.18,-78.47,2;Guayaquil,-2.17,-79.92,3.1;Cuenca,-2.9,-79.0,.6
+PER:Lima,-12.05,-77.04,11;Arequipa,-16.41,-71.54,1.1;Trujillo,-8.11,-79.03,1;Iquitos,-3.75,-73.25,.5;Cusco,-13.53,-71.97,.5
+BOL:La Paz,-16.5,-68.15,2;Santa Cruz,-17.78,-63.18,1.8;Cochabamba,-17.39,-66.16,1.3
+PRY:Asuncion,-25.26,-57.58,2.4;Ciudad del Este,-25.51,-54.61,.4
+CHL:Santiago,-33.45,-70.67,7;Valparaiso,-33.05,-71.62,1;Concepcion,-36.83,-73.05,1;Antofagasta,-23.65,-70.4,.4;Punta Arenas,-53.16,-70.91,.1
+ARG:Buenos Aires,-34.6,-58.38,15.5;Cordoba,-31.42,-64.18,1.6;Rosario,-32.95,-60.65,1.4;Mendoza,-32.89,-68.84,1.1;Ushuaia,-54.8,-68.3,.08;Bahia Blanca,-38.72,-62.27,.3
+URY:Montevideo,-34.9,-56.16,1.8;Salto,-31.39,-57.96,.1
+BRA:Brasilia,-15.79,-47.88,4.8;Sao Paulo,-23.55,-46.63,22.4;Rio de Janeiro,-22.91,-43.17,13.6;Belo Horizonte,-19.92,-43.94,6;Salvador,-12.97,-38.5,4;Recife,-8.05,-34.9,4.1;Manaus,-3.12,-60.02,2.3;Porto Alegre,-30.03,-51.23,4.3;Belem,-1.46,-48.5,2.3
+GBR:London,51.51,-0.13,14.8;Manchester,53.48,-2.24,2.9;Birmingham,52.49,-1.89,2.9;Glasgow,55.86,-4.25,1.8;Belfast,54.6,-5.93,.7;Portsmouth,50.8,-1.09,.9;Faslane,56.07,-4.82,.01
+IRL:Dublin,53.35,-6.26,2;Cork,51.9,-8.47,.4
+ISL:Reykjavik,64.15,-21.94,.24
+NOR:Oslo,59.91,10.75,1.1;Bergen,60.39,5.32,.4;Tromso,69.65,18.96,.08
+SWE:Stockholm,59.33,18.07,2.4;Gothenburg,57.71,11.97,1.1;Malmo,55.6,13,.7;Lulea,65.58,22.15,.08
+FIN:Helsinki,60.17,24.94,1.6;Tampere,61.5,23.76,.4;Oulu,65.01,25.47,.2
+DNK:Copenhagen,55.68,12.57,2.1;Aarhus,56.16,10.2,.4
+DEU:Berlin,52.52,13.4,6.1;Hamburg,53.55,9.99,3.3;Munich,48.14,11.58,2.9;Frankfurt,50.11,8.68,2.7;Cologne,50.94,6.96,3.5;Stuttgart,48.78,9.18,2.7;Ramstein,49.44,7.6,.05
+NLD:Amsterdam,52.37,4.9,2.5;Rotterdam,51.92,4.48,1.8;The Hague,52.07,4.3,1.1
+BEL:Brussels,50.85,4.35,2.1;Antwerp,51.22,4.4,1.1
+LUX:Luxembourg,49.61,6.13,.6
+FRA:Paris,48.86,2.35,11.2;Marseille,43.3,5.37,1.9;Lyon,45.76,4.84,2.3;Toulouse,43.6,1.44,1.4;Bordeaux,44.84,-0.58,1.3;Brest,48.39,-4.49,.3;Toulon,43.12,5.93,.6;Lille,50.63,3.06,1.5
+ESP:Madrid,40.42,-3.7,6.8;Barcelona,41.39,2.17,5.7;Valencia,39.47,-0.38,1.8;Seville,37.39,-5.98,1.5;Bilbao,43.26,-2.93,1;Rota,36.62,-6.35,.03
+PRT:Lisbon,38.72,-9.14,2.9;Porto,41.16,-8.63,1.8
+ITA:Rome,41.9,12.5,4.3;Milan,45.46,9.19,7.4;Naples,40.85,14.27,3.1;Turin,45.07,7.69,2.2;Palermo,38.12,13.36,1.2;Venice,45.44,12.33,.9;Sigonella,37.4,14.92,.02
+MLT:Valletta,35.9,14.51,.5
+CHE:Bern,46.95,7.45,.4;Zurich,47.37,8.54,1.4;Geneva,46.2,6.14,.6
+AUT:Vienna,48.21,16.37,2;Graz,47.07,15.44,.3;Linz,48.31,14.29,.3
+CZE:Prague,50.08,14.44,2.2;Brno,49.2,16.61,.7;Ostrava,49.82,18.26,.5
+SVK:Bratislava,48.15,17.11,.6;Kosice,48.72,21.26,.2
+POL:Warsaw,52.23,21.01,3.1;Krakow,50.06,19.94,1.5;Gdansk,54.35,18.65,1.1;Wroclaw,51.11,17.03,1.2;Rzeszow,50.04,22,.4;Lodz,51.76,19.46,1.1
+HUN:Budapest,47.5,19.04,3;Debrecen,47.53,21.64,.2
+SVN:Ljubljana,46.06,14.51,.3
+HRV:Zagreb,45.81,15.98,1.1;Split,43.51,16.44,.3
+BIH:Sarajevo,43.86,18.41,.4;Banja Luka,44.77,17.19,.2
+SRB:Belgrade,44.79,20.45,1.7;Novi Sad,45.27,19.83,.4;Nis,43.32,21.9,.3
+MNE:Podgorica,42.44,19.26,.2
+XKX:Pristina,42.66,21.17,.2
+ALB:Tirana,41.33,19.82,.9;Durres,41.32,19.45,.2
+MKD:Skopje,42.0,21.43,.6
+GRC:Athens,37.98,23.73,3.2;Thessaloniki,40.64,22.94,1;Heraklion,35.34,25.13,.2;Souda Bay,35.49,24.12,.01
+BGR:Sofia,42.7,23.32,1.3;Varna,43.21,27.91,.4;Plovdiv,42.14,24.75,.4
+ROU:Bucharest,44.43,26.1,2.3;Cluj-Napoca,46.77,23.6,.4;Constanta,44.18,28.63,.4;Iasi,47.16,27.59,.4
+MDA:Chisinau,47.01,28.86,.7;Tiraspol,46.84,29.63,.1
+UKR:Kyiv,50.45,30.52,3.5;Kharkiv,49.99,36.23,1.4;Odesa,46.48,30.72,1;Dnipro,48.46,35.05,1;Lviv,49.84,24.03,.7;Zaporizhzhia,47.84,35.14,.7;Donetsk,48.0,37.8,.9;Mariupol,47.1,37.55,.2;Sevastopol,44.62,33.52,.5
+BLR:Minsk,53.9,27.56,2;Gomel,52.44,30.98,.5;Brest,52.1,23.7,.3
+EST:Tallinn,59.44,24.75,.6;Tartu,58.38,26.72,.1
+LVA:Riga,56.95,24.11,.9;Daugavpils,55.87,26.52,.08
+LTU:Vilnius,54.69,25.28,.7;Kaunas,54.9,23.9,.4;Klaipeda,55.7,21.14,.2
+CYP:Nicosia,35.19,33.38,.3;Limassol,34.68,33.04,.2
+RUS:Moscow,55.76,37.62,21.5;Saint Petersburg,59.93,30.34,5.6;Novosibirsk,55.03,82.92,1.6;Yekaterinburg,56.84,60.6,1.5;Kazan,55.8,49.1,1.3;Rostov-on-Don,47.24,39.71,1.1;Vladivostok,43.12,131.89,.6;Murmansk,68.97,33.08,.3;Kaliningrad,54.71,20.51,.5;Volgograd,48.7,44.52,1;Omsk,54.99,73.37,1.1;Irkutsk,52.29,104.28,.6;Khabarovsk,48.48,135.08,.6;Petropavlovsk,53.02,158.65,.2
+TUR:Ankara,39.93,32.86,5.8;Istanbul,41.01,28.98,15.8;Izmir,38.42,27.14,3;Adana,37,35.32,2.3;Diyarbakir,37.91,40.23,1.8;Trabzon,41.0,39.72,.8;Incirlik,37.0,35.43,.01
+GEO:Tbilisi,41.72,44.79,1.2;Batumi,41.62,41.64,.2;Kutaisi,42.27,42.7,.1
+ARM:Yerevan,40.18,44.51,1.1;Gyumri,40.79,43.85,.1
+AZE:Baku,40.41,49.87,2.4;Ganja,40.68,46.36,.3
+ISR:Jerusalem,31.77,35.21,1;Tel Aviv,32.09,34.78,4.2;Haifa,32.79,34.99,1;Beersheba,31.25,34.79,.3;Eilat,29.56,34.95,.05
+PSE:Ramallah,31.9,35.2,.4;Gaza,31.5,34.47,.6;Hebron,31.53,35.1,.2
+LBN:Beirut,33.89,35.5,2.4;Tripoli,34.44,35.83,.5;Tyre,33.27,35.2,.1
+SYR:Damascus,33.51,36.29,2.5;Aleppo,36.2,37.13,2;Homs,34.73,36.72,.8;Latakia,35.52,35.79,.4;Deir ez-Zor,35.34,40.14,.2
+JOR:Amman,31.95,35.93,4;Zarqa,32.07,36.09,.6;Aqaba,29.53,35.01,.2
+IRQ:Baghdad,33.31,44.36,7.7;Basra,30.51,47.81,1.4;Mosul,36.34,43.13,1.7;Erbil,36.19,44.01,1.1;Kirkuk,35.47,44.39,1
+IRN:Tehran,35.69,51.39,9.5;Mashhad,36.3,59.6,3.3;Isfahan,32.65,51.67,2.2;Tabriz,38.08,46.29,1.6;Shiraz,29.59,52.58,1.6;Bandar Abbas,27.18,56.27,.6;Ahvaz,31.32,48.67,1.3;Bushehr,28.92,50.84,.2;Natanz,33.51,51.92,.02
+SAU:Riyadh,24.71,46.68,7.7;Jeddah,21.49,39.19,4.7;Mecca,21.39,39.86,2.4;Dammam,26.43,50.1,1.3;Medina,24.47,39.61,1.5;Tabuk,28.38,36.57,.6
+KWT:Kuwait City,29.38,47.99,3.1
+BHR:Manama,26.23,50.59,.7
+QAT:Doha,25.29,51.53,2.3;Al Udeid,25.12,51.32,.01
+ARE:Abu Dhabi,24.45,54.38,1.5;Dubai,25.2,55.27,3.6;Fujairah,25.13,56.33,.1
+OMN:Muscat,23.59,58.41,1.6;Salalah,17.02,54.09,.3;Duqm,19.66,57.7,.02
+YEM:Sanaa,15.37,44.19,3.3;Aden,12.79,45.02,1;Hodeidah,14.8,42.95,.6;Marib,15.46,45.32,.2
+EGY:Cairo,30.04,31.24,22;Alexandria,31.2,29.92,5.5;Port Said,31.26,32.3,.8;Suez,29.97,32.55,.8;Aswan,24.09,32.9,.3;Luxor,25.69,32.64,.5
+LBY:Tripoli,32.89,13.19,1.2;Benghazi,32.12,20.09,.8;Misrata,32.38,15.09,.4;Sirte,31.21,16.59,.1
+TUN:Tunis,36.81,10.18,2.4;Sfax,34.74,10.76,.4
+DZA:Algiers,36.75,3.06,3;Oran,35.7,-0.63,1.6;Constantine,36.37,6.61,.5;Tamanrasset,22.79,5.52,.1
+MAR:Rabat,34.02,-6.84,1.9;Casablanca,33.57,-7.59,4.3;Marrakesh,31.63,-7.99,1;Tangier,35.76,-5.83,1.1;Laayoune,27.15,-13.2,.2
+MRT:Nouakchott,18.08,-15.98,1.4;Nouadhibou,20.94,-17.04,.1
+SEN:Dakar,14.72,-17.47,3.3;Touba,14.85,-15.88,.9
+GMB:Banjul,13.45,-16.58,.4
+GNB:Bissau,11.86,-15.6,.5
+GIN:Conakry,9.64,-13.58,2;Kankan,10.38,-9.3,.2
+SLE:Freetown,8.48,-13.23,1.3;Bo,7.96,-11.74,.2
+LBR:Monrovia,6.3,-10.8,1.6
+CIV:Yamoussoukro,6.83,-5.29,.3;Abidjan,5.36,-4.01,5.6;Bouake,7.69,-5.03,.8
+MLI:Bamako,12.64,-8,2.8;Gao,16.27,-0.04,.1;Timbuktu,16.77,-3.01,.03;Mopti,14.49,-4.2,.1
+BFA:Ouagadougou,12.37,-1.52,3;Bobo-Dioulasso,11.18,-4.3,1
+GHA:Accra,5.6,-0.19,5.5;Kumasi,6.69,-1.62,3.6;Tamale,9.4,-0.84,.4
+TGO:Lome,6.13,1.22,1.9
+BEN:Porto-Novo,6.5,2.6,.3;Cotonou,6.37,2.39,1.2
+NER:Niamey,13.51,2.11,1.4;Agadez,16.97,7.99,.1;Zinder,13.81,8.99,.3
+NGA:Abuja,9.08,7.4,3.8;Lagos,6.52,3.38,16;Kano,12,8.52,4.2;Ibadan,7.38,3.95,3.6;Port Harcourt,4.82,7.05,3.3;Maiduguri,11.85,13.16,.8;Kaduna,10.52,7.44,1.2
+TCD:N'Djamena,12.13,15.06,1.6;Abeche,13.83,20.83,.1
+CMR:Yaounde,3.85,11.5,4.3;Douala,4.05,9.77,4;Garoua,9.3,13.4,.4
+CAF:Bangui,4.36,18.56,.9;Bambari,5.76,20.68,.05
+GNQ:Malabo,3.75,8.78,.3;Bata,1.86,9.77,.3
+GAB:Libreville,0.42,9.47,.8;Port-Gentil,-0.72,8.78,.1
+COG:Brazzaville,-4.26,15.24,2.5;Pointe-Noire,-4.78,11.86,1.3
+COD:Kinshasa,-4.44,15.27,17;Lubumbashi,-11.66,27.48,2.6;Goma,-1.68,29.22,.7;Kisangani,0.52,25.19,1.4;Mbuji-Mayi,-6.14,23.6,2.8
+AGO:Luanda,-8.84,13.23,9;Huambo,-12.78,15.74,.7;Lobito,-12.35,13.55,.4
+ZMB:Lusaka,-15.39,28.32,3.3;Ndola,-12.97,28.64,.6
+ZWE:Harare,-17.83,31.05,1.6;Bulawayo,-20.15,28.58,.7
+MWI:Lilongwe,-13.96,33.79,1.3;Blantyre,-15.77,35.01,1
+MOZ:Maputo,-25.97,32.57,1.8;Beira,-19.84,34.84,.6;Nampula,-15.12,39.27,.8;Pemba,-12.97,40.52,.2
+TZA:Dodoma,-6.16,35.75,.8;Dar es Salaam,-6.79,39.21,7.4;Mwanza,-2.52,32.9,1.2;Arusha,-3.39,36.68,.6
+KEN:Nairobi,-1.29,36.82,5.3;Mombasa,-4.04,39.67,1.3;Kisumu,-0.09,34.77,.6
+UGA:Kampala,0.35,32.58,3.8;Gulu,2.77,32.3,.2
+RWA:Kigali,-1.95,30.06,1.4
+BDI:Gitega,-3.43,29.92,.1;Bujumbura,-3.38,29.36,1.1
+SOM:Mogadishu,2.05,45.32,2.8;Hargeisa,9.56,44.06,1.2;Kismayo,-0.36,42.55,.2;Berbera,10.44,45.02,.1
+DJI:Djibouti,11.59,43.15,.6
+ERI:Asmara,15.32,38.93,1;Massawa,15.61,39.45,.05
+ETH:Addis Ababa,9.03,38.74,5.5;Dire Dawa,9.6,41.85,.4;Mekelle,13.5,39.47,.5;Gondar,12.61,37.47,.4;Bahir Dar,11.59,37.39,.4
+SDN:Khartoum,15.5,32.56,6.3;Port Sudan,19.62,37.22,.5;El Fasher,13.63,25.35,.3;Nyala,12.05,24.88,.6
+SSD:Juba,4.85,31.58,.5;Malakal,9.53,31.66,.1
+MDG:Antananarivo,-18.88,47.51,3.9;Toamasina,-18.15,49.4,.3
+ZAF:Pretoria,-25.75,28.19,2.9;Johannesburg,-26.2,28.05,6.2;Cape Town,-33.92,18.42,4.9;Durban,-29.86,31.02,3.9;Port Elizabeth,-33.96,25.6,1.3
+NAM:Windhoek,-22.56,17.08,.5;Walvis Bay,-22.96,14.51,.1
+BWA:Gaborone,-24.63,25.92,.3;Francistown,-21.17,27.51,.1
+LSO:Maseru,-29.31,27.48,.3
+SWZ:Mbabane,-26.31,31.14,.1
+MUS:Port Louis,-20.16,57.5,.1
+IND:New Delhi,28.61,77.21,33;Mumbai,19.08,72.88,21.3;Kolkata,22.57,88.36,15.3;Chennai,13.08,80.27,11.8;Bengaluru,12.97,77.59,13.6;Hyderabad,17.39,78.49,10.8;Ahmedabad,23.02,72.57,8.7;Srinagar,34.08,74.8,1.5;Guwahati,26.14,91.74,1.2;Visakhapatnam,17.69,83.22,2.3;Karwar,14.8,74.13,.1
+PAK:Islamabad,33.68,73.05,1.2;Karachi,24.86,67.01,17.6;Lahore,31.55,74.34,14;Rawalpindi,33.6,73.04,2.4;Peshawar,34.01,71.58,2.3;Quetta,30.18,66.98,1.2;Gwadar,25.13,62.32,.1
+BGD:Dhaka,23.81,90.41,23.2;Chittagong,22.36,91.78,5.4;Khulna,22.85,89.54,1
+LKA:Colombo,6.93,79.86,.8;Kandy,7.29,80.63,.1;Hambantota,6.12,81.12,.03;Trincomalee,8.57,81.23,.1
+NPL:Kathmandu,27.72,85.32,1.5;Pokhara,28.21,83.99,.5
+BTN:Thimphu,27.47,89.64,.1
+AFG:Kabul,34.56,69.21,4.6;Kandahar,31.63,65.71,.6;Herat,34.35,62.2,.6;Mazar-i-Sharif,36.71,67.11,.5
+KAZ:Astana,51.17,71.43,1.4;Almaty,43.24,76.95,2.2;Shymkent,42.34,69.59,1.2;Aktau,43.65,51.2,.2
+UZB:Tashkent,41.3,69.24,2.9;Samarkand,39.65,66.96,.6;Bukhara,39.77,64.42,.3
+TKM:Ashgabat,37.96,58.33,1;Turkmenbashi,40.02,52.96,.1
+KGZ:Bishkek,42.87,74.59,1.1;Osh,40.51,72.8,.3
+TJK:Dushanbe,38.56,68.79,.9;Khujand,40.28,69.62,.2
+MNG:Ulaanbaatar,47.89,106.91,1.6;Erdenet,49.03,104.08,.1
+CHN:Beijing,39.9,116.41,21.9;Shanghai,31.23,121.47,29.2;Guangzhou,23.13,113.26,14;Shenzhen,22.54,114.06,13;Chongqing,29.56,106.55,17;Chengdu,30.57,104.07,9.5;Wuhan,30.59,114.31,8.9;Xi'an,34.34,108.94,8.8;Tianjin,39.34,117.36,11;Qingdao,36.07,120.38,6;Harbin,45.8,126.53,6;Urumqi,43.83,87.62,4;Lhasa,29.65,91.17,.5;Xiamen,24.48,118.09,5.3;Sanya,18.25,109.51,.6;Dalian,38.91,121.6,4.6;Kunming,25.04,102.71,4.5
+TWN:Taipei,25.03,121.57,7;Kaohsiung,22.63,120.3,2.7;Taichung,24.15,120.67,2.8;Hualien,23.99,121.6,.3;Kinmen,24.43,118.32,.1
+JPN:Tokyo,35.68,139.69,37;Osaka,34.69,135.5,19;Nagoya,35.18,136.91,9.5;Fukuoka,33.59,130.4,2.6;Sapporo,43.06,141.35,2.6;Hiroshima,34.39,132.46,1.4;Okinawa,26.21,127.68,1.3;Yokosuka,35.28,139.67,.4;Sasebo,33.18,129.72,.2
+KOR:Seoul,37.57,126.98,26;Busan,35.18,129.08,3.4;Incheon,37.46,126.71,3;Daegu,35.87,128.6,2.4;Gwangju,35.16,126.85,1.5;Pyeongtaek,36.99,127.11,.6
+PRK:Pyongyang,39.04,125.76,3.1;Hamhung,39.92,127.54,.8;Chongjin,41.8,129.78,.6;Sinuiju,40.1,124.4,.4;Wonsan,39.15,127.44,.4;Yongbyon,39.8,125.75,.02
+VNM:Hanoi,21.03,105.85,8.4;Ho Chi Minh City,10.82,106.63,9.4;Da Nang,16.05,108.2,1.2;Haiphong,20.86,106.68,2;Cam Ranh,11.92,109.16,.1
+LAO:Vientiane,17.97,102.63,1;Luang Prabang,19.89,102.13,.1
+KHM:Phnom Penh,11.56,104.92,2.3;Siem Reap,13.36,103.86,.3;Ream,10.5,103.63,.01
+THA:Bangkok,13.76,100.5,11;Chiang Mai,18.79,98.98,1.2;Phuket,7.88,98.39,.4;Hat Yai,7.01,100.47,.4;Sattahip,12.67,100.9,.2
+MMR:Naypyidaw,19.76,96.08,1.2;Yangon,16.87,96.2,5.6;Mandalay,21.97,96.08,1.5;Sittwe,20.15,92.9,.2
+MYS:Kuala Lumpur,3.14,101.69,8.4;George Town,5.41,100.33,2.8;Johor Bahru,1.49,103.74,1.9;Kota Kinabalu,5.98,116.07,.5;Kuching,1.55,110.36,.7
+SGP:Singapore,1.35,103.82,5.9
+IDN:Jakarta,-6.21,106.85,34;Surabaya,-7.25,112.75,10;Bandung,-6.92,107.62,8.9;Medan,3.6,98.67,4.7;Makassar,-5.15,119.43,1.7;Balikpapan,-1.24,116.85,.9;Jayapura,-2.54,140.72,.4;Natuna,3.94,108.38,.1;Denpasar,-8.65,115.22,1
+BRN:Bandar Seri Begawan,4.9,114.94,.2
+PHL:Manila,14.6,120.98,14.4;Cebu,10.32,123.89,3;Davao,7.19,125.46,1.9;Subic Bay,14.8,120.28,.2;Puerto Princesa,9.74,118.74,.3;Zamboanga,6.92,122.08,1
+TLS:Dili,-8.56,125.57,.3
+PNG:Port Moresby,-9.44,147.18,.4;Lae,-6.73,147,.1
+SLB:Honiara,-9.43,159.95,.1
+VUT:Port Vila,-17.73,168.32,.05
+FJI:Suva,-18.14,178.44,.2
+AUS:Canberra,-35.28,149.13,.5;Sydney,-33.87,151.21,5.3;Melbourne,-37.81,144.96,5.2;Brisbane,-27.47,153.03,2.6;Perth,-31.95,115.86,2.2;Adelaide,-34.93,138.6,1.4;Darwin,-12.46,130.84,.15;Townsville,-19.26,146.82,.2;Pine Gap,-23.8,133.74,.01
+NZL:Wellington,-41.29,174.78,.4;Auckland,-36.85,174.76,1.7;Christchurch,-43.53,172.64,.4
+`;
+// build the city table once: G never stores it (it is static data)
+const CITIES = []; const CITY_OF = {};
+(function () {
+  for (const line of CITY_ROWS.trim().split('\n')) {
+    const [iso, rest] = line.split(':');
+    CITY_OF[iso] = [];
+    rest.split(';').forEach((s, k) => { const [n, la, lo, p] = s.split(','); const id = CITIES.length; CITIES.push({ id, iso, n, lat: +la, lon: +lo, pop: +p, cap: k === 0 }); CITY_OF[iso].push(id); });
+  }
+})();
+function llXY(lat, lon) { return [(lon + 180) / 360 * MAP.W, (MAP.top - lat) / (MAP.top - MAP.bot) * MAP.H]; }
+function cityXY(k) { const c = CITIES[k]; return llXY(c.lat, c.lon); }
+// great-circle distance in km
+function kmBetween(la1, lo1, la2, lo2) { const r = Math.PI / 180, dl = (la2 - la1) * r, dn = (lo2 - lo1) * r; const h = Math.sin(dl / 2) ** 2 + Math.cos(la1 * r) * Math.cos(la2 * r) * Math.sin(dn / 2) ** 2; return 12742 * Math.asin(Math.min(1, Math.sqrt(h))); }
+
 // ===================================================================================
 //  SOVEREIGN — simulation engine
 //  Units: money in $B (base-2026 US dollars) per year unless noted. Rates are fractions.
 // ===================================================================================
 'use strict';
-const VERSION = '5.0';
+const VERSION = '7.0';
 const DAY_MS = 15000;                // 1 real minute = 4 game days at 1x
 const START = Date.UTC(2026, 0, 1);
 
@@ -336,7 +526,7 @@ const SANCF = [1, .55, .15, .01];
 const TB = { inc: .55, corp: .14, vat: .36 };   // tax bases as shares of GDP
 const REL_NAMES = [[-60, 'Hostile'], [-25, 'Unfriendly'], [15, 'Neutral'], [45, 'Cordial'], [75, 'Friendly'], [101, 'Allied']];
 const RATINGS = ['AAA', 'AA+', 'AA', 'AA-', 'A+', 'A', 'A-', 'BBB+', 'BBB', 'BBB-', 'BB+', 'BB', 'BB-', 'B+', 'B', 'B-', 'CCC', 'CC', 'D'];
-const F_FTA = 1, F_ALLY = 2, F_INTEL = 4, F_NAP = 8, F_CU = 16;
+const F_FTA = 1, F_ALLY = 2, F_INTEL = 4, F_NAP = 8, F_CU = 16, F_ACCESS = 32;
 
 // ---------- RNG ----------
 function rng() { let t = (G.rs = (G.rs + 0x6D2B79F5) | 0); t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }
@@ -421,6 +611,7 @@ function newWorld(seed) {
   computeDist(); initRoutes(); computePF(); tradeStep(true);
   for (const c of G.C) { c.tb0 = (c.X - c.Mi) / (c.Y * c.P * c.e); c.X0 = c.X; c.M0 = c.Mi; c.avail0 = Float64Array.from(c.avail, v => Math.max(.05, v)); c.sell0 = Float64Array.from(c.sell, v => Math.max(.05, v)); c.shortFd.fill(0); }
   G.ex0 = Array.from({ length: NG }, (_, g) => (G.worldUnmet[g] - G.worldUnsold[g]) / (G.worldOut[g] || 1));
+  econGlobalInit(); for (const c of G.C) initEcon(c);
   for (const c of G.C) { const t = taylorRaw(c); const r = RATE0[c.iso] != null ? RATE0[c.iso] : Math.max(0, t); c.rOff = r - t; c.rate = c.r0 = r; }
   euroUpdate(0);
   const us0 = G.C[G.idx.USA];
@@ -442,10 +633,12 @@ function newWorld(seed) {
     for (const k of keys) { c.sp[k] *= f; c.sp0[k] = c.sp[k]; }
   }
   for (const c of G.C) { macroStep(c, 0, us); c.popStart = c.pop; c.intelScore = clamp(10 * Math.log(1 + c.intelStock) + c.tech * .25, 0, 99); c.rating = ratingOf(c); c.impAff = 0; c.bondYield = c.rate + c.prem; }
+  econSettle();
   for (const c of G.C) snapshot(c);
   worldSnapshot();
   initDiplomacy();
   initFDI(); laneFlows();
+  initMilitary(); for (const c of G.C) initIntel(c); computeCoverage();
 }
 
 function initCountry(c) {
@@ -633,6 +826,7 @@ function computeDemand(c) {
     const G_ = GOODS[g];
     let f = c.fd0[g] * Math.pow(yr, G_.eY) * Math.pow(p[g], -G_.eP);
     if (g === GI.OIL || g === GI.GAS || g === GI.COAL) f *= fossil;
+    if (g === GI.OIL && c.ec) f *= c.ec.fuelDemF;
     if (g === GI.CRIT) f *= critM;
     if (g === GI.ARMS) f = c.fd0[g] * Math.pow(Math.max(.05, milR), .9) * Math.pow(p[g], -G_.eP);
     if (g === GI.PHAR) f *= Math.pow(healthR, .5);
@@ -711,6 +905,10 @@ function computePF() {
   const n = G.n, C = G.C; if (!PF) PF = new Float32Array(n * n);
   const warSet = new Set();
   const ex = C.map(c => 1 + polFx(c, 'expAff')), afc = G.org ? tradeBonusArray() : null, dealF = G.deals ? dealPFBoost() : null;
+  // v6: price competitiveness. A country whose real exchange rate is cheaper than the world average wins export share.
+  let qw = 0, qs = 0; for (const c of C) if (c.ec && c.ec.q) { qw += c.Y; qs += c.Y * Math.log(c.ec.q); }
+  const qAvg = qw > 0 ? qs / qw : 0;
+  for (let i = 0; i < n; i++) { const c = C[i]; if (c.ec && c.ec.q) ex[i] *= clamp(Math.exp(-.8 * (Math.log(c.ec.q) - qAvg)), .5, 1.7) * (1 + .03 * ((c.ec.sezE || 0) - (c.ec.sez0 || 0))); }
   for (const w of G.wars) if (!w.over) for (const a of w.A) for (const d of w.D) { warSet.add(a * n + d); warSet.add(d * n + a); }
   for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
     const k = i * n + j;
@@ -721,6 +919,7 @@ function computePF() {
     else { if (fl & F_CU) f *= 2; else if (fl & F_FTA) f *= 1.5; let tau = (fl & (F_CU | F_FTA)) ? 0 : C[j].tariff; tau += G.btar[j * n + i]; f *= Math.pow(1 + tau, -4); }
     const s = Math.max(G.sanc[k], G.sanc[j * n + i]);
     f *= SANCF[s];
+    if (G.blk) f *= blockF(i) * blockF(j);
     f *= 1 + (C[j].impAff || 0);
     f *= ex[i];
     if (afc && afc[i] && afc[j] && !(fl & (F_CU | F_FTA))) f *= 1.12;
@@ -846,7 +1045,7 @@ function supplyStep(c, dt) {
   const capBoost = polFx(c, 'capBoost');
   // subsidy allocation
   const NGDPr = c.Y;
-  const subT = c.sp.subsidy * NGDPr, sub0 = c.sp0.subsidy * c.Y0 * (c.Y / c.Y0);
+  const subT = (c.sp.subsidy + (c.ec ? .5 * (c.ec.dbl - c.ec.dbl0) : 0)) * NGDPr, sub0 = c.sp0.subsidy * c.Y0 * (c.Y / c.Y0);
   let wsel = 0, wall = 0; for (let g = 0; g < NG; g++) { wall += c.cap[g]; if (c.sub[g]) wsel += c.cap[g]; }
   for (let g = 0; g < NG; g++) {
     // inputs
@@ -892,6 +1091,14 @@ function structural(c, parts) {
     shocks: c.shock.growth,
     fdi: c.fdiG || 0,
   };
+  const ec = c.ec;
+  if (ec && ec.fin0v != null) {
+    const t = c.tax, t0 = c.tax0;
+    P.taxes += -.02 * (t.pay - t0.pay) - .03 * (t.cg - t0.cg) - .25 * (t.wealth - t0.wealth) - .02 * Math.max(0, t.top - Math.max(.45, t0.top)) + .006 * (t.inv - t0.inv);
+    P.finance = ecFinHealth(c) - ec.fin0v;
+    P.informal = -.03 * (ec.inf - ec.inf0);
+    P.zones = .0015 * (ec.sezE - ec.sez0) * (c.inc <= 2 ? 1 : .3);
+  }
   let s = 0; for (const k in P) s += P[k];
   if (parts) Object.assign(parts, P);
   return s;
@@ -899,21 +1106,30 @@ function structural(c, parts) {
 
 const RATE0 = { USA: .0375, JPN: .0075, GBR: .0375, CHN: .014, IND: .0525, BRA: .15, RUS: .165, TUR: .38, CAN: .0225, AUS: .036, KOR: .025, MEX: .07, ZAF: .0675, IDN: .0475, CHE: 0, SWE: .0175, NOR: .04, ARG: .3, EGY: .21, NGA: .27, PAK: .11, IRN: .23, SAU: .045, ARE: .04, POL: .04, HUN: .065, CZE: .035, NZL: .025, THA: .015, MYS: .0275, PHL: .045, VNM: .045, COL: .0925, CHL: .0475, PER: .0425, ISR: .0425, UKR: .155, KAZ: .18, UZB: .14, DNK: .0175, ISL: .0725, ROU: .065, SRB: .0575, GHA: .215, KEN: .09, BGD: .1, LKA: .0775, VEN: .6, BLR: .0975, GEO: .08, ARM: .0675, AZE: .07, TWN: .02, SGP: .02, QAT: .045, KWT: .0375 };
 function taylorRaw(c) {
-  const neutral = .005 + .5 * (c.gPot || c.g0);
-  return neutral + c.infl + .5 * (c.infl - c.cbTarget) + .5 * c.gap;
+  const neutral = .005 + .5 * (c.gPot || c.g0), ec = c.ec;
+  if (!ec) return neutral + c.infl + .5 * (c.infl - c.cbTarget) + .5 * c.gap;
+  const m = MAND[ec.mand] || MAND.dual, g = GVR[ec.gvr] || GVR[0];
+  return neutral + c.infl + (m.p + g.p) * (c.infl - c.cbTarget) + (m.y + g.y) * c.gap + g.b + .05 * Math.max(0, (ec.cgap || 0) - .03) + (ec.hike || 0);
 }
 function taylor(c) {
   const off = (c.rOff || 0) * Math.exp(-(G.day || 0) / 365 / 5);
   return Math.max(-.005, taylorRaw(c) + off);
 }
 function premium(c) {
-  const dr = c.debt / Math.max(1, (c.Y || c.gdp0) * (c.P || 1));
+  const ec = c.ec;
+  const dr = Math.max(0, c.debt - (ec ? .8 * ec.swf / Math.max(.01, c.e || 1) : 0)) / Math.max(1, (c.Y || c.gdp0) * (c.P || 1));
   let p = .004 + .035 * Math.pow(Math.max(0, dr - .6), 1.3);
   if (c.reserveCur) p *= .1; else if (c.euro) p *= .45; else if (c.inc >= 3) p *= .6;
   p += .08 * Math.max(0, (55 - c.stability) / 100);
   p += .25 * Math.max(0, (c.defPct || 0) - .05);
   if (c.defaulted > 0) p += .08;
   if (c.warIntensity) p += .02 * c.warIntensity;
+  if (ec && ec.realLend0 != null) {
+    if (ec.rule !== 'none') p -= .006 * ec.fcred * (dr > .6 ? 1 : .5);
+    p += .012 * Math.max(0, ec.fxS - .3) + (c.inc < 3 && !c.reserveCur && !c.euro ? .006 * clamp((3 - (ec.resM || 3)) / 3, 0, 1) + .12 * Math.max(0, -(ec.ca || 0) - .05) : 0);
+    if (ec.crisis && ec.crisis.until > G.day) p += ec.crisis.k === 'bank' ? .006 : .012;
+    p += .003 * Math.max(0, (ec.dbBook || 0) - .1);
+  }
   if (G.org) { p += imfEffect(c); if (G.org.eu.edp.includes(c.iso)) p += .002; }
   return clamp(p + polFx(c, 'risk'), .001, .4);
 }
@@ -924,131 +1140,56 @@ function ratingOf(c) {
   return clamp(Math.floor((100 - score) / 5), 0, RATINGS.length - 2);
 }
 
-function macroStep(c, dt, us) {
-  // --- production value added
-  let gva = 0, lostFd = 0;
-  for (let g = 0; g < NG; g++) { gva += c.out[g] * GOODS[g].va; }
-  for (const g of [GI.FOOD, GI.OIL, GI.GAS, GI.CHEM, GI.PHAR]) lostFd += c.shortFd[g];
-  const shortShare = lostFd / Math.max(1, c.Y);
-  const foodShort = c.fd[GI.FOOD] > 0 ? c.shortFd[GI.FOOD] / c.fd[GI.FOOD] : 0;
-  const fuelShort = (c.shortFd[GI.OIL] + c.shortFd[GI.GAS]) / Math.max(1e-6, c.fd[GI.OIL] + c.fd[GI.GAS]);
-  c.foodShort = foodShort; c.fuelShort = fuelShort;
-  // --- potential growth
-  const S = structural(c);
-  if (c.S0 == null) { c.S0 = S; c.cal = c.g0 - S; }
-  c.cal *= Math.exp(-dt / 25);
-  c.gPot = clamp(S + c.cal, -.08, .12);
-  c.Spot *= Math.exp(c.gPot * dt);
-  // --- demand side
-  const NGDPusd = c.Y * c.P * c.e;
-  const tb = (c.X - c.Mi) / Math.max(1, NGDPusd);
-  c.tbPct = tb;
-  const fiscal = .35 * ((c.defPct != null ? c.defPct : c.def0) - c.def0);
-  const mon = -.4 * ((c.rate - c.inflExp) - (c.r0 - c.infl0));
-  const ext = .3 * (tb - c.tb0);
-  const gT = clamp(fiscal + mon + ext - .6 * shortShare - c.warDrag + c.shock.gap, -.22, .12);
-  c.gap += (gT - c.gap) * 3 * dt;
-  c.Y = Math.max(.05 * c.Y0, c.Spot * (1 + c.gap) + gva);
-  // --- inflation
-  let gi = 0, gd = 0; for (let g = 0; g < NG; g++) { gi += c.dem[g] * G.price[g]; gd += c.dem[g]; }
-  const lg = Math.log(gi / gd / c.e * (1 + c.tariff));
-  if (c.lgRef == null) c.lgRef = lg;
-  c.lgRef += (lg - c.lgRef) * dt / .5;
-  c.gInfSm = (lg - c.lgRef) / .5;
-  const piT = c.inflExp + .5 * c.gap + .25 * clamp(c.gInfSm, -.3, .6) + c.print * .15 + polFx(c, 'infl') + c.shock.infl + .3 * (foodShort + fuelShort);
-  c.infl += (piT - c.infl) * 2.5 * dt;
-  c.infl = clamp(c.infl, -.1, 5);
-  const anchor = (c.cbIndep ? c.cbCred : c.cbCred * .5) * (c.print ? .3 : 1);
-  c.inflExp += ((c.infl - c.inflExp) * .4 + (c.cbTarget - c.inflExp) * Math.max(.15, anchor) * .6) * dt;
-  c.P *= Math.exp(c.infl * dt);
-  // --- unemployment
-  const uT = c.uNat + polFx(c, 'uNat') - .45 * c.gap + .5 * shortShare;
-  c.u += (uT - c.u) * 3 * dt; c.u = clamp(c.u, .005, .6);
-  // --- monetary policy
-  if (c.euro) c.rate = G.euro.rate;
-  else if (c.peg && c.pegSpread != null) { const anc = c.peg === 'USD' ? us.rate : G.euro.rate; c.rate += (anc + c.pegSpread - c.rate) * 2 * dt; }
-  else if (c.cbIndep || !isHuman(c.i)) c.rate += (taylor(c) - c.rate) * 2 * dt;
-  // --- currency
-  if (c.iso === 'USA') c.e = 1;
-  else if (c.peg === 'USD') c.e = 1;
-  else if (c.euro || c.peg === 'EUR') c.e = G.euro.e;
-  else {
-    c.eFair *= Math.exp(-(c.infl - us.infl) * dt);
-    const vol = 1 + (polFx(c, 'fxVol') || 0);
-    const prem = .8 * ((c.rate - c.infl) - (us.rate - us.infl) - c.rrd0) + .6 * (tb - c.tb0) - 1.5 * (c.prem - c.prem0);
-    const tgt = Math.log(c.eFair) + clamp(prem, -.6, .4) + polFx(c, 'fxBias');
-    let le = Math.log(c.e); le += (tgt - le) * 1.5 * dt + (dt ? .003 * randn() * vol : 0);
-    c.e = Math.exp(le);
-  }
-  // --- public finances
-  const NGDPl = c.Y * c.P;
-  const comp = clamp(c.comp0 + .4 * (c.stability - c.stab0) / 100 - .4 * (c.corr - c.corr0) / 100 + 3 * (c.sp.admin - c.sp0.admin) + polFx(c, 'comp'), .25, 1);
-  const royR = c.tax.roy * rawRevenue(c) / Math.max(1, NGDPusd);
-  const tarR = c.tariffRev / Math.max(1, NGDPusd);
-  let aidIn = 0, aidOut = 0;
-  for (const a of G.aid) { if (a.type === 'e') { if (a.to === c.i) aidIn += a.amt; if (a.from === c.i) aidOut += a.amt; } else if (a.from === c.i) aidOut += a.amt; }
-  c.aidIn = aidIn; c.aidOut = aidOut;
-  const taxR = comp * (c.tax.inc * TB.inc + c.tax.corp * TB.corp + c.tax.vat * TB.vat);
-  c.comp = comp;
-  const euR = c.euRec || 0, euC = c.euContrib || 0;
-  c.revParts = { inc: comp * c.tax.inc * TB.inc, corp: comp * c.tax.corp * TB.corp, vat: comp * c.tax.vat * TB.vat, tariff: tarR, roy: royR, aid: aidIn / Math.max(1, NGDPusd), eu: euR, other: c.otherRev };
-  const t2R = G.cp ? tradeRevenue(c) / Math.max(1, NGDPusd) : 0; c.revParts.trade = t2R;
-  c.revPct = taxR + tarR + royR + c.otherRev + euR + aidIn / Math.max(1, NGDPusd) + t2R;
-  let prim = 0; for (const k of SPEND_KEYS) prim += c.sp[k];
-  prim += polFx(c, 'spend') + aidOut / Math.max(1, NGDPusd) + euC + ((c.projSpend || 0) + (c.incent || 0) * .001 * NGDPusd) / Math.max(1, NGDPusd);
-  c.prem = premium(c);
-  const market = Math.max(0, c.rate + c.prem);
-  c.bondYield = market;
-  const conc = c.iso === 'UKR' ? .6 : [.7, .4, 0, 0][c.inc];
-  const tp = .0009 * ((c.issueMat || 6) - 5);
-  c.newYield = market + tp;
-  c.effRate += ((1 - conc) * (market + tp) + conc * .02 - c.effRate) * dt / (c.mat || 6.5);
-  if (c.issueMat) c.mat += (c.issueMat - c.mat) * dt / Math.max(1, c.mat);
-  const interest = c.debt * c.effRate;
-  c.intPct = interest / NGDPl;
-  const oneOff = c.oneOff || 0; c.oneOff = Math.max(0, oneOff * Math.exp(-12 * dt));
-  c.spendPct = prim + c.intPct + oneOff / Math.max(1, NGDPusd) * 12;
-  c.defPct = c.spendPct - c.revPct;
-  let def = c.defPct * NGDPl;
-  if (c.print) { const m = Math.min(Math.max(0, def), .03 * NGDPl); def -= m; }
-  c.debt = Math.max(0, c.debt + def * dt + wbPct(c) * NGDPl * dt);
-  // --- population
-  c.pop *= Math.exp((c.popG + polFx(c, 'popG') - (c.warCas || 0)) * dt);
-}
+// macroStep lives in econ.js (v6)
 
 function monthlyStocks(c) {
   const m = 1 / 12;
   const pc = c.Y * c.P * c.e / c.pop * 1000; c.pcNow = pc;
   const lr = Math.log(Math.max(.2, c.Y / c.Y0 * c.pop / c.popStart));
-  const hcT = c.HC0 + 800 * (c.sp.edu - c.sp0.edu) + 10 * lr + polFx(c, 'hc');
+  const hcT = c.HC0 + 800 * (c.sp.edu - c.sp0.edu) + 10 * lr + polFx(c, 'hc') + (c.ec ? 150 * (c.ec.almpE - c.prog0.almp) : 0);
   c.HC += (clamp(hcT, 3, 99) - c.HC) * m / 12;
-  const techT = c.tech0 + 1200 * (c.sp.research - c.sp0.research) + .3 * (c.HC - c.HC0) + 8 * lr + polFx(c, 'tech');
+  const ec = c.ec, rdX = ec ? 600 * (c.tax.rd - c.tax0.rd) * ecBizRD(c) : 0, alX = ec ? 150 * (ec.almpE - c.prog0.almp) : 0;
+  const techT = c.tech0 + 1200 * (c.sp.research - c.sp0.research) + rdX + .3 * (c.HC - c.HC0) + 8 * lr + polFx(c, 'tech');
   c.tech += (clamp(techT, 2, 99) - c.tech) * m / 10;
-  const infT = c.infraI0 + 400 * (c.sp.infra - c.sp0.infra + wbPct(c)) + 8 * lr;
+  const infT = c.infraI0 + 400 * (c.sp.infra - c.sp0.infra + wbPct(c) + (ec && ec.stimK === 'infra' && ec.stimT > G.day ? ec.stim * .5 : 0)) + 8 * lr;
   c.infraI += (clamp(infT, 3, 99) - c.infraI) * m / 8;
   const corT = c.corr0 - 500 * (c.sp.admin - c.sp0.admin) + polFx(c, 'corr') * 2;
   c.corr += (clamp(corT, 2, 99) - c.corr) * m / 6;
-  const giT = c.gini0 - 120 * ((c.sp.welfare - c.sp0.welfare) + .5 * (c.sp.health - c.sp0.health)) + polFx(c, 'gini') + 15 * (c.tax0.vat - c.tax.vat) * .3;
+  let giT = c.gini0 - 120 * ((c.sp.welfare - c.sp0.welfare) + .5 * (c.sp.health - c.sp0.health)) + polFx(c, 'gini') + 15 * (c.tax0.vat - c.tax.vat) * .3;
+  if (ec) { const t = c.tax, t0 = c.tax0, pr = c.prog, p0 = c.prog0; giT += -15 * (t.top - t0.top) - 60 * (t.wealth - t0.wealth) - 10 * (t.cg - t0.cg) - 30 * (pr.ui - p0.ui) * pr.cov - 100 * (pr.pw - p0.pw) - 4 * (pr.fsubF - p0.fsubF) + 8 * (ec.inf - ec.inf0) + 3 * Math.max(0, Math.log(ec.hp)) + 2 * Math.max(0, Math.log(ec.eq)); }
   c.gini += (clamp(giT, 20, 70) - c.gini) * m / 5;
   c.intelStock += (c.sp.intel * c.Y * c.costF - c.intelStock) * m / 3;
   c.intelScore = clamp(10 * Math.log(1 + c.intelStock) + c.tech * .25 + polFx(c, 'intel'), 0, 99);
   c.impAff = polFx(c, 'impAff');
   c.rating = ratingOf(c);
+  if (ec) { const infT = ec.inf0 + .5 * (c.tax.pay - c.tax0.pay) + .1 * (stance(c, 'labor') - ec.lab0) / 100 + (c.inc <= 1 ? .1 : .03) * (stance(c, 'minwage') - ec.mw0) / 100 + .15 * (c.corr - c.corr0) / 100 - .15 * (stance(c, 'taxenf') - ec.te0) / 100;
+    ec.inf += (clamp(infT, .02, .95) - ec.inf) * m / 3;
+    const partT = ec.part0 + .0012 * (stance(c, 'pension') - 50) * .5 - .1 * Math.max(0, c.u - c.u0 - .03) + .02 * (stance(c, 'family') - 50) / 50 * .5;
+    ec.part += (clamp(partT, .3, .8) - ec.part) * m / 2; }
 }
 
 function politicsStep(c, dt) {
   const gw = GOV[c.gov];
   const dInfl = c.infl - c.infl0, dU = c.u - c.u0, dG = c.growth - c.g0;
-  const tx = c.tax.inc + .8 * c.tax.vat + .3 * c.tax.corp, tx0 = c.tax0.inc + .8 * c.tax0.vat + .3 * c.tax0.corp;
+  const vis = t => t.inc + .8 * t.vat + .3 * t.corp + (t.pay != null ? .55 * t.pay + .15 * t.exc + 4 * t.prop + .05 * t.cg : 0);
+  const tx = vis(c.tax), tx0 = vis(c.tax0);
   const soc = c.sp.health + c.sp.edu + c.sp.welfare, soc0 = c.sp0.health + c.sp0.edu + c.sp0.welfare;
   const econ = .6 * (clamp(-120 * dInfl, -22, 12) + clamp(-250 * dU, -25, 12) + clamp(150 * dG, -15, 10)) + .4 * (clamp(-110 * (tx - tx0), -22, 15) + clamp(90 * (soc - soc0), -14, 12)) - .25 * (c.corr - c.corr0) + (c.gv ? .45 * facApproval(c) : 0);
-  const short = -70 * (c.foodShort || 0) - 40 * (c.fuelShort || 0);
+  let short = -70 * (c.foodShort || 0) - 40 * (c.fuelShort || 0);
+  const ec = c.ec;
+  if (ec && ec.wts) {
+    const pr = c.prog, p0 = c.prog0, [wF, wE] = ec.wts;
+    short += .6 * (clamp(50 * (ec.wG - c.infl - .01), -8, 4) + clamp(12 * ec.hpG, -4, 3) - clamp(6 * Math.max(0, Math.log(ec.hp)), 0, 5)
+      - clamp(80 * wF * Math.max(0, ec.piF - c.infl0 - .03), 0, 10) - clamp(60 * wE * Math.max(0, ec.piE - c.infl0 - .03), 0, 6))
+      + clamp(6 * (pr.ui - p0.ui) * pr.cov + 200 * (pr.pw - p0.pw) + 8 * (pr.fsubE - p0.fsubE) + 10 * (pr.fsubF - p0.fsubF), -10, 8)
+      - (ec.crisis && ec.crisis.until > G.day ? 3 : 0);
+  }
   c.rally *= Math.exp(-dt / .5);
   const aT = c.approval0 + gw.econW * econ + short + c.rally - c.fatigue + polFx(c, 'approval') + c.shock.appr;
   c.approval += (clamp(aT, 2, 97) - c.approval) * 3 * dt;
   const repress = (c.gov === 'D' ? 1 : 1.6) * 250 * (c.sp.admin - c.sp0.admin);
   const sT = c.stab0 + .35 * gw.stabW * (c.approval - c.approval0) + repress - 35 * (c.foodShort || 0) - 15 * (c.fuelShort || 0) - c.warStab
-    + polFx(c, 'stability') + (c.gv && c.gov !== 'D' ? .3 * facElite(c) : 0) + c.shock.stab - 25 * Math.max(0, c.u - c.u0 - .05) - 30 * Math.max(0, c.infl - Math.max(.1, c.infl0 * 1.5)) - .4 * Math.max(0, c.gini - c.gini0);
+    + polFx(c, 'stability') + (c.gv && c.gov !== 'D' ? .3 * facElite(c) : 0) + c.shock.stab - 25 * Math.max(0, c.u - c.u0 - .05) - 30 * Math.max(0, c.infl - Math.max(.1, c.infl0 * 1.5)) - .4 * Math.max(0, c.gini - c.gini0) - (ec && ec.wts ? 75 * ec.wts[0] * Math.max(0, ec.piF - Math.max(.1, 1.5 * c.infl0)) : 0);
   c.stability += (clamp(sT, 1, 99) - c.stability) * 1.5 * dt;
   for (const k in c.shock) c.shock[k] *= Math.exp(-dt / (k === 'growth' ? 3 : .35));
 }
@@ -1060,7 +1201,7 @@ function euroUpdate(dt) {
   inf /= w; gap /= w; tb /= w; tb0 /= w; gp /= w;
   const neutral = .005 + .5 * gp;
   const raw = neutral + inf + .5 * (inf - .02) + .5 * gap;
-  if (!dt) { E.off = .02 - raw; E.rate = .02; E.infl = inf; E.r0 = .02; E.rrd0 = (E.rate - inf) - (us.rate - us.infl); return; }
+  if (!dt) { E.off = .02 - raw; E.rate = .02; E.infl = E.infl0 = inf; E.r0 = .02; E.rrd0 = (E.rate - inf) - (us.rate - us.infl); return; }
   const rT = Math.max(-.005, raw + E.off * Math.exp(-G.day / 365 / 5));
   E.rate += (rT - E.rate) * 2 * dt; E.infl = inf;
   E.eFair *= Math.exp(-(inf - us.infl) * dt);
@@ -1093,54 +1234,17 @@ function startWar(a, d, o = {}) {
     G.pfDirty = 1;
     if (G.org) { collectiveDefence(w); unOnWar(w); }
   }
+  if (G.units) { warInit(w); buildWarMat(); }
   return w;
 }
 function sidePower(list, lead) {
   let p = 0; for (const i of list) { const c = G.C[i]; p += c.M * (.5 + c.tech / 100) * (1 + polFx(c, 'mil')) * (i === lead ? 1 : .35); } return p;
 }
-function warStep(dt) {
-  for (const c of G.C) { c.warDrag = 0; c.warStab = 0; c.warProd = 1; c.warIntensity = 0; c.warCas = 0; }
-  for (const w of G.wars) {
-    if (w.over) continue;
-    const pa = sidePower(w.A, w.a), pd = sidePower(w.D, w.d) * 1.45;
-    const ratio = pa / Math.max(1, pd);
-    w.score = clamp(w.score + (22 * Math.tanh(Math.log(ratio) * 1.2) + 10 * randn()) * dt, -100, 100);
-    let inten = clamp(.6 + .4 * Math.abs(Math.tanh(Math.log(ratio))), .3, 1);
-    if (w.unCF) inten *= .85;
-    w.cas += inten * (40000 + 4500 * Math.sqrt(pa + pd)) * dt;
-    const yrs = (G.day - w.start) / 365;
-    const front = (list, lead, def) => {
-      for (const i of list) {
-        const c = G.C[i], main = i === lead, k = main ? 1 : .25;
-        c.M -= c.M * .1 * inten * k * dt;
-        c.warIntensity = Math.max(c.warIntensity, inten * k);
-        c.warDrag += (def ? .045 : .02) * k * inten / (1 + yrs * .5);
-        c.warStab += (def ? 6 : 3) * k;
-        if (main && def) { for (let g = 0; g < NG; g++) c.dmg[g] = Math.max(.6, c.dmg[g] - .1 * inten * dt); c.infraI -= .8 * inten * dt; c.warCas = .004; }
-        if (main) c.fatigue = clamp(c.fatigue + (def ? .8 : 2.2) * dt * (c.gov === 'D' ? 1.5 : .7), 0, 22);
-      }
-    };
-    front(w.A, w.a, false); front(w.D, w.d, true);
-    w.exA += (.12 + .25 * Math.max(0, -w.score) / 100) * dt * (G.C[w.a].gov === 'D' ? 1.5 : 1);
-    w.exD += (.1 + .25 * Math.max(0, w.score) / 100) * dt;
-  }
-  for (const c of G.C) if (!warsOf(c.i).length) c.fatigue *= Math.exp(-dt / .7);
-}
-function endWar(w, term, silent) {
+// warStep lives in war.js (v7)
+function endWar(w, term, silent, pkg) {
+  if (w.over) return;
+  if (G.units) { concludePeace(w, pkg || classicToPkg(w, term), null); w.term = term === 'treaty' ? 'treaty' : term; buildWarMat(); return; }
   w.over = true; w.end = G.day; w.term = term;
-  const A = G.C[w.a], D = G.C[w.d];
-  const winner = term === 'white' ? null : (term === 'repA' || term === 'capA') ? w.a : w.d;
-  const loser = winner == null ? null : winner === w.a ? w.d : w.a;
-  if (loser != null) {
-    const L = G.C[loser], cap = term.startsWith('cap');
-    G.aid.push({ from: loser, to: winner, amt: +(L.Y * (cap ? .03 : .015)).toFixed(1), type: 'e', until: G.day + 365 * 5, rep: 1 });
-    if (cap) { L.M *= .5; L.shock.appr -= 15; L.shock.stab -= 15; if (sancLevel(winner, loser)) setSanction(winner, loser, 0); }
-    G.C[winner].shock.appr += 8;
-  }
-  setRel(w.a, w.d, Math.min(getRel(w.a, w.d) + 25, 0));
-  G.pfDirty = 1;
-  const tx = { white: 'a white peace — pre-war lines hold', repA: `${D.name} will pay reparations`, repD: `${A.name} will pay reparations`, capA: `${D.name} capitulates`, capD: `${A.name} capitulates` }[term];
-  if (!silent) news('WAR', 3, [A.iso, D.iso], `Peace: ${w.name} ends in ${tx}`, `Casualties estimated at ${fmtInt(w.cas)}.`);
 }
 
 // =================================================================================== NEWS & INBOX
@@ -1199,7 +1303,7 @@ const EVENTS = [
   { id: 'breakthrough', p: c => c.tech > 45 ? 1 / 2500 : 0, fire(c) {
       c.tech += 1.5 + rng() * 2; const f = pick(['battery chemistry', 'quantum sensing', 'AI chip design', 'fusion materials', 'gene therapy', 'photonic computing', 'drone autonomy']);
       return { cat: 'ECON', sev: 1, head: `${c.name} labs report breakthrough in ${f}`, body: 'Technology index rises.' }; } },
-  { id: 'bankcrisis', p: c => G.day < 180 ? 0 : (debtR_(c) > Math.max(1.1, c.debt0 + .15) && !c.reserveCur) || c.gap < -.05 || c.bondYield - c.infl > .14 ? 1 / 2500 * Math.max(.2, 1 + polFx(c, 'bankRisk')) : 1 / 40000, fire(c) {
+  { id: 'bankcrisis', p: c => c.ec ? 0 : G.day < 180 ? 0 : (debtR_(c) > Math.max(1.1, c.debt0 + .15) && !c.reserveCur) || c.gap < -.05 || c.bondYield - c.infl > .14 ? 1 / 2500 * Math.max(.2, 1 + polFx(c, 'bankRisk')) : 1 / 40000, fire(c) {
       c.shock.gap -= .03;
       return { cat: 'ECON', sev: 3, head: `Banking crisis in ${c.name} as lenders fail`, body: 'Deposit runs spread; credit freezes.',
         choices: [{ n: 'Bail out the banks', d: 'Debt +6% of GDP. Recession is milder.', fx: c => { c.debt += .06 * c.Y * c.P; c.shock.gap += .015; } },
@@ -1217,7 +1321,7 @@ const EVENTS = [
   { id: 'terror', p: c => c.stability < 45 ? 1 / 1500 : 1 / 12000, fire(c) {
       c.shock.stab -= 4; c.rally += 2;
       return { cat: 'SECURITY', sev: 2, head: `Deadly attack in ${c.name}'s capital`, body: 'Security forces on high alert.' }; } },
-  { id: 'currency', p: c => !c.euro && !c.peg && c.iso !== 'USA' && (c.bondYield - c.infl > .12 || c.tbPct < c.tb0 - .06) ? 1 / 500 : 0, fire(c) {
+  { id: 'currency', p: c => c.ec ? 0 : !c.euro && !c.peg && c.iso !== 'USA' && (c.bondYield - c.infl > .12 || c.tbPct < c.tb0 - .06) ? 1 / 500 : 0, fire(c) {
       c.e *= .88; c.shock.infl += .03; c.shock.appr -= 4;
       return { cat: 'MARKETS', sev: 2, head: `${c.name}'s currency plunges in speculative attack`, body: 'Import costs jump; central bank under pressure.' }; } },
 ];
@@ -1227,6 +1331,7 @@ function regimeChange(c, how) {
   const prevGov = c.gov;
   if (how === 'coup') { c.gov = 'J'; if (c.gv) { c.gv.sys = 'junta'; c.gv.ch.forEach(ch => ch.adv = true); c.gv.nextExec = 0; c.gv.nextLeg = 0; c.gv.hos = c.gv.hog = 'Junta Leader'; } if (G.org) auOnCoup(c); }
   else if (how === 'revolution') c.gov = rng() < .5 ? 'H' : 'D';
+  if (typeof clearWarrant === 'function') clearWarrant(c, how === 'imposed' ? 'The regime has been replaced.' : 'A new government is in power.');
   c.approval = c.approval0 = 50; c.stability = c.stab0 = clamp(c.stability + 15, 20, 60); c.shock.stab = 0;
   c.aggr = clamp(c.aggr + (rng() - .4) * .3, 0, 1);
   for (const o of G.C) if (o.gov === 'D' && o.i !== c.i && how === 'coup') { bumpRel(o.i, c.i, -12); }
@@ -1278,24 +1383,10 @@ function aiMonthly(c) {
       bumpRel(c.i, o.i, r > 0 ? 2 : r < -50 ? -1 : 1);
     }
   }
-  // espionage between rivals
-  if (c.intelScore > 28 && rng() < .05) {
-    const riv = G.C.filter(o => o.i !== c.i && getRel(c.i, o.i) < -35 && o.Y > 100);
-    if (riv.length) { const t = pick(riv); const exposed = rng() < .35; if (rng() < .5) { c.tech += Math.max(0, (t.tech - c.tech)) * .03; } else { t.shock.gap -= .002; }
-      if (exposed) { bumpRel(c.i, t.i, -10); news('INTEL', 2, [c.iso, t.iso], `${t.name} accuses ${c.name} of ${pick(['cyberattack on its power grid', 'industrial espionage', 'hacking government systems', 'running a spy ring', 'sabotage at a defence plant'])}`, 'Diplomats summoned.'); } }
-  }
   // war decisions (rare)
   aiWarCheck(c);
-  // peace
-  for (const w of warsOf(c.i)) {
-    if (w.a !== c.i && w.d !== c.i) continue;
-    const other = w.a === c.i ? w.d : w.a; if (isHuman(other)) { withPlayer(other, () => aiPeaceToPlayer(c, w)); continue; }
-    const pos = w.a === c.i ? w.score : -w.score, ex = w.a === c.i ? w.exA : w.exD;
-    const oex = w.a === c.i ? w.exD : w.exA;
-    if (pos < -80 || ex > 1.6) { endWar(w, w.a === c.i ? 'capD' : 'capA'); }
-    else if (pos < -45 && ex > .9 && rng() < .2) endWar(w, w.a === c.i ? 'repD' : 'repA');
-    else if (Math.abs(w.score) < 30 && ex > .75 && oex > .7 && rng() < (w.unCF ? .08 : .025)) endWar(w, 'white');
-  }
+  // peace: the leaders of each war weigh terms
+  if (G.units) for (const w of warsOf(c.i)) if (w.a === c.i || w.d === c.i) aiWarPeace(w);
 }
 function aiWarCheck(c) {
   if (c.gov === 'D' && rng() > .15) return;
@@ -1361,7 +1452,7 @@ function aiAcceptPeace(w, byPlayerSide, term) {
 
 // =================================================================================== PLAYER ACTIONS
 const ACTIONS = {
-  visit: { n: 'State visit', grp: 'Diplomatic', pc: 5, cd: 120, d: 'Relations +8, trust +5. Not possible without an embassy.', ok: (P, T) => !atWar(P.i, T.i) && (!G.dipl || diplOf(P.i, T.i) > 0), run: (P, T) => { bumpRel(P.i, T.i, 8); if (G.trust) bumpTrust(T.i, P.i, 5); return `State visit to ${T.name} goes well. Relations +8.`; } },
+  visit: { n: 'State visit', grp: 'Diplomatic', pc: 5, cd: 120, d: 'Relations +8, trust +5. Not possible without an embassy, or in an ICC member state while you face an ICC warrant.', ok: (P, T) => !atWar(P.i, T.i) && (!G.dipl || diplOf(P.i, T.i) > 0) && !(P.warrant && ROME.has(T.iso)), run: (P, T) => { bumpRel(P.i, T.i, 8); if (G.trust) bumpTrust(T.i, P.i, 5); return `State visit to ${T.name} goes well. Relations +8.`; } },
   downgrade: { n: 'Recall ambassador', grp: 'Diplomatic', pc: 3, cd: 90, d: 'Downgrade to chargé level. Relations −10; trade −5%.', ok: (P, T) => G.dipl && diplOf(P.i, T.i) === 2, run: (P, T) => { setDipl(P.i, T.i, 1); bumpRel(P.i, T.i, -10); ledger(T.i, P.i, -10, 'recalled its ambassador'); news('DIPLO', 2, [P.iso, T.iso], `${P.name} recalls its ambassador from ${T.name}`, ''); wire(T.i, 'warn', `${P.name}'s decision is regrettable. We will respond appropriately.`, [P.i], { ev: 'embassy' }); return 'Ambassador recalled.'; } },
   sever: { n: 'Sever relations', grp: 'Diplomatic', pc: 6, cd: 180, d: 'Close embassies. Relations −25; trade −20%; far harder to negotiate.', danger: 0, ok: (P, T) => G.dipl && diplOf(P.i, T.i) > 0, run: (P, T) => { setDipl(P.i, T.i, 0); bumpRel(P.i, T.i, -25); ledger(T.i, P.i, -25, 'cut diplomatic ties'); news('DIPLO', 2, [P.iso, T.iso], `${P.name} severs diplomatic relations with ${T.name}`, 'Embassies to close.'); return 'Diplomatic relations severed.'; } },
   restore: { n: 'Restore ambassador', grp: 'Diplomatic', pc: 4, cd: 120, d: 'Send an ambassador back. They must agree.', ok: (P, T) => G.dipl && diplOf(P.i, T.i) === 1, chance: (P, T) => sig((getRel(P.i, T.i) + 15) / 12), run: (P, T) => { setDipl(P.i, T.i, 2); bumpRel(P.i, T.i, 5); news('DIPLO', 1, [P.iso, T.iso], `${P.name} and ${T.name} restore ambassadors`, ''); return 'Ambassadors restored.'; } },
@@ -1479,20 +1570,17 @@ function stepDay_() {
   if (G.pfDirty || G.day % 3 === 0) computePF();
   for (const c of C) supplyStep(c, dt);
   for (const c of C) computeDemand(c);
+  for (const c of C) econTradeAdj(c);
   tradeStep(false);
   priceStep(dt);
+  milDaily(dt); intelDaily();
   warStep(dt);
+  econGlobal(dt);
   for (const c of C) macroStep(c, dt, us);
   euroUpdate(dt);
   for (const c of C) { politicsStep(c, dt); if (c.gv) govDaily(c, dt); }
   if (G.org) orgsDaily();
   if (G.crises) diplomacyDaily();
-  // military stock
-  for (const c of C) {
-    let milAid = 0; for (const a of G.aid) if (a.type === 'm' && a.to === c.i) milAid += a.amt;
-    const eff = .5 + .5 * Math.min(1, c.avail[GI.ARMS]);
-    c.M += (c.sp.mil * c.Y * c.costF * eff + milAid * 1.2 - .08 * c.M) * dt;
-  }
   // relations drift toward baseline + structure
   if (G.day % 5 === 0) relationsDrift(5 / 365);
   // growth measurement
@@ -1527,6 +1615,8 @@ function stepDay_() {
   if (d.getUTCMonth() !== dPrev.getUTCMonth()) monthly();
   // staggered AI
   for (const c of C) if ((c.i + G.day) % 30 === 0) aiMonthly(c);
+  if (G.units && G.day % 3 === 0) for (const c of C) if (!isHuman(c.i) && warsOf(c.i).length) aiWarPlan(c);
+  if (G.units && G.day % 7 === 0) for (const h of humans()) intelWarnings(h);
   // expire
   G.aid = G.aid.filter(a => a.until > G.day);
   // expired decisions take their default; the host (or server) applies it in applyDefaults() so every peer gets the same result
@@ -1586,10 +1676,11 @@ function revolutionCheck() {
   }
 }
 function monthly() {
-  for (const c of G.C) { if (!c.popStart) c.popStart = c.pop; monthlyStocks(c); snapshot(c); if (c.gv) { govMonthly(c); govAIChanges(c); debtLimitCheck(c); } }
+  for (const c of G.C) { if (!c.popStart) c.popStart = c.pop; monthlyStocks(c); snapshot(c); econMonthly(c); if (c.gv) { govMonthly(c); govAIChanges(c); debtLimitCheck(c); } }
   if (G.org) orgsMonthly();
   if (G.crises) diplomacyMonthly();
   if (G.cp) trade2Monthly();
+  if (G.units) { for (const c of G.C) { intelMonthly(c); nuclearMonthly(c); aiIntelMonthly(c); } computeCoverage(); lawMonthly(); subjectsMonthly(); }
   for (const h of humans()) { const P = G.C[h]; P.pc_ = clamp(P.pc_ + 3 + (P.approval - 40) / 8 + (P.stability - 50) / 25, 0, 100); }
   worldSnapshot();
   // default risk for AI
@@ -1612,6 +1703,7 @@ function monthly() {
 function snapshot(c) {
   c.hist.push({ d: G.day, y: +c.Y.toFixed(2), ng: +(c.Y * c.P * c.e).toFixed(2), g: +c.growth.toFixed(4), i: +c.infl.toFixed(4), u: +c.u.toFixed(4), a: +c.approval.toFixed(1), s: +c.stability.toFixed(1),
     db: +(c.debt / (c.Y * c.P)).toFixed(3), df: +(c.defPct || 0).toFixed(4), e: +c.e.toFixed(4), r: +c.rate.toFixed(4), tb: +(c.tbPct || 0).toFixed(4), m: +c.M.toFixed(0) });
+  const ec = c.ec; if (ec) Object.assign(c.hist[c.hist.length - 1], { sp: +(c.spendPct - c.intPct).toFixed(4), cr: +ec.cred.toFixed(3), hp: +ec.hp.toFixed(3), eq: +ec.eq.toFixed(3), res: +ec.resM.toFixed(2), ca: +ec.ca.toFixed(4), w: +(ec.w / c.P).toFixed(4), npl: +ec.npl.toFixed(4), cap: +ec.cap.toFixed(4), by: +c.bondYield.toFixed(4), pF: +ec.piF.toFixed(4), pE: +ec.piE.toFixed(4), pG: +ec.piG.toFixed(4), pS: +ec.piS.toFixed(4), core: +ec.core.toFixed(4), cb: +ec.cbGov.toFixed(3), sw: +ec.swf.toFixed(1), rk: +G.gf.risk.toFixed(3), cg: +(ec.cgap || 0).toFixed(3), ie: +c.inflExp.toFixed(4), q: +ec.q.toFixed(3), hs: +(ec.hpStar != null ? Math.exp(ec.hpStar) : 1).toFixed(3), nfa: +(ec.nfa / Math.max(1, c.Y * c.P * c.e)).toFixed(3) });
   if (c.hist.length > 12 * 60) c.hist.shift();
 }
 function worldSnapshot() {
@@ -1644,6 +1736,695 @@ function fmtInt(v) { return Math.round(v).toLocaleString('en-US'); }
 function relName(r) { for (const [t, n] of REL_NAMES) if (r < t) return n; return 'Allied'; }
 function nominal(c) { return c.Y * c.P * c.e; }
 function powerOf(c) { return c.M * (.5 + c.tech / 100) * (1 + polFx(c, 'mil')); }
+
+// ============================================================================ ECONOMY (v6)
+// A fuller macro model on top of the v1–v5 core. Every country now has:
+//   money      a central bank with a mandate, a governor, a balance sheet (QE/QT), reserve requirements,
+//              forward guidance, macroprudential rules and an exchange-rate regime with FX reserves
+//   budget     more taxes (with shrinking bases at high rates), programmes whose cost moves with the economy
+//              (unemployment insurance, fuel and food subsidies, public works), fiscal rules, a wealth fund,
+//              and a debt stock split into local, foreign-currency and inflation-linked bonds
+//   finance    bank credit, house prices, a stock market, bank capital and bad loans, with crises that
+//              come out of the model rather than dice rolls
+//   labour     wages, unit labour costs, hysteresis and an informal sector
+//   prices     a consumer price index built from food, energy, goods and services
+//   external   a balance of payments, capital flows driven by a global risk cycle, reserves, and a real
+//              exchange rate that changes how competitive exports are
+// All state lives in c.ec (plain numbers), so saves, snapshots and online lockstep carry it unchanged.
+
+const MAND = { infl: { p: .6, y: .3, n: 'Inflation targeting', d: 'Price stability first. Reacts to the output gap only mildly.' },
+  dual: { p: .5, y: .5, n: 'Dual mandate', d: 'Stable prices and maximum employment, weighted equally.' },
+  growth: { p: .25, y: .8, n: 'Growth first', d: 'Supports jobs and growth over inflation. Expectations anchor less well.' } };
+const GVR = { '-1': { p: -.2, y: .2, b: -.004, cr: -.06, n: 'Dove' }, 0: { p: 0, y: 0, b: 0, cr: 0, n: 'Centrist' }, 1: { p: .4, y: -.15, b: .004, cr: .06, n: 'Hawk' } };
+// extra taxes (rates are fractions). TB_X = size of each base as a share of GDP at the start.
+const TB_PAY = .5;
+const MULT_SP = { mil: .5, intel: .3, health: .7, edu: .6, welfare: .75, infra: .95, research: .5, admin: .6, subsidy: .5 };
+const MULT_TAX = { inc: .45, pay: .4, vat: .5, corp: .25, cg: .1, prop: .2, wealth: .1, exc: .4 };
+const HAVEN = new Set(['CHE', 'JPN']);
+const EUROLIKE = c => c.euro;
+
+// ---------- starting data (rough 2025 figures) ----------
+const EC_CRED = { USA: 1.5, CHN: 1.95, JPN: 1.8, GBR: 1.3, DEU: .8, FRA: 1.05, ITA: .7, ESP: .8, CAN: 1.3, AUS: 1.4, KOR: 1.75, CHE: 1.7, NLD: 1.1, SWE: 1.3, NOR: 1.4, DNK: 1.1, IND: .55, BRA: .72, RUS: .45, MEX: .37, IDN: .33, TUR: .45, SAU: .6, ZAF: .6, ARG: .1, EGY: .25, NGA: .12, THA: 1.2, MYS: 1.2, VNM: 1.3, SGP: 1.4, ISR: .7, CHL: .8, POL: .45, TWN: 1.6, IRN: .5, PAK: .15, BGD: .4, UKR: .2 };
+const EC_RES = { CHN: 3300, JPN: 1230, CHE: 900, IND: 650, RUS: 350, TWN: 580, SAU: 440, KOR: 415, SGP: 380, BRA: 350, DEU: 110, USA: 240, GBR: 180, THA: 240, MEX: 230, ISR: 210, CZE: 150, POL: 200, IDN: 150, TUR: 90, CAN: 120, VNM: 85, PHL: 105, MYS: 120, ARE: 200, QAT: 50, KWT: 50, ARG: 30, EGY: 45, NGA: 38, ZAF: 60, KAZ: 45, PER: 75, COL: 60, CHL: 45, UKR: 43, PAK: 13, BGD: 25, LKA: 6, AUS: 60, NOR: 80, SWE: 60, DNK: 100, ITA: 50, FRA: 60, ESP: 50, NZL: 20, DZA: 70, IRQ: 100, LBY: 80, AGO: 15, ETH: 2, KEN: 9, GHA: 8, VEN: 10, IRN: 30 };
+const EC_SWF = { NOR: 1750, CHN: 1350, ARE: 1500, KWT: 950, SAU: 930, QAT: 520, SGP: 1150, RUS: 130, KAZ: 65, AZE: 55, LBY: 70, AUS: 200, NZL: 50, OMN: 45, BHR: 18, TLS: 19, BWA: 5, CHL: 15, IRN: 20, BRN: 60, MYS: 30 };
+const EC_NIIP = { JPN: .8, DEU: .7, CHE: 1.0, NOR: 2.0, CHN: .2, SAU: .6, TWN: 1.1, SGP: 2.0, NLD: .9, KOR: .45, KWT: 4, ARE: 1.5, QAT: 1, DNK: .6, SWE: .2, USA: -.9, GBR: -.2, AUS: -.35, TUR: -.4, BRA: -.4, ESP: -.55, PRT: -.75, GRC: -1.3, IRL: -1, IND: -.12, MEX: -.4, ZAF: .1, FRA: -.3, ITA: .05, CAN: .35, RUS: .3, IDN: -.2, ARG: .2, EGY: -.8, POL: -.35, CZE: -.15, HUN: -.4, ISR: .35, NZL: -.5 };
+const EC_CA = { USA: -.04, CHN: .02, JPN: .045, DEU: .06, GBR: -.025, FRA: -.01, ITA: .01, ESP: .025, CAN: -.01, AUS: -.02, KOR: .05, IND: -.01, BRA: -.03, RUS: .03, MEX: -.01, IDN: -.006, TUR: -.01, SAU: 0, ARG: .01, ZAF: -.006, EGY: -.05, NGA: .03, NOR: .17, CHE: .07, NLD: .1, SWE: .06, DNK: .12, SGP: .18, TWN: .14, THA: .02, MYS: .02, VNM: .06, PHL: -.04, PAK: -.005, BGD: -.01, POL: .01, ISR: .05, ARE: .08, QAT: .17, KWT: .25, IRL: .05, UKR: -.07, KAZ: -.03, COL: -.02, CHL: -.02, PER: .02, BEL: -.01, AUT: .02, GRC: -.06, PRT: .01, NZL: -.06, HUN: .02, CZE: .01, ROU: -.08, IRN: .03, IRQ: .02, DZA: -.01, MAR: -.01, KEN: -.04, ETH: -.03, GHA: .02, LKA: .01 };
+const EC_REM = { NPL: .24, TJK: .4, KGZ: .3, HND: .26, SLV: .24, HTI: .2, GTM: .19, JAM: .19, NIC: .25, LBN: .28, GMB: .25, PHL: .09, EGY: .06, PAK: .09, BGD: .055, MEX: .04, IND: .034, NGA: .04, UKR: .07, MAR: .08, JOR: .1, LKA: .07, SEN: .1, GHA: .05, KEN: .035, VNM: .035, DOM: .1, ARM: .1, GEO: .14, MDA: .14, UZB: .15, YEM: .2, ZWE: .08, LBR: .13, SOM: .2, ALB: .09, BIH: .1, SRB: .07, COL: .025, ECU: .04, BOL: .03, KHM: .05, MMR: .03, TUN: .06, SAU: -.04, ARE: -.08, KWT: -.1, QAT: -.06, OMN: -.08, BHR: -.07, USA: -.003, CHE: -.035, RUS: -.005, SGP: -.02, MYS: -.02, ISR: -.01 };
+const EC_FXS = { ARG: .7, TUR: .45, UKR: .6, EGY: .3, IDN: .28, ZAF: .1, MEX: .18, BRA: .04, IND: .04, PAK: .4, LKA: .45, NGA: .35, GHA: .5, KEN: .5, ZMB: .7, ETH: .6, COL: .3, PER: .25, CHL: .2, PHL: .3, POL: .2, HUN: .2, ROU: .5, RUS: .2, KAZ: .3, SAU: .3, BGD: .35, VNM: .3, CHN: .01, THA: .02, MYS: .03, KOR: .02, ISR: .1 };
+const EC_ILS = { GBR: .25, ISR: .4, CHL: .6, BRA: .35, MEX: .15, USA: .08, FRA: .1, ITA: .08, COL: .3, TUR: .2, ARG: .3, ZAF: .2, AUS: .06, CAN: .07, SWE: .15, JPN: .02, DEU: .03, URY: .4 };
+const EC_FOR = { JPN: .12, USA: .3, GBR: .28, DEU: .5, FRA: .5, ITA: .3, ESP: .4, CHN: .08, IND: .04, BRA: .1, MEX: .15, IDN: .15, ZAF: .25, TUR: .15, EGY: .2, KOR: .2, AUS: .5, CAN: .3, RUS: .1 };
+const EC_CBG = { JPN: .9, USA: .16, GBR: .28, CHE: 0, SWE: .12, CAN: .1, AUS: .16, NZL: .12, ISR: .05, CHL: .02, POL: .08, HUN: .05, KOR: .02, IND: .1, CHN: .03, BRA: .1, TUR: .05, EGY: .1, RUS: .01 };
+const EC_CAP = { USA: .13, GBR: .15, DEU: .16, FRA: .16, ITA: .15, ESP: .13, JPN: .13, CHN: .115, IND: .14, BRA: .135, RUS: .12, TUR: .13, ZAF: .14, NGA: .13, UKR: .2, ARG: .25, EGY: .15, KOR: .14, CHE: .17, SWE: .19, NOR: .19, AUS: .13, CAN: .135 };
+const EC_NPL = { USA: .012, GBR: .012, DEU: .012, FRA: .02, ITA: .03, ESP: .03, GRC: .06, CYP: .05, JPN: .012, CHN: .016, IND: .026, BRA: .035, RUS: .045, TUR: .018, ZAF: .05, NGA: .045, UKR: .3, ARG: .03, EGY: .03, SAU: .015, KOR: .005, VNM: .045, IDN: .022, PAK: .075, BGD: .09, KEN: .16, GHA: .2, ETH: .04, LBN: .3, VEN: .1 };
+const EC_RR = { CHN: .065, IND: .04, BRA: .2, TUR: .1, RUS: .045, IDN: .06, ARG: .2, EGY: .18, NGA: .45, PAK: .05, BGD: .04, VNM: .03, SAU: .07, ZAF: .025, MEX: 0, KOR: .05, POL: .035, USA: 0, GBR: 0, JPN: .008, CAN: 0, AUS: 0, CHE: .025, SWE: 0, NZL: 0, NOR: 0, DNK: .01 };
+const EC_CCYB = { GBR: .02, SWE: .02, NOR: .025, DNK: .025, AUS: .01, FRA: .01, DEU: .0075, NLD: .02, CHE: .01, CZE: .0125, IRL: .015, BEL: .01, ISL: .025, HKG: .005, LTU: .01, EST: .015, BGR: .02, SVK: .015 };
+const EC_TOP = { USA: .43, GBR: .45, FRA: .45, DEU: .45, ITA: .43, ESP: .47, JPN: .55, CHN: .45, IND: .39, RUS: .22, BRA: .275, MEX: .35, CAN: .53, AUS: .45, KOR: .45, SWE: .52, DNK: .55, NOR: .39, FIN: .51, NLD: .495, BEL: .5, AUT: .55, CHE: .40, ISR: .5, TUR: .4, ZAF: .45, ARG: .35, SAU: 0, ARE: 0, QAT: 0, KWT: 0, BHR: 0, OMN: 0, SGP: .24, IDN: .35, VNM: .35, THA: .35, PHL: .35, EGY: .275, NGA: .24, POL: .32, HUN: .15, CZE: .23, ROU: .1, BGR: .1, UKR: .18, KAZ: .1, IRL: .4, PRT: .48, GRC: .44 };
+const EC_CG = { USA: .238, FRA: .3, GBR: .2, DEU: .26, JPN: .2, CHN: .2, IND: .125, CHE: 0, NZL: 0, SGP: 0, ARE: 0, SAU: 0, QAT: 0, KOR: .22, CAN: .27, AUS: .23, SWE: .3, DNK: .42, NOR: .378, ITA: .26, ESP: .23, NLD: .31 };
+const EC_PROP = { USA: .011, GBR: .012, FRA: .01, CAN: .01, JPN: .007, DEU: .002, ITA: .004, ESP: .004, KOR: .004, AUS: .007, NZL: .006, CHN: 0, IND: .001, BRA: .002, RUS: .001, MEX: .0005, ISR: .008, IRL: .002, NLD: .003 };
+const EC_WEALTH = { CHE: .006, NOR: .01, ESP: .007, COL: .01, ARG: .0125 };
+const EC_PAYSH = { USA: .5, FRA: .65, DEU: .6, JPN: .6, CHN: .5, GBR: .35, AUS: 0, NZL: 0, DNK: .05, CAN: .3, KOR: .45, IND: .15, BRA: .5, RUS: .45, SAU: .3, ITA: .6, ESP: .6, NLD: .55, SWE: .45, CZE: .7, POL: .6, AUT: .6, BEL: .55 };
+const EC_UI = { USA: .4, DEU: .6, FRA: .65, GBR: .15, DNK: .6, SWE: .55, NLD: .7, JPN: .5, KOR: .5, CAN: .55, AUS: .25, ITA: .6, ESP: .6, CHN: .2, IND: 0, BRA: .5, RUS: .2, MEX: 0, ZAF: .35, TUR: .4, ARG: .3, NOR: .62, FIN: .6, BEL: .6, AUT: .55, CHE: .7, POL: .3, CHL: .35 };
+const EC_ALMP = { DNK: .02, SWE: .012, FRA: .008, DEU: .006, NLD: .007, FIN: .01, BEL: .008, AUT: .007, USA: .001, GBR: .002, JPN: .002, KOR: .003, AUS: .003, CAN: .002 };
+const EC_PW = { IND: .004, ZAF: .003, ARG: .002, ETH: .01, BGD: .002 };
+const EC_FSUBE = { IRN: .9, SAU: .8, VEN: .9, DZA: .8, KWT: .8, QAT: .6, ARE: .4, EGY: .6, NGA: .6, IDN: .5, IND: .4, MYS: .6, PAK: .3, BGD: .4, IRQ: .8, LBY: .9, TKM: .9, UZB: .6, AZE: .5, KAZ: .5, ECU: .6, BOL: .7, AGO: .6, RUS: .3, CHN: .2, OMN: .5, BHR: .6, TUN: .5, MAR: .3 };
+const EC_FSUBF = { EGY: .8, IND: .6, IDN: .3, PAK: .3, BGD: .4, IRN: .5, DZA: .6, MAR: .4, TUN: .5, VEN: .6, SAU: .2, ETH: .2, IRQ: .5, SYR: .5, YEM: .4 };
+const EC_INF = { IND: .8, NGA: .65, MEX: .55, BRA: .38, IDN: .6, PAK: .7, BGD: .75, EGY: .5, TUR: .28, RUS: .2, CHN: .35, ZAF: .3, ARG: .45, COL: .55, PER: .7, PHL: .55, VNM: .55, THA: .5, ITA: .12, GRC: .2, USA: .08, DEU: .08, JPN: .08 };
+const EC_SPR = { USA: 60, JPN: 200, KOR: 200, DEU: 90, FRA: 90, ITA: 90, ESP: 90, GBR: 60, CAN: 0, AUS: 30, NLD: 90, CHN: 80, IND: 12, TWN: 100, POL: 90, TUR: 20, THA: 60, ZAF: 20, CHE: 120, SWE: 90, FIN: 90, CZE: 90, HUN: 90, BEL: 90, AUT: 90, NZL: 60, ISR: 60, SGP: 60 };
+const EC_SFR = { CHN: 300, IND: 120, EGY: 150, IDN: 60, PAK: 60, BGD: 45, JPN: 90, SAU: 60, IRN: 60, DZA: 60, MAR: 45, NGA: 20, ETH: 30, RUS: 60, TUR: 45 };
+
+function ecv(t, c, dflt) { return t[c.iso] != null ? t[c.iso] : dflt; }
+function ecInc(c, arr) { return arr[c.inc]; }
+
+// ---------- setting up a country ----------
+function initEcon(c) {
+  const inc = c.inc, rich = inc >= 3, petro = c.rawShare > .12 && (c.gov === 'M' || c.gov === 'A');
+  const NGDPusd = Math.max(1, c.Y * c.P * c.e), ec = c.ec = {};
+  // --- central bank
+  ec.mand = G.day > 0 ? 'dual' : c.iso === 'USA' ? 'dual' : ['J', 'P', 'T'].includes(c.gov) ? 'growth' : c.cbIndep && inc >= 2 ? 'infl' : 'dual';
+  ec.gvr = 0; ec.fg = 0; ec.fgRate = c.rate || 0; ec.fgDay = 0;
+  ec.cbGov = ecv(EC_CBG, c, c.euro ? .28 : [.08, .06, .04, .05][inc]); ec.qe = 0;
+  ec.credBase = c.cbCred;
+  ec.rr = ecv(EC_RR, c, c.euro ? .01 : [.1, .08, .04, .01][inc]);
+  ec.ltv = rich ? .85 : inc === 2 ? .8 : .7; ec.ccyb = ecv(EC_CCYB, c, 0);
+  ec.di = inc >= 2 ? 1 : ['CHN', 'IND', 'NGA', 'KEN', 'GHA', 'PAK', 'BGD', 'VNM', 'PHL'].includes(c.iso) ? 1 : 0;
+  // --- exchange rate and reserves
+  ec.pegE = c.peg ? (c.peg === 'USD' ? c.e : c.e / Math.max(.05, (G.euro && G.euro.e) || 1)) : 1;
+  ec.lean = c.euro || c.peg || c.iso === 'USA' ? 0 : inc < 3 ? .35 : 0;
+  ec.fxi = 0; ec.fxiAuto = 0; ec.eMA = Math.log(c.e || 1);
+  const mImp = Math.max(.1, (c.Mi || .2 * NGDPusd) / 12);
+  ec.res = EC_RES[c.iso] != null ? EC_RES[c.iso] * NGDPusd / Math.max(1, c.gdp0) : mImp * [3, 4, 5, 2.5][inc];
+  if (c.iso === 'USA') ec.res = 240;
+  ec.swf = (EC_SWF[c.iso] || 0) * NGDPusd / Math.max(1, c.gdp0); ec.swfDraw = 0;
+  ec.nfa = ecv(EC_NIIP, c, [-.45, -.4, -.25, 0][inc]) * NGDPusd;
+  ec.rem = ec.rem0 = ecv(EC_REM, c, [.03, .02, .005, -.003][inc]);
+  ec.forS = ecv(EC_FOR, c, c.euro ? .45 : [.7, .45, .25, .35][inc]);
+  // --- public debt structure
+  ec.fxS = ec.fxST = c.euro ? 0 : ecv(EC_FXS, c, [.6, .45, .2, 0][inc]);
+  ec.ilS = ec.ilST = ecv(EC_ILS, c, 0);
+  ec.rule = c.euro || BLOCS.EU.includes(c.iso) ? 'deficit' : ['CHE', 'DEU'].includes(c.iso) ? 'struct' : c.iso === 'CHL' ? 'struct' : c.iso === 'SWE' ? 'struct' : 'none';
+  ec.fcred = ec.rule === 'none' ? 0 : .5; ec.ruleBreach = 0;
+  ec.soe = clamp(.05 + .45 * stance(c, 'state') / 100, .03, .6);
+  ec.sez = ['CHN', 'VNM', 'ARE', 'IND', 'PHL', 'POL', 'MYS', 'THA', 'EGY', 'BGD'].includes(c.iso) ? 3 : inc <= 2 ? 1 : 0; ec.sezE = ec.sez; ec.sez0 = ec.sez;
+  ec.dbl = ['CHN', 'BRA', 'IND', 'DEU', 'KOR', 'JPN', 'TUR', 'RUS', 'VNM'].includes(c.iso) ? .01 : .003; ec.dbBook = ec.dbl * 7; ec.dbl0 = ec.dbl;
+  ec.stim = 0; ec.stimT = 0; ec.stimK = 'cash';
+  // --- finance
+  ec.cred = ecv(EC_CRED, c, [.15, .3, .55, 1.0][inc]); ec.crT = ec.cred; ec.cgLag = 0;
+  ec.crG = c.g0 + c.inflExp; ec.flowRef = ec.crG * ec.cred; ec.cgap = 0;
+  ec.hp = 1; ec.hpG = 0; ec.hpMax = 1; ec.hpRef = 1; ec.eq = 1; ec.eqRef = 1; ec.eqM = 1; ec.hpM = 1;
+  ec.cap = ecv(EC_CAP, c, [.16, .16, .15, .15][inc]); ec.cap0 = ec.cap;
+  ec.npl = ecv(EC_NPL, c, [.1, .07, .04, .015][inc]); ec.npl0 = ec.npl;
+  ec.hw = ({ JPN: 2.5, CHN: 3.5, GBR: 2.8, FRA: 2.6, AUS: 3.5, CAN: 2.8, USA: 1.7, DEU: 2.2, KOR: 3.0, NZL: 3.2 })[c.iso] || [1.0, 1.4, 1.8, 2.2][inc];
+  ec.wb = [.3, .5, .8, 1.2][inc];
+  ec.crisis = null; ec.crisisN = 0;
+  // --- labour
+  ec.w = 1; ec.wG = c.inflExp + Math.max(0, (c.gPot || c.g0) - c.popG); ec.ulc = 1;
+  ec.inf = ec.inf0 = ecv(EC_INF, c, [.65, .45, .28, .1][inc]);
+  ec.part = ec.part0 = ({ 0: .66, 1: .6, 2: .6, 3: .62 })[inc] + (['SAU', 'EGY', 'IRN', 'PAK', 'IRQ', 'JOR', 'DZA', 'MAR', 'YEM', 'AFG', 'IND'].includes(c.iso) ? -.13 : 0);
+  ec.uH = 0; ec.pact = 0; ec.almpE = 0;
+  // --- prices
+  ec.wts = [[.40, .08, .27], [.30, .09, .28], [.20, .09, .28], [.13, .08, .25]][inc];
+  ec.piF = ec.piE = ec.piG = ec.piS = c.infl; ec.lvl = 0; ec.dl = [0, 0, 0]; ec.lRef = null;
+  ec.sOil = 0; ec.sFood = 0; ec.sprMode = 0; ec.sfrMode = 0; ec.fuelDemF = 1;
+  // --- external
+  ec.ca = 0; ec.flowP = 0; ec.bop = { tb: 0, prim: 0, sec: 0, fdi: 0, port: 0, dres: 0 };
+  ec.eRef1y = c.e; ec.q = 1;
+  // --- extra taxes (split the old "income & payroll" rate in two, and carve the new taxes out of "other revenue" so the totals are unchanged)
+  const t = c.tax, t0 = c.tax0 || t;
+  if (t.pay == null) {
+    const s = ecv(EC_PAYSH, c, [.2, .3, .45, .5][inc]);
+    const splitK = r => ({ inc: r * (1 - s), pay: r * s * TB.inc / TB_PAY });
+    const a = splitK(t.inc), b = splitK(t0.inc); t.inc = a.inc; t.pay = a.pay; t0.inc = b.inc; t0.pay = b.pay;
+    t.top = ecv(EC_TOP, c, petro && inc >= 2 ? 0 : [.3, .3, .35, .45][inc]);
+    t.cg = ecv(EC_CG, c, petro ? 0 : [.1, .15, .2, .25][inc]);
+    t.prop = ecv(EC_PROP, c, [.0005, .001, .002, .005][inc]);
+    t.wealth = ecv(EC_WEALTH, c, 0);
+    t.exc = c.iso === 'USA' ? .15 : petro ? .05 : [.25, .3, .35, .4][inc];
+    t.inv = ({ USA: .9, GBR: .9, CAN: .6 })[c.iso] || .3;
+    t.rd = ({ USA: .1, FRA: .3, GBR: .2, CAN: .15, JPN: .1, KOR: .15, CHN: .15, IRL: .25, ISR: .1, NLD: .2, ESP: .12, ITA: .1, AUS: .15 })[c.iso] || (rich ? .08 : 0);
+    const comp = c.comp || c.comp0;
+    // v5 parked a lot of revenue in "other taxes & fees"; move most of it into the main taxes, up to rates that do not yet hurt growth
+    let ex = c.otherRev - .05;
+    for (const [k, cap, base] of [['vat', .2, TB.vat], ['pay', .3, TB_PAY], ['inc', .3, TB.inc], ['corp', .25, TB.corp]]) {
+      if (ex <= 0) break;
+      const take = Math.min(Math.max(0, cap - t[k]) * comp * base, ex), dr = take / (comp * base);
+      t[k] += dr; t0[k] += dr; ex -= take; c.otherRev -= take;
+    }
+    const newRev = ecNewTaxRev(c, t, comp, true);
+    let room = Math.max(0, c.otherRev - .004);
+    if (newRev > room) { const k = room / Math.max(1e-6, newRev); for (const x of ['cg', 'prop', 'wealth', 'exc']) t[x] *= k; }
+    c.otherRev -= ecNewTaxRev(c, t, comp, true);
+    for (const x of ['top', 'cg', 'prop', 'wealth', 'exc', 'inv', 'rd']) t0[x] = t[x];
+  }
+  // --- programmes (carved out of welfare so the budget is unchanged)
+  const cov = [.05, .15, .4, .65][inc];
+  c.prog = { ui: ecv(EC_UI, c, [0, .1, .35, .5][inc]), almp: ecv(EC_ALMP, c, [0, .0005, .001, .004][inc]), pw: ecv(EC_PW, c, 0), fsubE: ecv(EC_FSUBE, c, rich ? 0 : .1), fsubF: ecv(EC_FSUBF, c, 0), swfIn: 0, cov };
+  const uiCost = ecUICost(c, c.prog.ui, c.u), carve = uiCost + c.prog.almp + c.prog.pw;
+  const room2 = Math.max(0, c.sp.welfare - .01);
+  if (carve > room2) { const k = room2 / carve; c.prog.ui *= k; c.prog.almp *= k; c.prog.pw *= k; }
+  const carved = ecUICost(c, c.prog.ui, c.u) + c.prog.almp + c.prog.pw;
+  c.sp.welfare -= carved; if (c.sp0) c.sp0.welfare -= carved;
+  c.prog0 = { ...c.prog }; ec.almpE = c.prog.almp;
+  // strategic stocks: days of consumption held
+  ec.sOil = ecv(EC_SPR, c, 0) / 365 * Math.max(0, c.dem ? c.dem[GI.OIL] : 0);
+  ec.sFood = ecv(EC_SFR, c, 0) / 365 * Math.max(0, c.dem ? c.dem[GI.FOOD] : 0);
+  // fiscal references (the fiscal impulse is measured against these, which adapt over a few years)
+  ec.ref = null;
+}
+// revenue from the taxes added in v6 (as a share of GDP); `init` uses start-of-game conditions
+function ecNewTaxRev(c, t, comp, init) {
+  const ec = c.ec, hp = init ? 1 : ec.hp, eq = init ? 1 : ec.eq;
+  return comp * .03 * eq * t.cg + Math.sqrt(comp) * ec.hw * hp * t.prop + comp * comp * ec.wb * Math.sqrt(hp * eq) * t.wealth + comp * .06 * t.exc - ecRDCost(c, t, comp);
+}
+function ecBizRD(c) { return [.001, .002, .005, .012][c.inc]; }
+function ecRDCost(c, t, comp) { return t.rd * ecBizRD(c) * Math.min(1, comp + .2); }
+function ecUICost(c, rr, u) { return rr * ((c.prog && c.prog.cov) || [.05, .15, .4, .65][c.inc]) * u * .55 * 1.1; }
+
+// all taxes, with bases that shrink as rates rise (a Laffer curve for each)
+function taxRevenue(c, t, comp, gap) {
+  const t0 = c.tax0, ec = c.ec;
+  const nt = (r, r0, eps) => Math.pow(Math.max(.03, 1 - r) / Math.max(.03, 1 - r0), eps);
+  const lab = nt(t.inc + t.pay, t0.inc + t0.pay, .15);
+  const small = c.Y < 400 ? .7 : .35;
+  const prof = clamp(1 + 2.2 * (gap || 0), .5, 1.4);
+  const expens = (1 - .25 * t.inv) / (1 - .25 * t0.inv);
+  const P = {
+    inc: comp * t.inc * TB.inc * lab,
+    pay: comp * t.pay * TB_PAY * lab,
+    corp: comp * t.corp * TB.corp * nt(t.corp, t0.corp, small) * prof * expens,
+    vat: comp * t.vat * TB.vat * Math.pow((1 + t0.vat) / (1 + t.vat), .15),
+    top: comp * .05 * (t.top * nt(t.top, t0.top, .6) - t0.top),
+    cg: comp * .03 * ec.eq * t.cg * nt(t.cg, t0.cg, .8),
+    prop: Math.sqrt(comp) * ec.hw * ec.hp * t.prop * Math.pow(Math.max(.2, 1 - 8 * (t.prop - t0.prop)), .3),
+    wealth: comp * comp * ec.wb * Math.sqrt(ec.hp * ec.eq) * t.wealth * Math.pow(clamp((.05 - t.wealth) / Math.max(.005, .05 - t0.wealth), .05, 2), 1.5),
+    exc: comp * .06 * t.exc * Math.pow((1 + t0.exc) / (1 + t.exc), .4),
+    rd: -ecRDCost(c, t, comp),
+  };
+  return P;
+}
+// cost of programmes as a share of GDP
+function progCost(c, pr, conds) {
+  const ec = c.ec, u = conds ? conds.u : c.u;
+  const pe = ecEnergyPx(c), pf = G.price[GI.FOOD];
+  const eShare = [.06, .06, .05, .04][c.inc], fShare = [.25, .18, .12, .08][c.inc];
+  return {
+    ui: ecUICost(c, pr.ui, u),
+    almp: pr.almp, pw: pr.pw,
+    fsubE: pr.fsubE * eShare * Math.max(0, pe / (ec.pe0 || 1) - 1) * .8,
+    fsubF: pr.fsubF * fShare * Math.max(0, pf / (ec.pf0 || 1) - 1) * .5,
+  };
+}
+function ecEnergyPx(c) { const p = G.price; return .6 * p[GI.OIL] + .3 * p[GI.GAS] + .1 * p[GI.COAL]; }
+function ecManuPx(c) { const p = G.price; let s = 0, w = 0; for (const g of [GI.CONS, GI.MACH, GI.ELEC, GI.VEH, GI.CHEM, GI.PHAR, GI.SEMI]) { const d = c.dem ? c.dem[g] : 1; s += p[g] * d; w += d; } return w > 0 ? s / w : 1; }
+
+// capture the "starting" reference values once the first full pass has settled
+function econRefs(c) {
+  const ec = c.ec, us = G.C[G.idx.USA];
+  ec.realLend0 = c.rate + ecSpread(c) - c.inflExp; ec.spr0 = ecSpread(c);
+  ec.mort0 = ecMort(c); ec.den0 = ecDen(c); ec.corp0 = c.tax.corp; ec.Y0 = c.Y; ec.pop0 = c.pop;
+  ec.ca0 = ec.ca || 0; ec.prem0 = c.prem; ec.cred0 = ec.cred; ec.cbGov0 = ec.cbGov; ec.rr0 = ec.rr; ec.ltv0 = ec.ltv;
+  ec.pe0 = ecEnergyPx(c); ec.pf0 = G.price[GI.FOOD];
+  ec.crG = (c.gPot || c.g0) + c.inflExp; ec.flowRef = ec.crG * ec.cred;
+  ec.cbInc0 = ecCBIncome(c); ec.risk0 = G.gf ? G.gf.risk0 : .2;
+  ec.hous0 = stance(c, 'housing'); ec.lab0 = stance(c, 'labor'); ec.mw0 = stance(c, 'minwage'); ec.fin0 = stance(c, 'finreg'); ec.te0 = stance(c, 'taxenf');
+  ec.popG0 = c.popG; ec.fin0v = ecFinHealth(c); ec.part0 = ec.part;
+  ec.q0 = 1; ec.ref = null; ec.ccyb0 = ec.ccyb;
+}
+function econGlobalInit() {
+  if (!G.gf) G.gf = { risk: .2, risk0: .2, wgap: 0, shock: 0, lastPanic: -9999, weq: 1 };
+}
+function riskTarget() {
+  const gf = G.gf; let wars = 0; for (const x of G.wars) if (!x.over) wars += Math.min(.12, (G.C[x.a].Y + G.C[x.d].Y) / 20000);
+  const us = G.C[G.idx.USA], usT = Math.max(0, (us.rate - us.inflExp) - (us.r0 - us.infl0));
+  return .18 + wars + 2 * usT + gf.shock + .5 * Math.max(0, -gf.wgap - .01);
+}
+// settle the references after a fresh world or an upgrade: take today's values as "normal"
+function econSettle() {
+  const us = G.C[G.idx.USA];
+  if (G.day === 0) { G.gf.risk = G.gf.risk0 = riskTarget(); } else if (G.gf.risk0 == null) G.gf.risk0 = .2;
+  for (const c of G.C) econRefs(c);
+  for (const c of G.C) macroStep(c, 0, us);
+  for (const c of G.C) { const ec = c.ec, tgt = EC_CA[c.iso] != null ? EC_CA[c.iso] : clamp((ec.ca - (ec.caAdj || 0)) * .25, -.06, .06); ec.caAdj = (ec.caAdj || 0) + tgt - ec.ca; ec.ca = ec.ca0 = tgt; ec.prem0 = c.prem; }
+}
+// upgrade a v5 (or older) world in place, without disturbing its current state
+function migrateEcon() {
+  econGlobalInit();
+  if (G.C.every(c => c.ec)) return false;
+  for (const c of G.C) if (!c.ec) initEcon(c);
+  if (G.euro && G.euro.infl0 == null) G.euro.infl0 = G.euro.infl;
+  econSettle();
+  return true;
+}
+
+// ---------- helpers used by the macro step ----------
+function ecReq(c) { const ec = c.ec; return .045 + .025 + ec.ccyb + .02 * (stance(c, 'finreg') - 50) / 50; }
+function ecSpread(c) { const ec = c.ec; return [.06, .045, .03, .018][c.inc] + .3 * (ec.npl - (ec.npl0 || ec.npl)) + .6 * Math.max(0, ecReq(c) + .015 - ec.cap) + .15 * ec.rr * Math.max(0, c.rate) + .01 * ((G.gf ? G.gf.risk : .2) - .2); }
+function ecMort(c) { return .5 * c.rate + .5 * (c.bondYield || c.rate) + ecSpread(c); }
+function ecDen(c) { const ec = c.ec, risk = G.gf ? G.gf.risk : .2; return Math.max(.045, ((c.bondYield || c.rate) - c.inflExp) + .045 + .08 * (risk - .2) + .002 * Math.max(0, 60 - c.stability) + (c.inc < 3 ? .015 : 0) - .6 * Math.max(0, c.gPot || c.g0) - .05 * ((ec.cbGov || 0) - (ec.cbGov0 != null ? ec.cbGov0 : ec.cbGov))); }
+// central bank profit as a share of GDP: interest on bonds and reserves, minus interest paid on bank reserves
+function ecCBIncome(c) { const ec = c.ec, us = G.C[G.idx.USA], ng = Math.max(1, c.Y * c.P * c.e); const fx = ec.res / ng; const liab = Math.max(0, ec.cbGov + fx - .08); return ec.cbGov * (c.effRate || .03) + fx * Math.max(0, us.rate) - liab * Math.max(0, c.rate); }
+function ecFinHealth(c) { const ec = c.ec; return .006 * Math.min(1, ec.cred / .6) - .012 * Math.max(0, ec.npl - .06) - .004 * Math.max(0, ec.cred - 1.6); }
+function ecOpen(c) { return clamp(1 - .85 * stance(c, 'capital') / 100, .1, 1); }
+function ecEM(c) { return c.reserveCur ? 0 : c.inc < 3 ? 1 : .3; }
+function realX(c) { const us = G.C[G.idx.USA]; return c.e * c.P / Math.max(.01, us.P); }
+function uNatTot(c) { const ec = c.ec, t = c.tax, t0 = c.tax0, pr = c.prog, p0 = c.prog0; return c.uNat + polFx(c, 'uNat') + (ec ? ec.uH + .12 * (t.pay - t0.pay) + .04 * (t.inc - t0.inc) + .04 * (pr.ui - p0.ui) * pr.cov - 1.0 * (ec.almpE - p0.almp) : 0); }
+
+// ============================================================ THE MACRO STEP (replaces v5's)
+function macroStep(c, dt, us) {
+  const ec = c.ec, gf = G.gf;
+  // --- production value added
+  let gva = 0, lostFd = 0;
+  for (let g = 0; g < NG; g++) { gva += c.out[g] * GOODS[g].va; }
+  for (const g of [GI.FOOD, GI.OIL, GI.GAS, GI.CHEM, GI.PHAR]) lostFd += c.shortFd[g];
+  const shortShare = lostFd / Math.max(1, c.Y);
+  const foodShort = c.fd[GI.FOOD] > 0 ? c.shortFd[GI.FOOD] / c.fd[GI.FOOD] : 0;
+  const fuelShort = (c.shortFd[GI.OIL] + c.shortFd[GI.GAS]) / Math.max(1e-6, c.fd[GI.OIL] + c.fd[GI.GAS]);
+  c.foodShort = foodShort; c.fuelShort = fuelShort;
+  // --- potential growth
+  const S = structural(c);
+  if (c.S0 == null) { c.S0 = S; c.cal = c.g0 - S; }
+  c.cal *= Math.exp(-dt / 25);
+  c.gPot = clamp(S + c.cal, -.08, .12);
+  c.Spot *= Math.exp(c.gPot * dt);
+  const NGDPusd0 = c.Y * c.P * c.e;
+  const tb = (c.X - c.Mi) / Math.max(1, NGDPusd0);
+  c.tbPct = tb;
+  // --- fiscal impulse: discretionary changes weighted by how much each one moves demand, fading as the economy adjusts
+  const comp0 = c.comp || c.comp0;
+  const pc = progCost(c, c.prog);
+  if (!ec.ref) { ec.ref = { sp: { ...c.sp }, tax: { ...c.tax }, pc: { ...pc }, int: c.intPct || 0, stim: 0 }; }
+  const R = ec.ref, tb_ = { inc: TB.inc, pay: TB_PAY, vat: TB.vat, corp: TB.corp, cg: .03 * ec.eq, prop: ec.hw * ec.hp, wealth: ec.wb, exc: .06 };
+  let fi = 0;
+  for (const k of SPEND_KEYS) fi += MULT_SP[k] * (c.sp[k] - R.sp[k]);
+  for (const k in MULT_TAX) fi -= MULT_TAX[k] * (c.tax[k] - R.tax[k]) * tb_[k] * comp0;
+  fi += .8 * (pc.ui - R.pc.ui) + .6 * (pc.almp - R.pc.almp) + .9 * (pc.pw - R.pc.pw) + .4 * (pc.fsubE - R.pc.fsubE + pc.fsubF - R.pc.fsubF);
+  const stimNow = ec.stimT > G.day ? ec.stim : 0;
+  fi += (ec.stimK === 'infra' ? .95 : .6) * (stimNow - R.stim);
+  const openness = clamp(c.Mi / Math.max(1, NGDPusd0), 0, 1);
+  const sdf = clamp(1 + (c.gap < 0 ? -6 * c.gap : -4 * c.gap) + (c.rate < .005 && !c.euro ? .3 : 0) + (c.peg || c.euro ? .2 : 0) - (c.cbIndep && !c.peg && !c.euro && c.inc >= 2 ? .15 : 0) - .5 * Math.max(0, openness - .25) - (debtR_(c) > 1 ? .2 : 0), .4, 1.8);
+  ec.fi = fi * sdf;
+  if (dt) { const k = dt / 2.5; for (const x of SPEND_KEYS) R.sp[x] += (c.sp[x] - R.sp[x]) * k; for (const x in MULT_TAX) R.tax[x] += (c.tax[x] - R.tax[x]) * k; for (const x in pc) R.pc[x] += (pc[x] - R.pc[x]) * k; R.stim += (stimNow - R.stim) * k; }
+  // --- other demand channels
+  const spr = ecSpread(c), lend = c.rate + spr;
+  const mon = -.4 * ((c.rate - c.inflExp) - (c.r0 - c.infl0)) - .3 * (spr - (ec.spr0 != null ? ec.spr0 : spr)) - .25 * (-.04 * (ec.cbGov - (ec.cbGov0 != null ? ec.cbGov0 : ec.cbGov))) - .003 * ec.fg;
+  const ext = .3 * (tb - c.tb0);
+  const flow = ec.crG * ec.cred; const ci = .25 * (flow - (ec.flowRef != null ? ec.flowRef : flow));
+  const wealth = .05 * (Math.log(ec.hp) - Math.log(ec.hpRef)) + .02 * (Math.log(ec.eq) - Math.log(ec.eqRef));
+  const remit = .6 * (ec.rem - ec.rem0);
+  const riskD = -(c.inc < 3 ? .04 : .02) * ((gf ? gf.risk : .2) - (ec.risk0 != null ? ec.risk0 : .2));
+  const crisis = ec.crisis && ec.crisis.until > G.day ? -ec.crisis.sev * Math.exp(-(G.day - ec.crisis.start) / 365) : 0;
+  ec.dparts = { fiscal: ec.fi, monetary: mon, external: ext, credit: ci, wealth, remit, risk: riskD, crisis, shortages: -.6 * shortShare, war: -c.warDrag, shocks: c.shock.gap };
+  const gT = clamp(ec.fi + mon + ext + ci + wealth + remit + riskD + crisis - .6 * shortShare - c.warDrag + c.shock.gap, -.25, .12);
+  c.gap += (gT - c.gap) * 3 * dt;
+  const Yprev = c.Y, Pprev = c.P;
+  c.Y = Math.max(.05 * c.Y0, c.Spot * (1 + c.gap) + gva);
+  // --- prices: four parts of the consumer price index
+  const le = Math.log(Math.max(1e-6, c.e));
+  const lF = Math.log(G.price[GI.FOOD]) - le, lE = Math.log(ecEnergyPx(c)) - le, lM = Math.log(ecManuPx(c) * (1 + c.tariff)) - le;
+  if (!ec.lRef) ec.lRef = [lF, lE, lM];
+  const L = [lF, lE, lM];
+  for (let k = 0; k < 3; k++) { ec.lRef[k] += (L[k] - ec.lRef[k]) * dt / .5; ec.dl[k] = clamp((L[k] - ec.lRef[k]) / .5, -.4, .8); }
+  const prodG = Math.max(-.02, (c.gPot || 0) - c.popG);
+  const ulcX = (ec.wG - prodG) - c.inflExp;           // unit labour costs growing faster than inflation expectations
+  const lvlPass = 2 * ec.lvl; if (dt) ec.lvl -= ec.lvl * 2 * dt;
+  const sprC = ec.sprMode < 0 && ec.sOil > 0 ? .7 : 0, sfrC = ec.sfrMode < 0 && ec.sFood > 0 ? .7 : 0;
+  const base = c.inflExp + c.print * .15 + polFx(c, 'infl') + c.shock.infl + lvlPass - .002 * ec.fg;
+  const piF = base + .45 * ec.dl[0] * (1 - .8 * c.prog.fsubF) + .15 * c.gap + 1.2 * foodShort * (1 - sfrC);
+  const piE = base + .45 * ec.dl[1] * (1 - .9 * c.prog.fsubE) + 1.0 * fuelShort * (1 - sprC);
+  const piG = base + .3 * ec.dl[2] + .3 * c.gap + .25 * ulcX;
+  const piS = base + .6 * c.gap + .5 * ulcX + .06 * ec.hpG;
+  const [wF, wE, wG] = ec.wts, wS = 1 - wF - wE - wG;
+  const piT = wF * piF + wE * piE + wG * piG + wS * piS;
+  const kI = 2.5 * dt;
+  ec.piF += (piF - ec.piF) * kI; ec.piE += (piE - ec.piE) * kI; ec.piG += (piG - ec.piG) * kI; ec.piS += (piS - ec.piS) * kI;
+  c.infl += (piT - c.infl) * kI;
+  c.infl = clamp(c.infl, -.1, 5);
+  ec.core = (wG * ec.piG + wS * ec.piS) / (wG + wS);
+  // credibility: a bank that keeps missing its target loses trust; independence, hawks and no money-printing earn it
+  const gv = GVR[ec.gvr];
+  const credT = clamp(ec.credBase + gv.cr - .5 * Math.max(0, Math.abs(c.infl - c.cbTarget) - .02) - (c.print ? .15 : 0) - (ec.mand === 'growth' ? .08 : 0), .03, .97);
+  c.cbCred += (credT - c.cbCred) * dt / 3;
+  const anchor = (c.cbIndep ? c.cbCred : c.cbCred * .5) * (c.print ? .3 : 1) * (ec.fg === 1 ? 1.15 : 1);
+  c.inflExp += ((c.infl - c.inflExp) * .4 + (c.cbTarget - c.inflExp) * Math.max(.15, anchor) * .6) * dt;
+  c.P *= Math.exp(c.infl * dt);
+  // --- labour: wages chase prices and productivity, and bend with slack
+  const uN = uNatTot(c);
+  const idx = clamp(.3 + 3 * Math.max(0, c.infl - .05), .3, .9);   // indexation: in high inflation, wages catch up faster
+  const wT = c.inflExp + prodG - .8 * (c.u - uN) + .012 * (stance(c, 'labor') - (ec.lab0 != null ? ec.lab0 : 50)) / 50 + .008 * (stance(c, 'minwage') - (ec.mw0 != null ? ec.mw0 : 50)) / 50 - (ec.pact > G.day ? .02 : 0) + idx * (c.infl - c.inflExp);
+  ec.wG += (wT - ec.wG) * 3 * dt;
+  ec.w *= Math.exp(ec.wG * dt); ec.ulc *= Math.exp((ec.wG - prodG) * dt);
+  // --- unemployment
+  const pwJobs = 2.5 * (c.prog.pw - c.prog0.pw);
+  const uT = uN - .45 * c.gap + .5 * shortShare - pwJobs;
+  c.u += (uT - c.u) * 3 * dt; c.u = clamp(c.u, .005, .6);
+  if (dt) { ec.uH = clamp(ec.uH + (.1 * Math.max(0, c.u - uN - .015) - .08 * ec.uH) * dt, 0, .04); ec.almpE += (c.prog.almp - ec.almpE) * dt / 2; }
+  // --- monetary policy
+  const elb = -.005;
+  if (c.euro) c.rate = G.euro.rate;
+  else if (c.peg && c.pegSpread != null) { const anc = c.peg === 'USD' ? us.rate : G.euro.rate; c.rate += (anc + c.pegSpread - c.rate) * 2 * dt; }
+  else if (c.cbIndep || !isHuman(c.i)) {
+    const t = taylor(c);
+    c.rate += (Math.max(elb, t) - c.rate) * 2 * dt;
+    // the bank's own balance-sheet policy: buy bonds when the rule wants rates below the floor; shrink holdings once the economy runs hot
+    const qT = t < elb && c.gap < -.01 ? clamp((elb - t) * 15, 0, .1) : (c.gap > 0 && c.infl > c.cbTarget && ec.cbGov > ec.cbGov0 * .6 + .02 ? -.02 : 0);
+    ec.qe += (qT - ec.qe) * dt * 2;
+  }
+  if (c.rate < elb && !c.euro) c.rate = elb;
+  if (dt) {
+    ec.cbGov = Math.max(0, ec.cbGov + ec.qe * dt);
+    // guidance that is broken costs credibility
+    if (ec.fg === -1 && c.rate > ec.fgRate + .0075) { c.cbCred = Math.max(.03, c.cbCred - .06); ec.fg = 0; if (isHuman(c.i)) news('ECON', 1, [c.iso], `${c.name}'s central bank breaks its pledge to keep rates low`, 'Markets mark down its credibility.', { mine: 1 }); }
+    if (ec.fg === 1 && c.rate < ec.fgRate - .0075) { c.cbCred = Math.max(.03, c.cbCred - .04); ec.fg = 0; }
+  }
+  // --- currency
+  const open = ecOpen(c), riskDev = (gf ? gf.risk : .2) - (ec.risk0 != null ? ec.risk0 : .2), em = ecEM(c), haven = HAVEN.has(c.iso) ? 1 : 0;
+  const NGDPusd = c.Y * c.P * c.e;
+  const mImp = Math.max(.1, c.Mi / 12);
+  ec.resM = ec.res / mImp;
+  const overval = Math.log(Math.max(1e-6, c.e / Math.max(1e-6, c.eFair)));
+  const flight = -.5 * (c.tax.wealth - c.tax0.wealth) - .1 * Math.max(0, c.tax.top - .55);
+  if (c.iso === 'USA') { c.e = 1; ec.flowP = .5 * riskDev; }
+  else if (c.peg === 'USD' || c.peg === 'EUR' || c.euro) {
+    c.e = c.euro ? G.euro.e : c.peg === 'USD' ? ec.pegE : G.euro.e * ec.pegE;
+    const aI = c.peg === 'USD' || !G.euro.infl ? us.infl : G.euro.infl, aI0 = c.peg === 'USD' || !G.euro.infl0 ? us.infl0 : G.euro.infl0;
+    c.eFair *= Math.exp(-((c.infl - c.infl0) - (aI - aI0)) * dt);
+    if (!c.euro) {
+      const anc = c.peg === 'USD' ? us.rate : G.euro.rate;
+      const devalRisk = Math.max(0, overval) * clamp((4 - ec.resM) / 4, 0, 1);
+      ec.flowP = open * (.6 * (c.rate - anc - (c.pegSpread || 0)) - em * .8 * riskDev - 2 * devalRisk - 1.2 * (c.prem - (ec.prem0 != null ? ec.prem0 : c.prem))) + flight;
+      const bp = (ec.ca - (ec.ca0 || 0)) + ec.flowP;   // pressure on the peg is met from reserves
+      if (dt) ec.res = Math.max(0, ec.res + bp * NGDPusd * dt);
+      ec.fxiAuto = bp; ec.fxiNow = bp;
+    } else ec.flowP = 0;
+  } else {
+    c.eFair *= Math.exp(-(c.infl - us.infl) * dt);
+    const vol = 1 + (polFx(c, 'fxVol') || 0);
+    // managed floats lean against sharp moves with reserves
+    ec.eMA += (le - ec.eMA) * dt * 4;
+    ec.fxiAuto = ec.lean * clamp(3 * (le - ec.eMA), -.04, .04);
+    let fxiTot = ec.fxi + ec.fxiAuto;
+    if (fxiTot < 0 && ec.res <= mImp * .5) fxiTot = 0;
+    const rd = (c.rate - c.infl) - (us.rate - us.infl) - c.rrd0;
+    ec.flowP = open * (.5 * rd - em * .8 * riskDev + haven * .5 * riskDev - .3 * Math.max(0, overval - .15)) - 1.2 * (c.prem - (ec.prem0 != null ? ec.prem0 : c.prem)) + flight;
+    const prem = .8 * (.4 + .6 * open) * rd + .6 * (ec.ca - (ec.ca0 || 0)) - 1.5 * (c.prem - c.prem0) + open * (-em * .5 * riskDev + haven * .4 * riskDev) - .25 * Math.max(0, overval - .15) + flight - 1.5 * fxiTot;
+    const tgt = Math.log(c.eFair) + clamp(prem, -.7, .4) + polFx(c, 'fxBias');
+    let lx = Math.log(c.e); lx += (tgt - lx) * 1.5 * dt + (dt ? .003 * randn() * vol * (1 + em * riskDev) : 0);
+    c.e = Math.exp(lx);
+    if (dt) ec.res = Math.max(0, ec.res + fxiTot * NGDPusd * dt);
+    ec.fxiNow = fxiTot;
+  }
+  if (dt) { ec.res *= Math.exp(Math.max(0, us.rate) * dt); }
+  ec.q = realX(c);
+  // --- public finances
+  const NGDPl = c.Y * c.P;
+  const infF = -.6 * (ec.inf - ec.inf0);
+  const comp = clamp(c.comp0 + .4 * (c.stability - c.stab0) / 100 - .4 * (c.corr - c.corr0) / 100 + 3 * (c.sp.admin - c.sp0.admin) + polFx(c, 'comp') + infF, .2, 1);
+  c.comp = comp;
+  const royR = c.tax.roy * rawRevenue(c) / Math.max(1, NGDPusd);
+  const tarR = c.tariffRev / Math.max(1, NGDPusd) * clamp(1 - .08 * (ec.sezE - ec.sez0), .5, 1.2);
+  let aidIn = 0, aidOut = 0;
+  for (const a of G.aid) { if (a.type === 'e') { if (a.to === c.i) aidIn += a.amt; if (a.from === c.i) aidOut += a.amt; } else if (a.from === c.i) aidOut += a.amt; }
+  c.aidIn = aidIn; c.aidOut = aidOut;
+  const tp = taxRevenue(c, c.tax, comp, c.gap);
+  const euR = c.euRec || 0, euC = c.euContrib || 0;
+  const swfIn = c.prog.swfIn * royR;
+  const swfOut = ec.swfDraw * ec.swf / Math.max(1, NGDPusd);
+  const cbI = ecCBIncome(c), cbRem = cbI - (ec.cbInc0 != null ? ec.cbInc0 : cbI);
+  const t2R = G.cp ? tradeRevenue(c) / Math.max(1, NGDPusd) : 0;
+  const stockSale = ec.stockFlow || 0;
+  c.revParts = { ...tp, tariff: tarR, roy: royR - swfIn, aid: aidIn / Math.max(1, NGDPusd), eu: euR, other: c.otherRev, trade: t2R, cb: cbRem, swf: swfOut, stocks: Math.max(0, stockSale) };
+  let taxR = 0; for (const k in tp) taxR += tp[k];
+  c.revPct = taxR + tarR + royR - swfIn + c.otherRev + euR + aidIn / Math.max(1, NGDPusd) + t2R + cbRem + swfOut + Math.max(0, stockSale);
+  let prim = 0; for (const k of SPEND_KEYS) prim += c.sp[k];
+  const dbLoss = ec.dbBook * (.03 + .15 * c.corr / 100) + Math.max(0, ec.npl - .08) * ec.dbBook * .3;
+  ec.pc = pc; ec.dbLoss = dbLoss;
+  const progT = pc.ui + pc.almp + pc.pw + pc.fsubE + pc.fsubF;
+  prim += progT + dbLoss + stimNow + Math.max(0, -stockSale);
+  prim += polFx(c, 'spend') + aidOut / Math.max(1, NGDPusd) + euC + ((c.projSpend || 0) + (c.incent || 0) * .001 * NGDPusd) / Math.max(1, NGDPusd);
+  c.prem = premium(c);
+  // yields: the policy rate plus the risk premium, lowered by central-bank bond buying, nudged by guidance
+  const qeY = -.04 * (ec.cbGov - (ec.cbGov0 != null ? ec.cbGov0 : ec.cbGov));
+  const market = Math.max(-.005, c.rate + c.prem + qeY + .002 * ec.fg);
+  c.bondYield = market;
+  const conc = c.iso === 'UKR' ? .6 : [.7, .4, 0, 0][c.inc];
+  const tpm = .0009 * ((c.issueMat || 6) - 5);
+  c.newYield = market + tpm;
+  c.effRate += ((1 - conc) * (market + tpm) + conc * .02 - c.effRate) * dt / (c.mat || 6.5);
+  if (c.issueMat) c.mat += (c.issueMat - c.mat) * dt / Math.max(1, c.mat);
+  // debt in foreign currency pays a dollar rate but grows when the currency falls; inflation-linked debt pays a real rate plus inflation
+  if (dt) { ec.fxS += (ec.fxST - ec.fxS) * dt / Math.max(1, c.mat || 6); ec.ilS += (ec.ilST - ec.ilS) * dt / Math.max(1, c.mat || 6); }
+  // the stock of foreign-currency and inflation-linked bonds reprices only as old bonds mature
+  const rFxNew = Math.max(0, us.rate) + .6 * c.prem + .004, rILNew = Math.max(-.01, market - c.inflExp - .004 - .01 * (1 - c.cbCred));
+  if (ec.fxR == null) { ec.fxR = rFxNew; ec.ilR = rILNew; }
+  if (dt) { const m = Math.max(1, c.mat || 6); ec.fxR += (rFxNew - ec.fxR) * dt / m; ec.ilR += (rILNew - ec.ilR) * dt / m; }
+  const rFx = ec.fxR, rIL = ec.ilR + c.infl;
+  const lS = Math.max(0, 1 - ec.fxS - ec.ilS);
+  const interest = c.debt * (lS * c.effRate + ec.fxS * rFx + ec.ilS * rIL);
+  c.intPct = interest / NGDPl;
+  const oneOff = c.oneOff || 0; c.oneOff = Math.max(0, oneOff * Math.exp(-12 * dt));
+  c.spendPct = prim + c.intPct + oneOff / Math.max(1, NGDPusd) * 12;
+  c.defPct = c.spendPct - c.revPct;
+  let def = c.defPct * NGDPl;
+  if (c.print) { const m = Math.min(Math.max(0, def), .03 * NGDPl); def -= m; if (dt) ec.cbGov += m / NGDPl * dt; }
+  if (dt) {
+    const e1 = ec.ePrev || c.e; if (ec.fxS > 0 && e1 > 0) c.debt *= 1 + ec.fxS * (e1 / c.e - 1); ec.ePrev = c.e;
+    let nd = c.debt + def * dt + wbPct(c) * NGDPl * dt;
+    if (nd < 0) { ec.swf += -nd * c.e; nd = 0; }          // surpluses beyond paying off all debt go to the wealth fund
+    c.debt = nd;
+    ec.swf = Math.max(0, ec.swf * Math.exp((.05 - .4 * riskDev) * dt) + (swfIn - swfOut) * NGDPusd * dt);
+  }
+  // --- finance: credit, houses, shares, banks
+  if (ec.realLend0 != null) ecFinance(c, dt, lend, Yprev, Pprev);
+  // --- external accounts
+  const govFor = ec.forS * c.debt * c.e, privNet = ec.nfa - ec.res - ec.swf + govFor;
+  const primUSD = ec.res * Math.max(0, us.rate) + ec.swf * .05 + privNet * (privNet > 0 ? .035 : .055) - ec.forS * interest * c.e;
+  // services and remittances are valued in real terms (not inflated by a real appreciation); a dear currency also costs tourism and services exports
+  const realUSD = c.Y * us.P;
+  const secUSD = ec.rem * realUSD + aidIn - aidOut + (euR - euC) * NGDPusd;
+  const svcUSD = ((ec.caAdj || 0) - .12 * Math.log(Math.max(.05, ec.q))) * realUSD;
+  const caUSD = (c.X - c.Mi) + primUSD + secUSD + svcUSD;
+  ec.ca = caUSD / Math.max(1, NGDPusd);
+  ec.bop = { tb, prim: primUSD / Math.max(1, NGDPusd), sec: secUSD / Math.max(1, NGDPusd), port: ec.flowP, dres: ec.fxiNow || 0 };
+  if (dt) {
+    ec.nfa += caUSD * dt;
+    ec.forS = clamp(ec.forS + .05 * ec.flowP * dt, .02, .9);
+    const remT = ec.rem0 * (1 + 2 * (gf ? gf.wgap : 0));
+    ec.rem += (remT - ec.rem) * dt;
+    if (ec.sezE !== ec.sez) ec.sezE += (ec.sez - ec.sezE) * dt / 3;
+    ec.dbBook += (ec.dbl - ec.dbBook / 7) * dt;
+    if (G.day % 30 === 0) { ec.eRef1y += (c.e - ec.eRef1y) * 30 / 365; }
+  }
+  // --- population
+  c.pop *= Math.exp((c.popG + polFx(c, 'popG') - (c.warCas || 0)) * dt);
+}
+
+// ---------- banks, credit, houses and shares ----------
+function ecFinance(c, dt, lend, Yprev, Pprev) {
+  const ec = c.ec, gf = G.gf, risk = gf ? gf.risk : .2, riskDev = risk - (ec.risk0 != null ? ec.risk0 : .2);
+  const req = ecReq(c);
+  const realLend = lend - c.inflExp;
+  const gN0 = (c.gPot || 0) + .5 * (c.infl + c.inflExp) + (c.inc <= 1 ? .005 : 0) - .15 * Math.log(ec.cred / ec.cred0);
+  // credit growth: cheap money, rising house prices and loose rules speed it up; weak banks and fear slow it down
+  let crGT = gN0 + 1.2 * c.gap - 1.5 * (realLend - ec.realLend0) + .5 * (ec.ltv - ec.ltv0) - 1.2 * ec.ccyb + 1.2 * ((ec.ccyb0 != null ? ec.ccyb0 : ec.ccyb)) - .8 * (ec.rr - ec.rr0) + .25 * ec.hpG
+    - .6 * riskDev * (c.inc < 3 ? 1 : .5) - 1.5 * Math.max(0, req - ec.cap) + (ec.di === 2 ? .01 : 0) - .05 * (stance(c, 'finreg') - (ec.fin0 != null ? ec.fin0 : 50)) / 50;
+  if (ec.crisis && ec.crisis.k === 'bank' && ec.crisis.until > G.day) crGT -= .12 * Math.exp(-(G.day - ec.crisis.start) / 400);
+  crGT = clamp(crGT, -.25, .45); ec.crGT = crGT;
+  ec.crG += (crGT - ec.crG) * 2 * dt;
+  if (!dt) return;
+  const gNact = Math.log((c.Y * c.P) / Math.max(1e-9, Yprev * Pprev)) / dt;
+  ec.cred = clamp(ec.cred * Math.exp((ec.crG - clamp(gNact, -.5, 1)) * dt), .02, 4);
+  ec.crT += (ec.cred - ec.crT) * dt / 10;
+  const cgap = ec.cred - ec.crT;
+  ec.cgLag += (cgap - ec.cgLag) * dt / 2;
+  ec.flowRef += (ec.crG * ec.cred - ec.flowRef) * dt / 1.5;
+  // house prices overshoot: momentum pulls them past fair value, then they fall back
+  const inc = Math.log(Math.max(.05, (c.Y / ec.Y0) / (c.pop / ec.pop0)));
+  const hpStar = .9 * inc - 5 * (ecMort(c) - ec.mort0) + .4 * Math.log(ec.cred / ec.cred0) + .6 * (ec.ltv - ec.ltv0) - 10 * (c.tax.prop - c.tax0.prop)
+    - .004 * (stance(c, 'housing') - ec.hous0) + 3 * (c.popG + polFx(c, 'popG') - ec.popG0) - .2 * riskDev;
+  ec.hpStar = clamp(hpStar, -1.2, 1.5);
+  ec.hpG += (.6 * (ec.hpStar - Math.log(ec.hp)) - 1.2 * ec.hpG) * dt + .03 * Math.sqrt(dt) * randn();
+  ec.hpG = clamp(ec.hpG, -.35, .45);
+  ec.hp = clamp(ec.hp * Math.exp(ec.hpG * dt), .2, 6);
+  ec.hpRef += (ec.hp - ec.hpRef) * dt / 5; ec.hpMax = Math.max(ec.hp, ec.hpMax * Math.exp(-dt / 3));
+  // shares: profits discounted at the real bond yield plus a risk premium
+  const earn = Math.max(.05, (c.Y / ec.Y0) * (1 + 2.5 * c.gap) * (1 - c.tax.corp) / (1 - ec.corp0));
+  const eqStar = Math.log(earn) - .5 * Math.log(ecDen(c) / ec.den0);
+  const vol = c.inc >= 3 ? .16 : .24;
+  ec.eq = clamp(Math.exp(Math.log(ec.eq) + (eqStar - Math.log(ec.eq)) * 4 * dt + vol * Math.sqrt(dt) * randn() * (1 + 2 * Math.max(0, riskDev))), .05, 20);
+  ec.eqRef += (ec.eq - ec.eqRef) * dt / 5;
+  // bad loans rise with joblessness, dear credit, falling house prices, a busted credit boom and (in dollarised economies) a falling currency
+  const dep = c.inc < 3 && !c.euro ? Math.max(0, -Math.log(c.e / Math.max(1e-6, ec.eRef1y))) : 0;
+  const nplT = Math.max(.3 * ec.npl0, ec.npl0 + .7 * (c.u - c.u0) + .35 * Math.min(.15, realLend - ec.realLend0) - .25 * clamp(ec.hpG, -.3, .3) + .15 * Math.max(0, -Math.log(ec.hp / ec.hpMax) - .1)
+    + .25 * Math.max(0, ec.cgLag - cgap) + .12 * dep * (c.inc <= 1 ? 1.5 : 1) + .03 * (ec.di === 2 ? 1 : 0) + .1 * Math.max(0, -c.gap - .02));
+  const nplPrev = ec.npl;
+  ec.npl = clamp(ec.npl + (nplT - ec.npl) * (nplT > ec.npl ? 1.2 : .45) * dt, .002, .6);
+  // bank capital: bad loans eat it at once; profits rebuild it toward a buffer above requirements
+  const prof = .015 + .5 * (ecSpread(c) - ec.spr0) - .6 * Math.max(0, ec.npl - ec.npl0) - .3 * (ec.rr - ec.rr0) * Math.max(0, c.rate);
+  const capT = Math.max(req + .03, ec.cap0);
+  ec.cap += (capT - ec.cap) * .5 * dt * clamp(prof / .015, 0, 1.5) - .55 * Math.max(0, ec.npl - nplPrev)
+    + (ec.cap < capT ? Math.max(0, ec.cap) * Math.max(0, gN0 - ec.crG) * dt : 0);   // shrinking loan books also rebuild the ratio
+  ec.cap = clamp(ec.cap, -.1, .35);
+  ec.cgap = cgap;
+}
+
+// ---------- the world financial cycle ----------
+function econGlobal(dt) {
+  const gf = G.gf; if (!gf) return;
+  let w = 0, gp = 0;
+  for (const c of G.C) { w += c.Y; gp += c.gap * c.Y; }
+  gf.wgap = gp / Math.max(1, w);
+  gf.riskT = riskTarget();
+  gf.shock *= Math.exp(-dt / .6);
+  gf.risk = clamp(gf.risk + (gf.riskT - gf.risk) * 2 * dt + .05 * Math.sqrt(dt) * randn(), .05, 1);
+  if (G.day > 200 && G.day - gf.lastPanic > 900 && rng() < dt / 22) {
+    gf.shock += .3; gf.lastPanic = G.day;
+    news('MARKETS', 3, [], pick(['Global markets tumble as investors flee risk', 'Worldwide sell-off: money floods into safe havens', 'Credit markets seize up as global panic spreads']), 'Emerging-market currencies and share prices fall hard; borrowing costs jump.');
+  }
+}
+// strategic stocks and fuel demand, applied after daily demand is known
+function econTradeAdj(c) {
+  const ec = c.ec; if (!ec) return;
+  const ng = Math.max(1, c.Y * c.P * c.e); let flow = 0;
+  const one = (key, g, modeKey) => {
+    const d = c.dem[g], mode = ec[modeKey]; if (d <= 0 || !mode) return;
+    if (mode < 0) { if (ec[key] <= 0) { ec[modeKey] = 0; return; } const r = Math.min(.3 * d, ec[key] * 12); c.dem[g] = Math.max(0, d - r); ec[key] = Math.max(0, ec[key] - r / 365); flow += r * G.price[g] / ng; }
+    else { if (ec[key] >= 240 / 365 * d) { ec[modeKey] = 0; return; } const r = .06 * d; c.dem[g] += r; ec[key] += r / 365; flow -= r * G.price[g] / ng; }
+  };
+  one('sOil', GI.OIL, 'sprMode'); one('sFood', GI.FOOD, 'sfrMode');
+  ec.stockFlow = flow;
+  const pe = ecEnergyPx(c);
+  ec.fuelDemF = Math.pow((1 + c.tax0.exc) / (1 + c.tax.exc), .25) * (1 + .25 * c.prog.fsubE * Math.max(0, pe / (ec.pe0 || 1) - 1));
+}
+
+// ---------- monthly: rules, crises, news, the computer's choices ----------
+function ruleOK(c) {
+  const ec = c.ec, h = c.hist, back = h.length > 12 ? h[h.length - 13] : h[0];
+  switch (ec.rule) {
+    case 'deficit': return c.defPct <= .03 + 1e-4;
+    case 'debt': return debtR_(c) <= .6 || (back && debtR_(c) <= back.db - .002);
+    case 'struct': return c.defPct + .5 * c.gap <= .005;
+    case 'spend': return !back || c.spendPct - c.intPct <= (back.sp != null ? back.sp : c.spendPct) + .003;
+  }
+  return true;
+}
+const RULES = { none: ['No fiscal rule', 'Borrow as you see fit.'], deficit: ['Deficit ceiling (3%)', 'Keep the deficit at or under 3% of GDP.'], debt: ['Debt anchor (60%)', 'Keep debt under 60% of GDP, or falling.'], struct: ['Structural balance', 'Keep the cyclically adjusted deficit under 0.5% of GDP. Recessions are allowed for automatically.'], spend: ['Spending rule', 'Primary spending may not rise faster than the economy.'] };
+function econMonthly(c) {
+  const ec = c.ec; if (!ec) return;
+  const human = isHuman(c.i), big = c.Y > 250 || human, mine = human ? { mine: 1 } : undefined;
+  // fiscal rule
+  if (ec.rule === 'none') ec.fcred = Math.max(0, ec.fcred - .03);
+  else {
+    const esc = c.gap < -.03 || (ec.crisis && ec.crisis.until > G.day) || warsOf(c.i).length > 0;
+    const ok = ruleOK(c);
+    if (ok || esc) ec.fcred = Math.min(1, ec.fcred + .025);
+    else { ec.fcred = Math.max(0, ec.fcred - .07); if (ec.ruleOk !== false && human) news('ECON', 1, [c.iso], `${c.name} breaks its own fiscal rule`, `${RULES[ec.rule][0]}: markets start to doubt it.`, mine); }
+    ec.ruleOk = ok || esc;
+  }
+  // market moves worth a headline
+  const eqM = ec.eq / (ec.eqM || ec.eq), hpY = ec.hp / (ec.hpM || ec.hp);
+  if (eqM < .85 && big) news('MARKETS', eqM < .75 ? 3 : 2, [c.iso], `${c.name}'s stock market crashes`, `Shares fell ${((1 - eqM) * 100).toFixed(0)}% in a month.`, mine);
+  if (hpY < .97 && ec.hpG < -.15 && big && rng() < .3) news('ECON', 1, [c.iso], `House prices slump in ${c.name}`, 'Buyers vanish as mortgage costs bite.', mine);
+  if (ec.hpG > .15 && ec.hp > 1.3 && big && rng() < .08) news('ECON', 1, [c.iso], `Housing boom in ${c.name} stirs bubble fears`, `Prices are up ${((ec.hp - 1) * 100).toFixed(0)}% since the start.`, mine);
+  if (c.infl > .5 && G.day % 360 < 31 && (big || c.Y > 50)) news('ECON', 2, [c.iso], `Hyperinflation grips ${c.name}`, `Prices rising ${(c.infl * 100).toFixed(0)}% a year; savings wiped out.`, mine);
+  ec.eqM = ec.eq; ec.hpM = ec.hp;
+  // banking crisis
+  const active = ec.crisis && ec.crisis.until > G.day;
+  if (!active && G.day > 120 && G.day - (ec.crisis ? ec.crisis.until : -9999) > 2 * 365) {
+    const req = ecReq(c), riskDev = G.gf.risk - (ec.risk0 || .2);
+    if (ec.cap < .065 || (ec.cap < req - .01 && riskDev > .2 && ec.di === 0 && rng() < .3)) startBankCrisis(c);
+    else if (!c.euro && c.peg && ec.resM < 1.2 && c.iso !== 'USA') startPegCrisis(c);
+    else if (!c.euro && !c.peg && c.iso !== 'USA' && c.inc < 3 && ec.resM < 1.5 && ec.flowP < -.025 && (ec.fxS > .2 || c.tbPct < c.tb0 - .03) && rng() < .35) startSuddenStop(c);
+  }
+  // a peg with no reserves left cannot be held
+  if (c.peg && !c.euro && ec.resM < .05 && !G.inbox.some(x => x.ev === 'pegcrisis' && !x.done && x.to === c.i)) { pegExit(c, 'float'); news('MARKETS', 3, [c.iso], `${c.name} runs out of reserves and is forced to float`, 'The central bank can no longer defend the peg.', human ? { mine: 1 } : undefined); }
+  if (ec.hike) ec.hike = ec.hike > .002 ? ec.hike * .8 : 0;
+  if (!human) aiEcon(c); else if (c.cbIndep && !c.euro) aiCB(c);
+}
+// the effects of crisis decisions are rebuilt from the event name, so they survive saves, snapshots and host changes
+const ECON_FX = {
+  bankcrisis6: () => ['nat', 'bailin', 'fail', 'bailout'].map(h => ({ fx: c => bankFix(c, h) })),
+  pegcrisis: () => [{ fx: c => { c.pegSpread = (c.pegSpread || 0) + .08; c.shock.appr -= 3; } }, { fx: c => pegExit(c, 'float') }, { fx: c => pegExit(c, 'deval') }],
+  suddenstop: () => [{ fx: c => { c.rate += .05; c.ec.hike = (c.ec.hike || 0) + .05; } },
+    { fx: c => { if (c.pl && c.pl.capital) { c.pl.capital.t = Math.max(c.pl.capital.t, 80); c.pl.capital.x = Math.max(c.pl.capital.x, 70); computePfx(c); } c.shock.growth -= .003; } },
+    { fx: c => { const r = imfRequest(c.i); if (r && r.ok) c.ec.res += .03 * c.Y * c.P * c.e; } }, { fx: c => { c.shock.appr -= 1; } }],
+};
+function restoreEconFx() { for (const it of G.inbox) if (!it._fx && ECON_FX[it.ev]) it._fx = ECON_FX[it.ev](it); }
+function crisisContagion(c, k) { const share = c.Y * c.P * c.e / Math.max(1, G.worldHist.length ? G.worldHist[G.worldHist.length - 1].gdp : 1e5); G.gf.shock += Math.min(.45, 3.5 * share * k); }
+function bankRecapCost(c) { const ec = c.ec; return Math.max(.008, ecReq(c) + .03 - ec.cap) * ec.cred * .55; }
+function startBankCrisis(c) {
+  const ec = c.ec; ec.crisis = { k: 'bank', start: G.day, until: G.day + 720, sev: .035 }; ec.crisisN++;
+  c.shock.appr -= 5; ec.eq *= .82; ec.hpG -= .08; crisisContagion(c, 1);
+  const cost = bankRecapCost(c);
+  news('ECON', 3, [c.iso], `Banking crisis in ${c.name}`, 'Lenders are short of capital; credit freezes and depositors queue.', isHuman(c.i) ? { mine: 1 } : undefined);
+  const fx = [
+    { n: 'Nationalise the failing banks', d: `The state takes them over: ${pct(cost * .6, 1)} of GDP. Business angry, unions pleased.` },
+    { n: 'Bail in creditors', d: 'Bondholders and big depositors take losses. No public money, but a sharper shock and angry savers.' },
+    { n: 'Let them fail', d: 'No cost now. A deep credit crunch and a long recession.' },
+    { n: 'Bail out the banks', d: `Recapitalise with public money: ${pct(cost, 1)} of GDP added to debt. The crisis eases fast.` },
+  ];
+  if (isHuman(c.i)) withPlayer(c.i, () => inboxAdd({ kind: 'event', ev: 'bankcrisis6', from: c.i, head: 'Banking crisis: your banks are running out of capital', body: `Bank capital is down to ${pct(Math.max(0, ec.cap), 1)} of risk-weighted assets (the legal minimum with buffers is ${pct(ecReq(c), 1)}). Bad loans are ${pct(ec.npl, 1)}.`, choices: fx, _fx: ECON_FX.bankcrisis6(), ttl: 20 }));
+  else bankFix(c, debtR_(c) > 1.2 || c.prem > .06 ? 'bailin' : 'bailout');
+}
+function bankFix(c, how) {
+  const ec = c.ec, ng = c.Y * c.P, cost = bankRecapCost(c), req = ecReq(c);
+  if (!ec.crisis) ec.crisis = { k: 'bank', start: G.day, until: G.day + 720, sev: .035 };
+  if (how === 'bailout') { c.debt += cost * ng; ec.cap = req + .03; ec.crisis.sev = .015; c.shock.appr -= 3; if (c.gv) facKick(c, { labour: -.3, youth: -.3, business: .5 }, 6); news('ECON', 2, [c.iso], `${c.name} bails out its banks`, `The rescue costs about ${pct(cost, 1)} of GDP.`, isHuman(c.i) ? { mine: 1 } : undefined); }
+  else if (how === 'nat') { c.debt += cost * .6 * ng; ec.cap = req + .03; ec.crisis.sev = .02; ec.soe += cost * .6; if (c.pl && c.pl.state) c.pl.state.t = Math.min(100, c.pl.state.t + 10); if (c.gv) facKick(c, { business: -.8, labour: .5 }, 6); news('ECON', 2, [c.iso], `${c.name} nationalises its biggest banks`, '', isHuman(c.i) ? { mine: 1 } : undefined); }
+  else if (how === 'bailin') { ec.cap = req + .02; ec.crisis.sev = .03; c.shock.appr -= 7; ec.forS = Math.max(.02, ec.forS - .05); if (c.gv) facKick(c, { retirees: -.8, business: -.4 }, 6); news('ECON', 2, [c.iso], `${c.name} forces losses on bank creditors`, 'Savers above the insured limit lose part of their deposits.', isHuman(c.i) ? { mine: 1 } : undefined); }
+  else { ec.crisis.sev = .06; c.shock.appr -= 4; if (c.gv) facKick(c, { business: -.6, labour: -.5, retirees: -.5 }, 6); news('ECON', 3, [c.iso], `${c.name} lets failing banks collapse`, 'Credit dries up across the economy.', isHuman(c.i) ? { mine: 1 } : undefined); }
+}
+function startPegCrisis(c) {
+  const ec = c.ec; ec.crisis = { k: 'fx', start: G.day, until: G.day + 365, sev: .02 }; ec.crisisN++; crisisContagion(c, .5);
+  news('MARKETS', 3, [c.iso], `Speculators attack ${c.name}'s currency peg`, `Reserves cover only ${ec.resM.toFixed(1)} months of imports.`, isHuman(c.i) ? { mine: 1 } : undefined);
+  const fx = [
+    { n: 'Defend the peg', d: 'Raise interest rates 8 points above the anchor. Painful, but the peg may hold.' },
+    { n: 'Float the currency', d: 'Let the market set it. Expect a sharp fall and a burst of inflation.' },
+    { n: 'Devalue 25% and re-peg', d: 'A one-off cut to a level you can hold. Import prices jump.' },
+  ];
+  if (isHuman(c.i)) withPlayer(c.i, () => inboxAdd({ kind: 'event', ev: 'pegcrisis', from: c.i, head: 'Currency crisis: the peg is under attack', body: `Money is leaving and your reserves are nearly gone (${fmtB(ec.res)}, ${ec.resM.toFixed(1)} months of imports).`, choices: fx, _fx: ECON_FX.pegcrisis(), ttl: 15 }));
+  else pegExit(c, rng() < .6 ? 'deval' : 'float');
+}
+function pegExit(c, how) {
+  const ec = c.ec, mis = Math.max(.1, Math.log(Math.max(1e-6, c.e / c.eFair)) + .1);
+  if (how === 'deval') { ec.pegE *= .75; c.shock.appr -= 4; news('MARKETS', 2, [c.iso], `${c.name} devalues its currency by 25%`, 'A new peg is set.', isHuman(c.i) ? { mine: 1 } : undefined); }
+  else { const was = c.peg; c.peg = null; c.pegSpread = null; ec.lean = .35; c.e *= Math.exp(-Math.min(.5, mis)); ec.eMA = Math.log(c.e); c.cbIndep = c.cbIndep; news('MARKETS', 2, [c.iso], `${c.name} abandons its ${was} peg and lets the currency float`, 'The currency falls sharply on its first day of trading.', isHuman(c.i) ? { mine: 1 } : undefined); }
+  c.shock.infl += .02;
+}
+function startSuddenStop(c) {
+  const ec = c.ec; ec.crisis = { k: 'fx', start: G.day, until: G.day + 365, sev: .025 }; ec.crisisN++; crisisContagion(c, .6);
+  c.e *= .82; c.shock.infl += .025; c.shock.appr -= 4; ec.forS = Math.max(.02, ec.forS - .06);
+  news('MARKETS', 3, [c.iso], `Capital flees ${c.name}; currency plunges`, 'Foreign investors dump bonds and shares; import costs soar.', isHuman(c.i) ? { mine: 1 } : undefined);
+  const fx = [
+    { n: 'Emergency rate hike', d: 'Push rates up 5 points to stop the run. Growth suffers.' },
+    { n: 'Capital controls', d: 'Stop money leaving. Markets and investors will remember.' },
+    { n: 'Ask the IMF', d: 'An emergency loan with conditions attached.' },
+    { n: 'Ride it out', d: 'Let the currency find its level.' },
+  ];
+  if (isHuman(c.i)) withPlayer(c.i, () => inboxAdd({ kind: 'event', ev: 'suddenstop', from: c.i, head: 'Sudden stop: foreign money is fleeing', body: `Your currency has lost 18% and reserves cover ${ec.resM.toFixed(1)} months of imports.`, choices: fx, _fx: ECON_FX.suddenstop(), ttl: 15 }));
+}
+
+// ---------- what computer-run countries do with the new tools ----------
+function aiEcon(c) { aiCB(c); aiGov(c); }
+// the central bank's own housekeeping (also runs for a human player whose central bank is independent)
+function aiCB(c) {
+  const ec = c.ec;
+  if (c.inc >= 2 && !c.peg) { const t = clamp((ec.cgap - .02) * .25, 0, .025); ec.ccyb += clamp(t - ec.ccyb, -.0025, .0025); }
+  if (ec.hpG > .1 && ec.hp > 1.25) ec.ltv = Math.max(.6, ec.ltv - .05); else if (ec.hpG < -.03 && ec.ltv < ec.ltv0) ec.ltv = Math.min(ec.ltv0, ec.ltv + .02);
+  if (!c.euro && !c.peg && c.iso !== 'USA') {
+    const tgt = c.inc < 3 ? 5 : 3, drop = c.e / Math.max(1e-6, ec.eRef1y);
+    if (drop < .9 && ec.resM > 2.5) ec.fxi = -.015;
+    else if (ec.resM < tgt && ec.ca > -.03) ec.fxi = .006;
+    else if (ec.resM > tgt * 2.5 || drop > 1.05) ec.fxi = 0;
+    else ec.fxi *= .5;
+  }
+  if (c.peg && !c.euro && ec.resM < 2.2 && (c.pegSpread || 0) < c.r0 + .08) c.pegSpread = (c.pegSpread || 0) + .005;
+  if (c.peg && !c.euro && ec.resM > 6 && c.pegSpread > (c.r0 - (c.peg === 'USD' ? G.C[G.idx.USA].r0 : G.euro.r0 || .02)) + .005) c.pegSpread -= .0025;
+}
+function aiGov(c) {
+  const ec = c.ec;
+  if (c.defPct > .06 && ec.pc && ec.pc.fsubE > .015 && rng() < .15) { c.prog.fsubE = Math.max(0, c.prog.fsubE - .15); c.shock.stab -= 3; if (c.Y > 60) news('ECON', 1, [c.iso], `${c.name} cuts fuel subsidies`, 'Pump prices jump; protests in several cities.'); }
+  if (c.gap < -.04 && debtR_(c) < .8 && c.prem < .03 && ec.stimT < G.day && rng() < .25) { ec.stim = .01; ec.stimT = G.day + 365; ec.stimK = rng() < .5 ? 'cash' : 'infra'; if (c.Y > 300) news('ECON', 1, [c.iso], `${c.name} unveils stimulus package`, 'Worth about 1% of GDP over a year.'); }
+  ec.swfDraw = ec.swf > 0 && c.defPct > .04 ? Math.min(.04, (c.defPct - .02) * c.Y * c.P * c.e / Math.max(1, ec.swf)) : 0;
+}
 
 // ===================================================================================
 //  SOVEREIGN — government: political systems, legislatures, factions, policies, budget process
@@ -2045,6 +2826,17 @@ function factionStep(c, dt) {
   for (const f of FAC) T[f] -= clamp(150 * dInf, -8, 25);
   T.labour -= clamp(500 * dU, -10, 25); T.youth -= clamp(450 * dU, -10, 25); T.business += clamp(250 * dG, -15, 12);
   T.farmers -= 60 * (c.foodShort || 0); T.retirees -= 40 * (c.fuelShort || 0);
+  const ec = c.ec;
+  if (ec && c.prog0) {
+    const pr = c.prog, p0 = c.prog0, dp = t.pay - t0.pay, dcg = t.cg - t0.cg, dpr = t.prop - t0.prop, dwl = t.wealth - t0.wealth, dx = t.exc - t0.exc, dtop = t.top - t0.top;
+    const crisis = ec.crisis && ec.crisis.until > G.day ? 1 : 0;
+    T.business += -250 * dp - 150 * dcg - 800 * dwl - 60 * dtop + 40 * (t.inv - t0.inv) + 60 * (t.rd - t0.rd) - 10 * crisis + clamp(20 * Math.log(ec.eq), -10, 8);
+    T.labour += -250 * dp + 40 * (pr.ui - p0.ui) + 600 * (pr.pw - p0.pw) + 300 * (pr.almp - p0.almp) + 20 * (pr.fsubE - p0.fsubE) + 20 * dtop + clamp(300 * (ec.wG - c.infl - .01), -10, 8) - (ec.pact > G.day ? 12 : 0);
+    T.retirees += -1200 * dpr - 30 * dx + 20 * (pr.fsubE - p0.fsubE) - 8 * crisis;
+    T.youth += -8 * Math.max(0, Math.log(ec.hp)) + 300 * (pr.almp - p0.almp) + 20 * dtop;
+    T.farmers += 15 * (pr.fsubF - p0.fsubF) - 20 * dx;
+    T.greens += 60 * dx - 30 * (pr.fsubE - p0.fsubE);
+  }
   if (c.warIntensity) { T.nationalists += 6 * c.warIntensity; T.military += 5 * c.warIntensity - c.fatigue * .3; T.youth -= 8 * c.warIntensity; }
   for (const f of FAC) {
     c.facShock[f] *= Math.exp(-dt / .6);
@@ -2163,6 +2955,15 @@ function budgetBill(c, draft) {
   a('youth', d('edu') * 20 + d('research') * 8 - (t.inc - t0.inc) * 10); a('business', -(t.corp - t0.corp) * 25 + d('subsidy') * 15 + d('infra') * 10 - (t.inc - t0.inc) * 6);
   a('farmers', d('subsidy') * 8 - (t.vat - t0.vat) * 5 + (draft.tariff - c.tariff) * 6); a('greens', d('research') * 8 - d('mil') * 6);
   let tot = 0; for (const k of SPEND_KEYS) tot += Math.abs(d(k)); tot += Math.abs(t.inc - t0.inc) + Math.abs(t.corp - t0.corp) + Math.abs(t.vat - t0.vat);
+  if (draft.prog && c.prog && t.pay != null) {
+    const dt_ = k => t[k] - t0[k], pr = draft.prog, p0 = c.prog, dp = k => pr[k] - p0[k];
+    a('business', -dt_('pay') * 10 - dt_('cg') * 5 - dt_('wealth') * 40 - dt_('top') * 3 + dt_('inv') * 2 + dt_('rd') * 3);
+    a('labour', -dt_('pay') * 8 + dp('ui') * 2 + dp('pw') * 40 + dp('almp') * 20 + dp('fsubE') * 1.5 + dt_('top') * 2);
+    a('retirees', -dt_('prop') * 80 - dt_('exc') * 2 + dp('fsubE') * 1);
+    a('youth', dp('almp') * 10 + dt_('top') * 1); a('greens', dt_('exc') * 3 - dp('fsubE') * 2); a('farmers', dp('fsubF') * 1.5 - dt_('exc'));
+    for (const k of ['pay', 'cg', 'prop', 'wealth', 'exc', 'top']) tot += Math.abs(dt_(k)) * (k === 'prop' || k === 'wealth' ? 5 : 1);
+    for (const k of ['ui', 'fsubE', 'fsubF']) tot += Math.abs(dp(k)) * .05; for (const k of ['almp', 'pw']) tot += Math.abs(dp(k));
+  }
   for (const f in fac) fac[f] = clamp(fac[f], -1.5, 1.5);
   const prj = budgetProject(c, draft);
   const bip = -Math.min(.6, tot * 8) * .3 - Math.max(0, prj.def - Math.max(.03, c.defPct)) * 6;
@@ -2172,13 +2973,23 @@ function budgetBill(c, draft) {
   return b;
 }
 function budgetProject(c, draft) {
-  const ng = c.Y * c.P;
   const comp = c.comp || c.comp0;
   const rp = c.revParts || {};
-  const rev = comp * (draft.tax.inc * TB.inc + draft.tax.corp * TB.corp + draft.tax.vat * TB.vat) + (rp.tariff || 0) * (draft.tariff / Math.max(.001, c.tariff)) + (rp.roy || 0) * (draft.tax.roy / Math.max(.001, c.tax.roy)) + (rp.aid || 0) + c.otherRev + (rp.eu || 0);
-  let sp = 0; for (const k of SPEND_KEYS) sp += draft.sp[k];
-  sp += polFx(c, 'spend') + (c.aidOut || 0) / Math.max(1, nominal(c)) + (c.intPct || 0) + (c.euContrib || 0);
-  return { rev, sp, def: sp - rev };
+  if (!c.ec) {
+    const rev = comp * (draft.tax.inc * TB.inc + draft.tax.corp * TB.corp + draft.tax.vat * TB.vat) + (rp.tariff || 0) * (draft.tariff / Math.max(.001, c.tariff)) + (rp.roy || 0) * (draft.tax.roy / Math.max(.001, c.tax.roy)) + (rp.aid || 0) + c.otherRev + (rp.eu || 0);
+    let sp = 0; for (const k of SPEND_KEYS) sp += draft.sp[k];
+    sp += polFx(c, 'spend') + (c.aidOut || 0) / Math.max(1, nominal(c)) + (c.intPct || 0) + (c.euContrib || 0);
+    return { rev, sp, def: sp - rev };
+  }
+  const tp = taxRevenue(c, draft.tax, comp, c.gap); let rev = 0; for (const k in tp) rev += tp[k];
+  const pr = draft.prog || c.prog, roy = (rp.roy || 0) + (rp.roy != null ? c.prog.swfIn * 0 : 0);
+  const royGross = c.tax.roy > 0 ? ((rp.roy || 0) / Math.max(.01, 1 - c.prog.swfIn)) * (draft.tax.roy / c.tax.roy) : 0;
+  rev += (rp.tariff || 0) * (draft.tariff / Math.max(.001, c.tariff)) + royGross * (1 - pr.swfIn) + (rp.aid || 0) + c.otherRev + (rp.eu || 0) + (rp.trade || 0) + (rp.cb || 0) + (rp.swf || 0) + (rp.stocks || 0);
+  const pc = progCost(c, pr); let sp = pc.ui + pc.almp + pc.pw + pc.fsubE + pc.fsubF;
+  for (const k of SPEND_KEYS) sp += draft.sp[k];
+  const ec = c.ec, ng = Math.max(1, nominal(c));
+  sp += polFx(c, 'spend') + (c.aidOut || 0) / ng + (c.intPct || 0) + (c.euContrib || 0) + (ec.dbLoss || 0) + (ec.stimT > G.day ? ec.stim : 0) + Math.max(0, -(ec.stockFlow || 0)) + ((c.projSpend || 0) + (c.incent || 0) * .001 * ng) / ng;
+  return { rev, sp, def: sp - rev, pc };
 }
 
 // ---------- elections ----------
@@ -2196,6 +3007,7 @@ function reseat(c, ch, share) {
   acc = 0; const oNew = ch.seats - gNew; oth.forEach((p, k) => { p.seats = k === oth.length - 1 ? oNew - acc : Math.round(oNew * p.seats / ot); acc += p.seats; });
 }
 function flipGovernment(c) {
+  if (typeof clearWarrant === 'function') clearWarrant(c, 'The leader named in the warrant has left office.');
   for (const ch of c.gv.ch) for (const p of ch.parties) p.gov = p.gov === 1 ? 0 : p.gov === 0 ? 1 : 2;
   // a new government shifts some policies toward its own leanings
   const lean = (mainChamber(c).parties.filter(p => p.gov === 1)[0] || { lean: 0 }).lean;
@@ -3180,7 +3992,7 @@ function crisisLevelEffects(cr, from, to, actor) {
     bumpRel(a, b, -6 * (to - from)); bumpTrust(o, actor, -8);
     if (to === 2) { const had = diplOf(a, b); if (had === 2) setDipl(a, b, 1); cr.log.push({ day: G.day, t: had > 0 ? `${A.name} expels ${O.name}'s diplomats` : `${A.name} and ${O.name} trade furious accusations` }); }
     if (to === 3) { const t = .15 + rng() * .15; G.btar[actor * G.n + o] = Math.max(G.btar[actor * G.n + o], t); if (sancLevel(actor, o) < 1) setSanction(actor, o, 1); G.pfDirty = 1; cr.log.push({ day: G.day, t: `${A.name} imposes ${Math.round(t * 100)}% tariffs and targeted sanctions on ${O.name}` }); }
-    if (to === 4) { A.sp.mil += .002; A.shock.stab += 2; cr.log.push({ day: G.day, t: `${A.name} mobilises forces and stages exercises near ${O.name}` }); }
+    if (to === 4) { A.sp.mil += .002; A.shock.stab += 2; if (G.units) mobiliseToward(actor, o); cr.log.push({ day: G.day, t: `${A.name} mobilises forces and stages exercises near ${O.name}` }); }
     if (to === 5) { A.shock.gap -= .004; O.shock.gap -= .006; A.rally += 3; O.rally += 3; cr.log.push({ day: G.day, t: `Deadly clashes between ${A.name} and ${O.name}` }); reactTo('clash', actor, o); }
     if (to === 6) { cr.over = true; cr.end = G.day; const w = startWar(actor, o); news('WAR', 3, [A.iso, O.iso], `${A.name} goes to war with ${O.name}`, `The ${cr.name.toLowerCase()} spirals into war.`, { mine: isHuman(actor) || isHuman(o) ? 1 : 0 }); if (isHuman(o) && typeof onWarOnPlayer === 'function') atLocal(o, () => onWarOnPlayer(w)); }
   } else {
@@ -4166,7 +4978,7 @@ function applyDraft(r, rec) {
       case 'sanctions': { const L = lv ? 3 : 2; for (const i of members) { if (i === r.target) continue; const rel = getRel(i, r.target); if (rel < 50) setSanction(i, r.target, Math.max(sancLevel(i, r.target), rel < 0 ? L : L - 1), true); } un.regimes[T.iso] = lv ? 'comprehensive sanctions' : 'sectoral sanctions'; G.pfDirty = 1; break; }
       case 'nuclear': un.regimes[T.iso] = un.regimes[T.iso] || 'non-proliferation measures'; T.shock.gap -= .003; break;
       case 'peacekeep': un.pk[T.iso] = ['UN observer mission', 'UN peacekeeping operation', 'UN stabilisation force'][lv]; T.shock.stab += 3 + lv * 3; break;
-      case 'force': if (w && w.a === r.target) { w.exA += .6; T.M *= .85; news('WAR', 3, [T.iso], `Coalition strikes begin against ${T.name} under UN mandate`, 'Aircraft from several member states hit military targets.'); } else { T.shock.stab += 4; } break;
+      case 'force': if (w && w.a === r.target) { w.exA += .6; if (G.units) milAttrit(T, .15); else T.M *= .85; news('WAR', 3, [T.iso], `Coalition strikes begin against ${T.name} under UN mandate`, 'Aircraft from several member states hit military targets.'); } else { T.shock.stab += 4; } break;
       case 'review': r.review = G.day + 365; break;
       case 'aid': { const to = V || T; for (const i of yesV) { const c = G.C[i]; if (c.inc >= 3 && getRel(i, to.i) > -10 && rng() < .35) G.aid.push({ from: i, to: to.i, amt: +(c.Y * .0002).toFixed(2), type: 'e', until: G.day + 365 }); } break; }
       case 'eusanc': { let L = lv + 1; const carve = r.cl.some(x => x.k === 'carve'); for (const i of members) { const lvl = carve && memberFeatures(i, r).en > .3 ? Math.max(1, L - 1) : L; setSanction(i, r.target, Math.max(sancLevel(i, r.target), lvl), true); } if (L === 3) crossRed(r.sponsor, 'embargo', r.target); G.pfDirty = 1; break; }
@@ -4682,7 +5494,7 @@ function chokeMonthly() {
   // transit fees paid to controllers
   if (G.lanes) for (const k in CHOKE) { const cp = G.cp[k]; if (!cp.fee) continue; const v = (G.lanes.cp[k] || {}).v || 0; const ctl = CHOKE[k].ctl.map(I).filter(i => i != null); for (const i of ctl) G.C[i].cpFee = v * cp.fee / ctl.length; }
   // escorts cost their members readiness
-  for (const k in G.escort) { const e = G.escort[k]; for (const i of e.mem) { G.C[i].M *= .997; } if (G.cp[k].st === 'open' && G.day - e.start > 180) { news('SECURITY', 1, [], `Naval escort mission at the ${CHOKE[k].n} winds down`, ''); delete G.escort[k]; } }
+  for (const k in G.escort) { const e = G.escort[k]; for (const i of e.mem) { if (G.units) milAttrit(G.C[i], .003, 'N'); else G.C[i].M *= .997; } if (G.cp[k].st === 'open' && G.day - e.start > 180) { news('SECURITY', 1, [], `Naval escort mission at the ${CHOKE[k].n} winds down`, ''); delete G.escort[k]; } }
 }
 
 // ===================================================================================
@@ -5359,6 +6171,1255 @@ function tnAIInvite() {
   inboxAdd({ kind: 'tdeal', from: c.i, type, head: `${isEU(c.i) ? 'The European Union' : c.name} invites you to ${TDEAL[type].n.toLowerCase()} talks`, body: TDEAL[type].d, ttl: 45 });
 }
 
+// ============================================================================ MILITARY (v7)
+// Armed forces as real formations: brigades, air wings, fleets and missile brigades, each with a position,
+// strength, readiness and experience. Wars are fought in theatres (each country's homeland), at sea near
+// chokepoints and coasts, and through strikes. The old abstract "military stock" c.M is now the value of a
+// country's formations, so everything that read it (power, deterrence, alliances) keeps working.
+
+// d: L land, A air, N naval. atk/def: land combat. air: air-to-air. gnd: strike power. sea: naval combat. aa: air defence.
+// rng: operating radius (km). spd: km per day. cost: $B to raise (military dollars). tech: minimum technology. per: personnel.
+const UT = {
+  inf: { n: 'Infantry brigade', s: 'INF', d: 'L', atk: 1, def: 1.3, aa: .15, spd: 40, cost: 45, tech: 0, per: 4000 },
+  arm: { n: 'Armoured brigade', s: 'ARM', d: 'L', atk: 2.3, def: 1.6, aa: .1, spd: 45, cost: 90, tech: 18, per: 4000 },
+  art: { n: 'Artillery brigade', s: 'ART', d: 'L', atk: 1.9, def: .8, spd: 35, cost: 50, tech: 10, per: 3000, rng: 80 },
+  ad: { n: 'Air-defence battalion', s: 'AD', d: 'L', atk: 0, def: .4, aa: 3, spd: 40, cost: 45, tech: 25, per: 800, rng: 250 },
+  sf: { n: 'Special forces group', s: 'SF', d: 'L', atk: .6, def: .3, spd: 80, cost: 8, tech: 10, per: 300 },
+  msl: { n: 'Missile brigade', s: 'MSL', d: 'L', atk: 0, def: .2, gnd: 3.2, spd: 30, cost: 60, tech: 35, per: 600, rng: 1500 },
+  ftr: { n: 'Fighter wing', s: 'FTR', d: 'A', air: 3, gnd: .6, cost: 120, tech: 30, per: 1500, rng: 1300 },
+  str: { n: 'Strike wing', s: 'STK', d: 'A', air: .6, gnd: 3, cost: 120, tech: 35, per: 1500, rng: 1800 },
+  uav: { n: 'Drone squadron', s: 'UAV', d: 'A', air: .1, gnd: 1.3, cost: 20, tech: 22, per: 200, rng: 900 },
+  awc: { n: 'Airborne early-warning wing', s: 'AEW', d: 'A', air: .6, det: 500, cost: 60, tech: 45, per: 800, rng: 1500 },
+  car: { n: 'Carrier strike group', s: 'CVN', d: 'N', sea: 4, air: 2.2, gnd: 2, aa: 1.5, spd: 800, cost: 350, tech: 60, per: 7000, rng: 900 },
+  sag: { n: 'Surface action group', s: 'SAG', d: 'N', sea: 2.2, air: .4, aa: 1.5, gnd: 1, spd: 750, cost: 100, tech: 35, per: 1500, rng: 1400 },
+  sub: { n: 'Submarine flotilla', s: 'SSN', d: 'N', sea: 3, gnd: .8, spd: 600, cost: 100, tech: 45, per: 400, rng: 1500, stealth: 1 },
+  amp: { n: 'Amphibious group', s: 'AMP', d: 'N', sea: .5, aa: .4, spd: 600, cost: 70, tech: 30, per: 2500, lift: 2 },
+  ptl: { n: 'Patrol squadron', s: 'PTL', d: 'N', sea: .9, spd: 700, cost: 20, tech: 0, per: 300 },
+};
+const UT_KEYS = Object.keys(UT);
+const DOMN = { L: 'Land', A: 'Air', N: 'Naval' };
+const CARRIERS = { USA: 11, CHN: 3, GBR: 2, IND: 2, ITA: 2, FRA: 1, RUS: 1, ESP: 1, TUR: 1 };
+const MISSILE_POW = { RUS: 2.5, CHN: 2.5, USA: 2, IRN: 2.2, PRK: 2.5, ISR: 1.5, IND: 1.5, PAK: 1.5, SAU: 1, TWN: 1, KOR: 1.3, FRA: 1.2, GBR: 1.2, UKR: 1.2, YEM: 1.5 };
+// foreign bases at the start: owner:host:city
+const FOREIGN_BASES = 'USA:JPN:Okinawa USA:JPN:Yokosuka USA:KOR:Pyeongtaek USA:DEU:Ramstein USA:ITA:Sigonella USA:ESP:Rota USA:GRC:Souda Bay USA:TUR:Incirlik USA:QAT:Al Udeid USA:BHR:Manama USA:DJI:Djibouti USA:KWT:Kuwait City USA:ARE:Abu Dhabi USA:AUS:Darwin USA:POL:Rzeszow USA:GBR:London USA:PHL:Subic Bay USA:NOR:Tromso ' +
+  'RUS:SYR:Latakia RUS:ARM:Gyumri RUS:TJK:Dushanbe RUS:BLR:Brest RUS:MDA:Tiraspol RUS:KGZ:Bishkek CHN:DJI:Djibouti CHN:KHM:Ream FRA:DJI:Djibouti FRA:ARE:Abu Dhabi FRA:CIV:Abidjan FRA:GAB:Libreville FRA:SEN:Dakar ' +
+  'GBR:CYP:Limassol GBR:OMN:Duqm GBR:BHR:Manama TUR:QAT:Doha TUR:SOM:Mogadishu JPN:DJI:Djibouti IND:OMN:Duqm ITA:DJI:Djibouti DEU:LTU:Vilnius';
+// pairs that sit close but are separated by sea (no land invasion without ships)
+const SEA_SEP = new Set('ESP-MAR ITA-TUN ALB-ITA GRC-ITA EGY-SAU ERI-SAU SAU-SDN DJI-YEM ERI-YEM SOM-YEM IRN-OMN ARE-IRN IRN-QAT BHR-IRN IRN-KWT EST-FIN DNK-NOR DNK-SWE CYP-TUR CYP-SYR CYP-LBN GRC-LBY EGY-GRC ISR-CYP FRA-GBR LBY-MLT ITA-MLT JOR-EGY EGY-JOR'.split(' '));
+const LAND_EXTRA = 'CHN-KAZ CHN-MNG CHN-PAK CHN-AFG CHN-KGZ CHN-TJK CHN-BTN CHN-MMR CHN-LAO CHN-VNM CHN-PRK CHN-IND CHN-NPL CHN-RUS RUS-MNG RUS-KAZ RUS-NOR RUS-FIN RUS-PRK KAZ-UZB KAZ-KGZ KAZ-TKM BRA-VEN BRA-COL BRA-PER BRA-BOL BRA-PRY BRA-ARG BRA-URY BRA-GUY BRA-SUR USA-CAN USA-MEX DZA-MLI DZA-NER DZA-LBY DZA-MAR DZA-TUN DZA-MRT LBY-TCD LBY-NER LBY-SDN LBY-EGY EGY-SDN SDN-TCD SDN-CAF SDN-SSD SDN-ETH SDN-ERI COD-AGO COD-ZMB COD-CAF COD-SSD COD-UGA COD-TZA COD-RWA COD-BDI COD-COG AGO-NAM AGO-ZMB NAM-BWA NAM-ZAF ZAF-BWA ZAF-ZWE ZAF-MOZ MOZ-TZA MOZ-ZWE MOZ-MWI MOZ-ZMB ETH-SOM ETH-KEN ETH-SSD ETH-DJI KEN-SOM MLI-MRT MLI-NER MLI-BFA MLI-SEN MLI-GIN MLI-CIV NER-NGA NER-TCD TCD-NGA TCD-CMR TCD-CAF CMR-NGA CMR-CAF CMR-GAB CMR-COG CMR-GNQ IRN-AFG IRN-PAK IRN-TKM IRN-IRQ IRN-TUR IRN-ARM IRN-AZE AFG-PAK AFG-TJK AFG-UZB AFG-TKM IND-PAK IND-NPL IND-BGD IND-MMR IND-BTN SAU-YEM SAU-OMN SAU-IRQ SAU-JOR SAU-KWT SAU-QAT SAU-ARE OMN-YEM ARE-OMN IRQ-SYR IRQ-JOR IRQ-TUR IRQ-KWT SYR-TUR SYR-JOR SYR-LBN SYR-ISR ISR-LBN ISR-JOR ISR-EGY ISR-PSE EGY-PSE UKR-RUS UKR-BLR UKR-POL UKR-ROU UKR-MDA UKR-HUN UKR-SVK BLR-RUS BLR-POL BLR-LTU BLR-LVA EST-RUS LVA-RUS LTU-RUS POL-RUS GEO-RUS AZE-RUS GEO-TUR GEO-ARM GEO-AZE ARM-AZE ARM-TUR TUR-GRC TUR-BGR THA-MYS THA-MMR THA-LAO THA-KHM VNM-LAO VNM-KHM MYS-SGP MYS-BRN IDN-PNG IDN-TLS IDN-MYS HTI-DOM GBR-IRL SAU-BHR PER-ECU PER-COL PER-BOL PER-CHL CHL-ARG CHL-BOL ARG-BOL ARG-PRY ARG-URY COL-VEN COL-ECU COL-PAN VEN-GUY GUY-SUR MEX-GTM MEX-BLZ GTM-HND GTM-SLV GTM-BLZ HND-NIC HND-SLV NIC-CRI CRI-PAN'.split(' ');
+let ADJ = null;   // derived: land adjacency between countries (static)
+function pairKey(a, b) { return a < b ? a + '-' + b : b + '-' + a; }
+function buildAdj() {
+  const n = G.n; ADJ = new Uint8Array(n * n);
+  const set = (a, b) => { ADJ[a * n + b] = ADJ[b * n + a] = 1; };
+  for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) {
+    const A = G.C[i], B = G.C[j];
+    if (SEA_SEP.has(pairKey(A.iso, B.iso))) continue;
+    if (ISLANDS.has(A.iso) || ISLANDS.has(B.iso)) continue;
+    let best = 1e9; for (const x of CITY_OF[A.iso] || []) for (const y of CITY_OF[B.iso] || []) { const d = kmBetween(CITIES[x].lat, CITIES[x].lon, CITIES[y].lat, CITIES[y].lon); if (d < best) best = d; }
+    if (best < 650) set(i, j);
+  }
+  for (const p of LAND_EXTRA) { const [a, b] = p.split('-'); if (G.idx[a] != null && G.idx[b] != null) set(G.idx[a], G.idx[b]); }
+}
+function adjacent(a, b) { if (!ADJ) buildAdj(); return ADJ[a * G.n + b] === 1; }
+function capOf(c) { return CITY_OF[c.iso] ? CITY_OF[c.iso][0] : -1; }
+function capLL(c) { const k = capOf(c); return k >= 0 ? [CITIES[k].lat, CITIES[k].lon] : [c.lat, c.lon]; }
+function techF(c) { return .55 + (c.tech || 20) / 100; }
+function uval(u) { return UT[u.t].cost * u.n; }
+function unitName(c, t) { const m = c.mil; m.ord[t] = (m.ord[t] || 0) + 1; const k = m.ord[t]; const suf = k % 10 === 1 && k % 100 !== 11 ? 'st' : k % 10 === 2 && k % 100 !== 12 ? 'nd' : k % 10 === 3 && k % 100 !== 13 ? 'rd' : 'th'; return `${k}${suf} ${UT[t].n}`; }
+function coastal(c) { return !!(c.ports && c.ports.length && c.ports.some(p => p.km === 0)); }
+function seaNodeOf(c) { if (!c.ports || !c.ports.length) return null; const p = c.ports.find(q => q.km === 0) || c.ports[0]; const k = NODE_IDS[p.n]; return SEA_NODES[k]; }
+
+// ---------- setting up forces ----------
+function newUnit(c, t, n, lat, lon, host, base) {
+  const u = { id: nextId('nid'), o: c.i, t, n: +n.toFixed(3), org: 1, exp: .3, lat, lon, host, base: base == null ? -1 : base, st: 'idle', nm: unitName(c, t) };
+  G.units.push(u); return u;
+}
+function newBase(owner, host, cityId, kind, name) {
+  const cc = CITIES[cityId];
+  const b = { id: nextId('nid'), o: owner, host, city: cityId, lat: cc.lat, lon: cc.lon, k: kind, nm: name || `${cc.n} ${kind === 'naval' ? 'Naval Base' : kind === 'air' ? 'Air Base' : 'Garrison'}`, dmg: 0 };
+  G.bases.push(b); return b;
+}
+function initMilitary() {
+  G.units = []; G.bases = []; G.cityOcc = {}; G.cityOwn = {}; G.occ = {}; G.strikeQ = []; G.strikes = []; G.blk = {}; G.defcon = 5; G.warc = []; G.icc = { cases: [] }; G.icj = { cases: [] };
+  buildAdj();
+  for (const c of G.C) initForces(c);
+  // foreign bases
+  for (const s of FOREIGN_BASES.split(/\s+/)) {
+    const [o, h, city] = s.split(':'); const O = G.C[G.idx[o]], H = G.C[G.idx[h]]; if (!O || !H) continue;
+    const cid = (CITY_OF[h] || []).find(k => CITIES[k].n === city); if (cid == null) continue;
+    const naval = ['Yokosuka', 'Rota', 'Souda Bay', 'Manama', 'Latakia', 'Ream', 'Duqm', 'Subic Bay', 'Limassol', 'Djibouti', 'Darwin'].includes(city);
+    const b = newBase(O.i, H.i, cid, naval ? 'naval' : 'air', `${city} (${O.name})`);
+    addFlag(O.i, H.i, F_ACCESS);
+  }
+  // put some forces abroad: part of the big powers' air and naval strength at their foreign bases
+  for (const c of G.C) {
+    const abroad = G.bases.filter(b => b.o === c.i && b.host !== c.i); if (!abroad.length) continue;
+    const mine = G.units.filter(u => u.o === c.i);
+    let k = 0;
+    for (const u of mine) {
+      if (!(u.t === 'ftr' || u.t === 'str' || u.t === 'sag' || u.t === 'awc' || (u.t === 'inf' && c.iso === 'USA') || u.t === 'uav')) continue;
+      if ((k++ % 4) !== 1) continue;
+      const b = abroad[k % abroad.length]; if (UT[u.t].d === 'N' && b.k !== 'naval') continue;
+      u.lat = b.lat; u.lon = b.lon; u.host = b.host; u.base = b.id;
+    }
+  }
+  // wars that are already under way: occupied territory
+  for (const w of G.wars) if (!w.over) setupExistingWar(w);
+  for (const c of G.C) c.M = milValue(c);
+}
+function initForces(c) {
+  const x = c.x || {};
+  c.mil = { ord: {}, q: [], bank: 0, roe: ['A', 'T', 'J', 'M'].includes(c.gov) && c.aggr > .6 ? 'loose' : 'std', post: 'normal', ex: 0 };
+  c.nk = initNuclear(c);
+  let V = Math.max(8, c.M || 10);
+  const home = CITY_OF[c.iso] || [], capK = home[0];
+  const cap = CITIES[capK], second = CITIES[home[1] != null ? home[1] : capK];
+  const hq = newBase(c.i, c.i, capK, 'army', `${cap.n} Garrison`);
+  const airB = newBase(c.i, c.i, home[1] != null ? home[1] : capK, 'air');
+  let navB = null;
+  const sea = coastal(c) ? seaNodeOf(c) : null;
+  if (sea) { let best = capK, bd = 1e9; for (const k of home) { const d = kmBetween(CITIES[k].lat, CITIES[k].lon, sea[1], sea[0]); if (d < bd) { bd = d; best = k; } } navB = newBase(c.i, c.i, best, 'naval'); }
+  const lt = c.tech || 20;
+  // spending shares by domain
+  let land = .5, air = .28, navy = navB ? .17 : 0, msl = (MISSILE_POW[c.iso] || .4) * .03;
+  if (ISLANDS.has(c.iso)) { navy += .1; land -= .1; }
+  if (['USA', 'GBR', 'FRA', 'JPN'].includes(c.iso)) { navy += .08; land -= .08; }
+  if (!navB) land += .17;
+  const tot = land + air + navy + msl; land /= tot; air /= tot; navy /= tot; msl /= tot;
+  const plan = {};
+  const nc = navB ? (CARRIERS[c.iso] || 0) : 0;
+  if (nc) { plan.car = nc; V -= nc * UT.car.cost * .9; }
+  V = Math.max(V, 8);
+  const add = (t, v) => { if (UT[t].tech > lt && t !== 'inf' && t !== 'ptl') { const alt = UT[t].d === 'N' ? 'ptl' : UT[t].d === 'A' ? 'uav' : 'inf'; if (UT[alt].tech > lt) return add('inf', v); return add(alt, v); } plan[t] = (plan[t] || 0) + v / UT[t].cost; };
+  add('inf', V * land * .48); add('arm', V * land * .24); add('art', V * land * .15); add('ad', V * land * .1); add('sf', V * land * .03);
+  add('ftr', V * air * .45); add('str', V * air * .28); add('uav', V * air * .17); add('awc', V * air * .1);
+  if (navy) { add('sag', V * navy * .42); add('sub', V * navy * .32); add('amp', V * navy * .14); add('ptl', V * navy * .12); }
+  add('msl', V * msl);
+  if (!plan.inf || plan.inf < .3) plan.inf = Math.max(plan.inf || 0, .3);
+  // spread land forces over the cities, air at the air base, ships at the naval base
+  let li = 0;
+  for (const t of UT_KEYS) {
+    let cnt = plan[t] || 0; if (cnt < .15) continue;
+    const whole = Math.max(1, Math.round(cnt)), per = cnt / whole;
+    for (let k = 0; k < whole; k++) {
+      const d = UT[t].d;
+      let b = d === 'A' ? airB : d === 'N' ? navB : hq, lat = b.lat, lon = b.lon;
+      if (d === 'L' && t !== 'ad' && home.length > 1) { const ck = home[li++ % home.length]; lat = CITIES[ck].lat; lon = CITIES[ck].lon; }
+      newUnit(c, t, Math.min(1.25, per), lat, lon, c.i, b.id);
+    }
+  }
+}
+function milValue(c) { let v = 0; for (const u of G.units) if (u.o === c.i) v += uval(u); return v; }
+function unitsOf(i) { return G.units.filter(u => u.o === i); }
+// losses applied to a whole force (used by events and old code paths)
+function milAttrit(c, f, dom) { for (const u of G.units) if (u.o === c.i && (!dom || UT[u.t].d === dom)) u.n = Math.max(0, u.n * (1 - f)); c.M = milValue(c); }
+function setupExistingWar(w) {
+  const A = G.C[w.a], D = G.C[w.d];
+  if (A.iso === 'RUS' && D.iso === 'UKR') {
+    for (const nm of ['Donetsk', 'Mariupol', 'Sevastopol']) { const k = CITY_OF.UKR.find(q => CITIES[q].n === nm); if (k != null) G.cityOcc[k] = A.i; }
+    G.occ[D.i] = { [A.i]: .18 };
+    // Ukraine's navy moved out of Crimea in 2014
+    const ode = CITY_OF.UKR.find(q => CITIES[q].n === 'Odesa');
+    for (const b of G.bases) if (b.o === D.i && G.cityOcc[b.city] === A.i && ode != null) { const c = CITIES[ode]; b.city = ode; b.lat = c.lat; b.lon = c.lon; b.nm = b.nm.replace(/^\S+/, 'Odesa'); for (const u of G.units) if (u.base === b.id) { u.lat = c.lat; u.lon = c.lon; } }
+    // both sides mass forces on the front
+    const front = CITY_OF.UKR.filter(k => ['Kharkiv', 'Zaporizhzhia', 'Dnipro', 'Donetsk'].includes(CITIES[k].n));
+    let k = 0; for (const u of G.units) { if (UT[u.t].d !== 'L' || u.t === 'ad') continue; if (u.o === D.i || (u.o === A.i && (k++ % 2 === 0))) { const f = CITIES[front[k % front.length]]; u.lat = f.lat + (u.o === A.i ? .4 : -.3); u.lon = f.lon + (u.o === A.i ? .8 : -.2); u.host = D.i; u.st = u.o === A.i ? 'attack' : 'defend'; u.tgt = D.i; } }
+  }
+  w.goalA = w.goalA || 'territory'; w.goalD = 'defend';
+}
+
+// ---------- the daily military step ----------
+let WARM = null;   // derived each day: who is at war with whom
+function buildWarMat() {
+  const n = G.n; if (!WARM || WARM.length !== n * n) WARM = new Uint8Array(n * n); else WARM.fill(0);
+  for (const w of G.wars) if (!w.over && !(w.truce > G.day)) for (const a of w.A) for (const d of w.D) { WARM[a * n + d] = WARM[d * n + a] = 1; }
+}
+function hostile(a, b) { return a !== b && WARM && WARM[a * G.n + b] === 1; }
+function warBetween(a, b) { return G.wars.find(w => !w.over && ((w.A.includes(a) && w.D.includes(b)) || (w.A.includes(b) && w.D.includes(a)))); }
+function kmU(u, lat, lon) { return kmBetween(u.lat, u.lon, lat, lon); }
+function moveUnit(u) {
+  const d = u.dest, t = UT[u.t];
+  const spd = t.d === 'A' ? 4000 : (u.st === 'attack' ? t.spd * .6 : t.spd);
+  const dist = kmU(u, d.lat, d.lon);
+  if (dist <= spd) {
+    u.lat = d.lat; u.lon = d.lon; if (d.host != null) u.host = d.host; u.base = d.base != null ? d.base : -1;
+    if (d.lift) { for (const id of d.lift) { const lu = G.units.find(x => x.id === id); if (lu) { lu.lat = d.lat; lu.lon = d.lon; lu.host = d.host; lu.dest = null; lu.st = hostile(lu.o, d.host) ? 'attack' : 'idle'; lu.org *= .7; lu.embarked = 0; } } }
+    u.dest = null; if (u.st === 'move') u.st = t.d === 'N' && d.patrol ? 'patrol' : 'idle';
+    if (u.st === 'attack' && t.d === 'L') u.tgt = u.host;
+    return;
+  }
+  const f = spd / dist;
+  u.lat += (d.lat - u.lat) * f; u.lon += (d.lon - u.lon) * f;
+  if (t.d === 'L' && d.host != null && u.st === 'attack') { const cap = capLL(G.C[d.host]); if (kmU(u, cap[0], cap[1]) < kmBetween(d.lat, d.lon, cap[0], cap[1]) + 600) u.host = d.host; }
+  if (d.lift) for (const id of d.lift) { const lu = G.units.find(x => x.id === id); if (lu) { lu.lat = u.lat; lu.lon = u.lon; } }
+}
+function milDaily(dt) {
+  if (!G.units) return;
+  buildWarMat();
+  for (const u of G.units) if (u.dest && !u.embarked) moveUnit(u);
+  resolveStrikes();
+  // land theatres: each country's homeland
+  const byHost = new Map();
+  for (const u of G.units) { if (u.n < .02 || UT[u.t].d !== 'L' || u.embarked || u.host < 0) continue; if (u.dest && u.st === 'move') continue; let a = byHost.get(u.host); if (!a) byHost.set(u.host, a = []); a.push(u); }
+  const fought = new Set();
+  for (const [X, list] of byHost) { if (landBattle(X, list)) fought.add(X); }
+  // theatres where the occupier has walked away
+  for (const k in G.occ) { const X = +k; if (fought.has(X)) continue; occDrift(X, byHost.get(X) || []); }
+  navalBattles();
+  if (G.day % 3 === 0) blockadeStep();
+  const byO = []; for (const u of G.units) (byO[u.o] || (byO[u.o] = [])).push(u);
+  for (const c of G.C) milEconomy(c, dt, byO[c.i] || []);
+  if (G.units.some(u => u.n < .02)) G.units = G.units.filter(u => u.n >= .02 || u.embarked);
+  for (const c of G.C) c.M = 0;
+  for (const u of G.units) G.C[u.o].M += uval(u);
+  nuclearDaily(dt);
+}
+// air power a side can bring over a point, and their ground-attack support
+function airOver(owners, lat, lon, X) {
+  let air = 0, gnd = 0, aew = 1;
+  for (const u of G.units) {
+    if (!owners.has(u.o) || u.n < .02 || u.embarked) continue; const t = UT[u.t];
+    if (t.d === 'L' && u.t !== 'ad') continue;
+    const r = u.t === 'ad' ? t.rng : t.rng || 0; if (!r) continue;
+    const d = kmU(u, lat, lon); if (d > r) continue;
+    const f = u.n * u.org * techF(G.C[u.o]);
+    if (u.t === 'ad') { if (u.host === X) air += t.aa * f * .6; continue; }
+    air += (t.air || 0) * f + (t.aa || 0) * f * .3; gnd += (t.gnd || 0) * f;
+    if (u.t === 'awc') aew = 1.2;
+  }
+  return { air: air * aew, gnd };
+}
+function landBattle(X, list) {
+  const n = G.n, owners = new Set(list.map(u => u.o));
+  if (owners.size < 2) return false;
+  // defenders: the host and anyone present who is not at war with it; attackers: anyone at war with a defender
+  const def = new Set(), att = new Set();
+  for (const o of owners) { if (o === X || !hostile(o, X)) def.add(o); else att.add(o); }
+  let any = false; for (const a of att) for (const d of def) if (hostile(a, d)) any = true;
+  if (!any || !att.size) return false;
+  const XC = G.C[X], cap = capLL(XC);
+  const aA = airOver(att, cap[0], cap[1], X), aD = airOver(def, cap[0], cap[1], X);
+  const AS = aA.air / Math.max(1e-6, aA.air + aD.air);
+  let PA = 0, PD = 0, armA = 0, totA = 0;
+  const lead = new Map();
+  for (const u of list) {
+    const t = UT[u.t], c = G.C[u.o], f = u.n * u.org * techF(c) * (.8 + .4 * u.exp);
+    if (att.has(u.o)) { const p = t.atk * f * (u.host === X ? 1 : 0); PA += p; totA += p; if (u.t === 'arm') armA += p; lead.set(u.o, (lead.get(u.o) || 0) + p); }
+    else if (def.has(u.o)) PD += t.def * f * (u.o === X ? 1.5 : 1.15);
+  }
+  PA += aA.gnd * .35 * (AS + .25); PD += aD.gnd * .35 * (1 - AS + .25);
+  PA *= 1 + .3 * (AS - .5); PD *= 1 + .3 * (.5 - AS);
+  if (PA < .02) return false;
+  const main = [...lead.entries()].sort((a, b) => b[1] - a[1])[0][0];
+  const w = warBetween(main, X) || G.wars.find(x => !x.over && x.A.includes(main)) || null;
+  const ratio = PA / Math.max(.02, PD);
+  const inten = PD > .05 ? 1 : .35;
+  const la = clamp(.0012 * Math.pow(1 / ratio, .8) * inten, 0, .01), ld = clamp(.0012 * Math.pow(ratio, .8), 0, .012);
+  let casA = 0, casD = 0, valA = 0, valD = 0;
+  for (const u of list) {
+    const t = UT[u.t]; let f = 0;
+    if (att.has(u.o) && u.host === X) f = la * (u.t === 'arm' ? .8 : 1); else if (def.has(u.o)) f = ld * (u.t === 'arm' ? .8 : u.t === 'ad' ? .6 : 1);
+    if (!f) continue;
+    const dn = u.n * f; u.n -= dn; u.org = Math.max(.15, u.org - .02); u.exp = Math.min(1, u.exp + .003); u.fight = G.day;
+    if (att.has(u.o)) { casA += dn * t.per; valA += dn * t.cost; } else { casD += dn * t.per; valD += dn * t.cost; }
+  }
+  // air losses over the theatre
+  for (const u of G.units) { if (UT[u.t].d !== 'A' || u.embarked) continue; const side = att.has(u.o) ? 1 - AS : def.has(u.o) ? AS : 0; if (!side || kmU(u, cap[0], cap[1]) > (UT[u.t].rng || 0)) continue; const dn = u.n * .0015 * side; u.n -= dn; if (att.has(u.o)) valA += dn * UT[u.t].cost; else valD += dn * UT[u.t].cost; }
+  // ground gained or lost
+  const occ = G.occ[X] || (G.occ[X] = {});
+  const size = 1 / (1 + Math.sqrt(XC.pop) / 9);
+  const mob = .6 + .8 * (armA / Math.max(1e-6, totA));
+  let ds = PD < .05 ? .02 * size * mob : .003 * Math.tanh(1.3 * Math.log(ratio / 1.12)) * size * mob;
+  const cur0 = occ[main] || 0; if (ds > 0) ds *= clamp(1 - cur0 * .9, .15, 1);   // supply lines stretch as the invader goes deeper
+  const cur = occ[main] || 0, others = Object.values(occ).reduce((a, b) => a + b, 0) - cur;
+  occ[main] = clamp(cur + ds, 0, 1 - others);
+  if (occ[main] < 1e-4) delete occ[main];
+  const civ = updateCities(X, main, cur, occ[main] || 0);
+  if (w) { const aSide = w.A.includes(main); w.casA += aSide ? casA : casD; w.casD += aSide ? casD : casA; w.lostA += aSide ? valA : valD; w.lostD += aSide ? valD : valA; w.civ = (w.civ || 0) + civ; w.cas = w.casA + w.casD + w.civ; w.fight = G.day; }
+  XC.warCas = Math.max(XC.warCas || 0, .004 * inten);
+  XC.battle = G.day; XC.bInt = inten;
+  return true;
+}
+// retake territory when the occupier's forces are gone, or hold it when unopposed
+function occDrift(X, list) {
+  const occ = G.occ[X]; if (!occ) return;
+  for (const k in occ) {
+    const o = +k, still = hostile(o, X) || G.wars.some(w => w.over && w.frozen && ((w.a === o && w.d === X) || (w.a === X && w.d === o)));
+    const occupierHere = list.some(u => u.o === o);
+    const defHere = list.some(u => u.o === X);
+    let s = occ[o];
+    if (!still) { const ended = G.wars.find(w => w.over && w.cede && w.cede[X] === o); if (!ended) { s = 0; } }
+    else if (!occupierHere && defHere) s -= .02;
+    if (s !== occ[o]) { updateCities(X, o, occ[o], Math.max(0, s)); if (s <= 1e-4) delete occ[o]; else occ[o] = s; }
+  }
+  if (!Object.keys(occ).length) delete G.occ[X];
+}
+// cities fall in order of distance from the invader; the capital holds out longest
+function citiesByFront(X, o) {
+  const H = G.C[X], O = G.C[o], oc = capLL(O);
+  const ids = (CITY_OF[H.iso] || []).slice();
+  ids.sort((a, b) => (CITIES[a].cap - CITIES[b].cap) || (kmBetween(CITIES[a].lat, CITIES[a].lon, oc[0], oc[1]) - kmBetween(CITIES[b].lat, CITIES[b].lon, oc[0], oc[1])));
+  return ids;
+}
+function updateCities(X, o, s0, s1) {
+  const ids = citiesByFront(X, o), N = ids.length, H = G.C[X];
+  const want = s1 >= .98 ? N : Math.floor(s1 * N * 1.05 + 1e-9);
+  let civ = 0;
+  const have = ids.filter(k => G.cityOcc[k] === o);
+  if (want > have.length) {
+    for (const k of ids) { if (have.length >= want) break; if (G.cityOcc[k] != null || G.cityOwn[k] === o) continue; G.cityOcc[k] = o; have.push(k); const c = CITIES[k]; const d = Math.round(c.pop * 1e6 * .0004 * (G.C[o].mil.roe === 'loose' ? 2 : 1)); civ += d;
+      if (c.pop > .8 || c.cap || isHuman(X) || isHuman(o)) news('WAR', c.cap ? 3 : 2, [G.C[o].iso, H.iso], c.cap ? `${G.C[o].name} captures ${c.n}, capital of ${H.name}` : `${G.C[o].name} takes ${c.n}`, `Fighting in the city has killed an estimated ${fmtInt(d)} civilians.`, { mine: isHuman(X) || isHuman(o) ? 1 : 0, ll: [c.lat, c.lon] });
+      if (d > 500) addIncident(o, X, 'civilians', d, c.n, c.lat, c.lon, .6); }
+  } else if (want < have.length) {
+    const rev = have.slice().reverse();
+    for (const k of rev) { if (have.length <= want) break; delete G.cityOcc[k]; have.splice(have.indexOf(k), 1); const c = CITIES[k]; if (c.pop > .8 || c.cap || isHuman(X) || isHuman(o)) news('WAR', 2, [H.iso, G.C[o].iso], `${H.name} retakes ${c.n}`, '', { mine: isHuman(X) || isHuman(o) ? 1 : 0, ll: [c.lat, c.lon] }); }
+  }
+  return civ;
+}
+function occShare(X) { const o = G.occ[X]; if (!o) return 0; let s = 0; for (const k in o) s += o[k]; return s; }
+function capitalHeld(X) { const k = capOf(G.C[X]); return k >= 0 && G.cityOcc[k] != null; }
+
+// ---------- war at sea ----------
+function navalBattles() {
+  const ships = G.units.filter(u => UT[u.t].d === 'N' && u.n > .02 && !u.embarked && G.wars.some(w => !w.over && (w.A.includes(u.o) || w.D.includes(u.o))));
+  if (ships.length < 2) return;
+  for (let a = 0; a < ships.length; a++) for (let b = a + 1; b < ships.length; b++) {
+    const A = ships[a], B = ships[b]; if (!hostile(A.o, B.o)) continue;
+    const d = kmU(A, B.lat, B.lon); if (d > 450) continue;
+    const pa = UT[A.t].sea * A.n * A.org * techF(G.C[A.o]) * (UT[A.t].stealth ? 1.5 : 1), pb = UT[B.t].sea * B.n * B.org * techF(G.C[B.o]) * (UT[B.t].stealth ? 1.5 : 1);
+    const la = clamp(.03 * Math.pow(pb / Math.max(.01, pa), .7), 0, .09) * (UT[A.t].stealth ? .5 : 1), lb = clamp(.03 * Math.pow(pa / Math.max(.01, pb), .7), 0, .09) * (UT[B.t].stealth ? .5 : 1);
+    const w = warBetween(A.o, B.o);
+    for (const [u, l] of [[A, la], [B, lb]]) { const dn = u.n * l; u.n -= dn; u.org = Math.max(.2, u.org - .03); u.fight = G.day; if (w) { if (w.A.includes(u.o)) { w.lostA += dn * UT[u.t].cost; w.casA += dn * UT[u.t].per; } else { w.lostD += dn * UT[u.t].cost; w.casD += dn * UT[u.t].per; } } }
+    if ((A.n < .05 || B.n < .05) && rng() < .5) { const s = A.n < .05 ? A : B, k = s === A ? B : A; news('WAR', 2, [G.C[s.o].iso, G.C[k.o].iso], `${G.C[s.o].name} loses ${s.nm}`, `Sunk or put out of action by ${G.C[k.o].name}.`, { mine: isHuman(s.o) || isHuman(k.o) ? 1 : 0, ll: [s.lat, s.lon] }); }
+  }
+}
+
+// ---------- blockades: of chokepoints and of whole coasts ----------
+function blockadeStep() {
+  const nav = G.units.filter(u => UT[u.t].d === 'N' && u.n > .02 && u.st === 'blockade' && u.blk);
+  // chokepoints
+  const byCp = {};
+  for (const u of nav) if (u.blk.cp) (byCp[u.blk.cp] = byCp[u.blk.cp] || []).push(u);
+  for (const k in G.cp) {
+    const list = byCp[k] || [], cp = G.cp[k];
+    if (!list.length) { if (cp.blk != null) { cp.blk = null; cpSet(k, 'open', 0, 'the blockade is lifted', null); } continue; }
+    const by = list[0].o, node = SEA_NODES[k];
+    let P = 0; for (const u of list) P += UT[u.t].sea * u.n * u.org * techF(G.C[u.o]);
+    let opp = 0; for (const u of G.units) { if (UT[u.t].d !== 'N' || u.o === by || u.n < .02) continue; if (kmU(u, node[1], node[0]) > 600) continue; if (hostile(u.o, by) || u.st === 'escort') opp += UT[u.t].sea * u.n * u.org * techF(G.C[u.o]); }
+    const holds = P > opp * 1.1;
+    if (holds && cp.blk !== by) { cp.blk = by; cpSet(k, 'closed', 0, `blockaded by ${G.C[by].name}`, by); news('WAR', 3, [G.C[by].iso], `${G.C[by].name} blockades the ${CHOKE[k].n}`, 'Shipping reroutes; insurers pull cover.', { mine: 1, ll: [node[1], node[0]] }); blockadeLegal(by, null, k); }
+    else if (!holds && cp.blk === by) { cp.blk = null; cpSet(k, 'disrupted', 60, `contested by rival navies`, null); news('WAR', 2, [G.C[by].iso], `The ${G.C[by].name} blockade of the ${CHOKE[k].n} is broken`, '', { mine: 1 }); }
+  }
+  // coasts
+  const old = G.blk; G.blk = {};
+  for (const u of nav) {
+    if (u.blk.c == null) continue; const T = u.blk.c;
+    const e = G.blk[T] || (G.blk[T] = { by: u.o, P: 0 });
+    e.P += UT[u.t].sea * u.n * u.org * techF(G.C[u.o]);
+  }
+  for (const k in G.blk) {
+    const T = +k, e = G.blk[k], sea = seaNodeOf(G.C[T]); let opp = 0;
+    if (sea) for (const u of G.units) { if (UT[u.t].d !== 'N' || u.o === e.by || u.n < .02) continue; if (kmU(u, sea[1], sea[0]) > 700) continue; if (hostile(u.o, e.by) || u.o === T) opp += UT[u.t].sea * u.n * u.org * techF(G.C[u.o]) * (u.o === T ? 1.2 : 1); }
+    e.eff = clamp(e.P / (e.P + opp + .3), 0, .92);
+    if (!old[k]) { news('WAR', 3, [G.C[e.by].iso, G.C[T].iso], `${G.C[e.by].name} imposes a naval blockade on ${G.C[T].name}`, 'Ships are turned away from its ports.', { mine: isHuman(T) || isHuman(e.by) ? 1 : 0 }); blockadeLegal(e.by, T, null); }
+  }
+  if (Object.keys(old).length || Object.keys(G.blk).length) G.pfDirty = 1;
+}
+function blockadeLegal(by, T, cpk) {
+  // a blockade is an act of war; outside a war it opens a crisis at the "armed clashes" level
+  const victims = T != null ? [T] : (CHOKE[cpk].ctl || []).map(k => G.idx[k]).filter(i => i != null && i !== by);
+  for (const v of victims) if (!hostile(by, v)) { const cr = G.crises && G.crises.find(c => !c.over && ((c.a === by && c.b === v) || (c.a === v && c.b === by))); if (cr) { if (cr.lvl < 5) crisisLevelEffects(cr, cr.lvl, 5, by), cr.lvl = 5; } else if (G.crises) { const n = startCrisis(v, by, 'maritime', 5, { fault: by }); } bumpRel(v, by, -25); }
+  for (const c of G.C) if (c.i !== by && G.C[c.i].gov === 'D' && !hostile(c.i, by)) bumpRel(c.i, by, -4);
+}
+function blockF(i) { const e = G.blk && G.blk[i]; return e ? 1 - e.eff : 1; }
+
+// ---------- strikes: missiles, aircraft, drones, ships ----------
+const ROE = { tight: { n: 'Restrictive', civ: .35, eff: .85, d: 'Strikes only when civilians are clearly clear of the target. Fewer mistakes; less damage done.' }, std: { n: 'Standard', civ: 1, eff: 1, d: 'Proportionality judged case by case.' }, loose: { n: 'Permissive', civ: 2.4, eff: 1.12, d: 'Commanders strike first and ask later. More damage to the enemy, far more civilian harm and war-crimes exposure.' } };
+function strikeRange(u) { const t = UT[u.t], c = G.C[u.o]; let r = t.rng || 0; if (u.t === 'msl') r = (300 + (c.tech || 20) * 22) * Math.min(1.6, MISSILE_POW[c.iso] || .8); return r; }
+function canStrike(u) { const t = UT[u.t]; return (t.gnd || 0) > 0 && u.n > .05 && !u.embarked && !(u.cd > G.day); }
+function queueStrike(u, lat, lon, opts = {}) {
+  if (!canStrike(u)) return { ok: false, msg: 'This unit cannot strike now.' };
+  if (kmU(u, lat, lon) > strikeRange(u)) return { ok: false, msg: 'Out of range.' };
+  G.strikeQ.push({ id: nextId('nid'), u: u.id, o: u.o, lat, lon, day: G.day + (UT[u.t].d === 'A' ? 0 : 0), kind: opts.kind || 'conv' });
+  u.cd = G.day + (u.t === 'msl' ? 8 : u.t === 'uav' ? 2 : u.t === 'car' ? 2 : 3);
+  return { ok: true, msg: 'Strike ordered. Results tomorrow.' };
+}
+function nearest(list, lat, lon, maxKm) { let best = null, bd = maxKm; for (const x of list) { const d = kmBetween(x.lat, x.lon, lat, lon); if (d < bd) { bd = d; best = x; } } return best ? { x: best, d: bd } : null; }
+function cityNear(lat, lon, km) { let best = null, bd = km; for (const c of CITIES) { const d = kmBetween(c.lat, c.lon, lat, lon); if (d < bd) { bd = d; best = c; } } return best ? { c: best, d: bd } : null; }
+function hostAt(lat, lon) { const nc = cityNear(lat, lon, 900); return nc ? G.idx[nc.c.iso] : -1; }
+function resolveStrikes() {
+  if (!G.strikeQ || !G.strikeQ.length) return;
+  const due = G.strikeQ.filter(s => s.day <= G.day); G.strikeQ = G.strikeQ.filter(s => s.day > G.day);
+  for (const s of due) { if (s.kind === 'nuke') { nuclearStrike(s.o, s.lat, s.lon, s); continue; } const u = G.units.find(x => x.id === s.u); if (!u || u.n < .03) continue; strikeHit(u, s.lat, s.lon); }
+}
+function strikeHit(u, lat, lon) {
+  const t = UT[u.t], O = G.C[u.o], roe = ROE[O.mil.roe] || ROE.std;
+  let power = (t.gnd || 0) * u.n * techF(O) * roe.eff * (u.t === 'msl' ? (MISSILE_POW[O.iso] || 1) * .6 + .6 : 1);
+  // what is there?
+  const enemyUnits = G.units.filter(x => x.o !== u.o && x.n > .02 && !x.embarked);
+  let tgt = nearest(enemyUnits, lat, lon, 40), base = nearest(G.bases.filter(b => b.o !== u.o), lat, lon, 25), city = cityNear(lat, lon, 30);
+  const host = tgt ? tgt.x.host : base ? base.x.host : city ? G.idx[city.c.iso] : hostAt(lat, lon);
+  const victim = tgt ? tgt.x.o : base ? base.x.o : host;
+  // air defences and fighters over the point
+  let ad = 0; for (const x of G.units) { if (x.o === u.o || x.n < .02) continue; if (x.o !== victim && !(victim >= 0 && hasFlag(x.o, victim, F_ALLY) && hostile(x.o, u.o))) continue; const xt = UT[x.t]; const aa = (xt.aa || 0) + (x.t === 'ftr' ? 1 : 0); if (!aa) continue; const r = x.t === 'ftr' ? xt.rng * .6 : (xt.rng || 60); if (kmU(x, lat, lon) > r) continue; ad += aa * x.n * x.org * techF(G.C[x.o]); }
+  const inter = clamp(ad / (ad + power * 1.6 + .2), 0, .85) * (u.t === 'msl' ? .75 : u.t === 'uav' ? 1.1 : 1) * clamp(1 - ((O.tech || 20) - ((victim >= 0 ? G.C[victim].tech : 20) || 20)) / 200, .6, 1.3);
+  const h = clamp((1 - inter) * (.8 + .4 * rng()), 0, 1.2);
+  if (t.d === 'A') u.n = Math.max(0, u.n - u.n * inter * (u.t === 'uav' ? .09 : .045));
+  const eff = h * power;
+  let msg = '', civ = 0, kind = 'miss';
+  const prec = clamp(1.45 - (O.tech || 20) / 100, .45, 1.4) * roe.civ;
+  if (tgt && eff > 0) {
+    const x = tgt.x, xt = UT[x.t]; const dn = Math.min(x.n, .12, .013 * eff / Math.max(.5, (xt.def || xt.sea || 1) * .7)); x.n -= dn; x.org = Math.max(.1, x.org - .2);
+    kind = 'unit'; msg = `hit ${G.C[x.o].name}'s ${x.nm} (−${Math.round(dn / Math.max(.01, x.n + dn) * 100)}%)`;
+    const w = warBetween(u.o, x.o); if (w) { if (w.A.includes(x.o)) w.lostA += dn * xt.cost; else w.lostD += dn * xt.cost; }
+    if (city && city.d < 15) civ = Math.round(city.c.pop * 1e6 * .000004 * eff * prec * (1 + rng()));
+  } else if (base && eff > 0) {
+    const b = base.x; b.dmg = clamp(b.dmg + .18 * eff, 0, 1); kind = 'base';
+    let hitN = 0; for (const x of G.units) if (x.base === b.id && x.o === b.o && kmU(x, b.lat, b.lon) < 30 && hitN < 3 && rng() < .35) { hitN++; x.n -= x.n * .03 * eff * (UT[x.t].d === 'A' ? 1.5 : .6); x.org = Math.max(.2, x.org - .1); }
+    msg = `damaged ${b.nm} (${Math.round(b.dmg * 100)}% out of action)`;
+    if (city && city.d < 15) civ = Math.round(city.c.pop * 1e6 * .000003 * eff * prec * (1 + rng()));
+  } else if (city && eff > 0) {
+    const C = G.C[G.idx[city.c.iso]], share = city.c.pop / Math.max(.1, cityPopOf(C));
+    const hurt = clamp(.02 * eff * share * 3, 0, .08);
+    for (let g = 0; g < NG; g++) C.dmg[g] = Math.max(.4, C.dmg[g] - hurt * (g === GI.SERV ? .5 : 1));
+    C.infraI = Math.max(1, C.infraI - hurt * 30); C.shock.stab -= 1.5 * eff; C.rally += .8;
+    civ = Math.round(city.c.pop * 1e6 * .00003 * eff * prec * (1 + rng()));
+    kind = 'city'; msg = `hit ${city.c.n}: power, fuel and industrial sites damaged`;
+  } else msg = 'hit open ground';
+  if (inter > .35) msg += `; ${Math.round(inter * 100)}% intercepted`;
+  const V = victim >= 0 ? G.C[victim] : null;
+  G.strikes.unshift({ day: G.day, o: u.o, v: victim, lat, lon, k: kind, u: u.t, civ }); if (G.strikes.length > 80) G.strikes.length = 80;
+  if (isHuman(u.o)) intelLog(u.o, 'strike', `${u.nm}: ${msg}.${civ ? ` Reports of ${fmtInt(civ)} civilian dead.` : ''}`);
+  if (V && isHuman(V.i) && !isHuman(u.o)) intelLog(V.i, 'strike', `${O.name} ${u.t === 'msl' ? 'missile' : u.t === 'uav' ? 'drone' : 'air'} strike ${kind === 'city' ? 'on ' + city.c.n : kind === 'base' ? 'on ' + base.x.nm : kind === 'unit' ? 'on our ' + tgt.x.nm : 'near ' + (city ? city.c.n : 'our forces')}${civ ? `: ${fmtInt(civ)} civilians killed` : ''}.`);
+  const w = V ? warBetween(u.o, V.i) : null; if (w) w.civ = (w.civ || 0) + civ;
+  if (civ > 0 && V) {
+    // collateral damage can hit protected sites
+    const p = clamp(civ / 500 * roe.civ, 0, .6);
+    const type = rng() < p ? pick(['hospital', 'press', 'aid', 'school']) : 'civilians';
+    addIncident(u.o, V.i, type, civ, city ? city.c.n : 'open country', lat, lon, kind === 'city' ? .8 : .45);
+  }
+  // striking a country you are not at war with is an act of war
+  if (V && V.i !== u.o && !hostile(u.o, V.i)) actOfWar(u.o, V.i, `${u.t === 'msl' ? 'missile' : u.t === 'uav' ? 'drone' : 'air'} strike`);
+}
+function cityPopOf(c) { let s = 0; for (const k of CITY_OF[c.iso] || []) s += CITIES[k].pop; return s || 1; }
+function actOfWar(a, v, what) {
+  const A = G.C[a], V = G.C[v];
+  bumpRel(v, a, -30); if (G.trust) bumpTrust(v, a, -20);
+  for (const c of G.C) if (c.i !== a && c.i !== v) bumpRel(c.i, a, -clamp((getRel(c.i, v) - getRel(c.i, a)) / 8 + 3, 0, 12));
+  news('WAR', 3, [A.iso, V.iso], `${A.name} carries out a ${what} on ${V.name}`, 'Outside any declared war. The world holds its breath.', { mine: isHuman(a) || isHuman(v) ? 1 : 0 });
+  if (!G.crises) return;
+  let cr = G.crises.find(c => !c.over && ((c.a === a && c.b === v) || (c.a === v && c.b === a)));
+  if (!cr) cr = startCrisis(v, a, 'missile', 5, { fault: a });
+  else if (cr.lvl < 5) { crisisLevelEffects(cr, cr.lvl, 5, a); cr.lvl = 5; }
+  // a strong, angry victim hits back or goes to war
+  if (cr && !isHuman(v) && powerOf(V) > powerOf(A) * .6 && rng() < .35 + V.aggr * .4) { crisisLevelEffects(cr, cr.lvl, 6, v); cr.lvl = 6; }
+}
+
+// ---------- budgets, upkeep, production ----------
+const BUILD_DAYS = { inf: 60, arm: 150, art: 120, ad: 180, sf: 120, msl: 240, ftr: 400, str: 400, uav: 45, awc: 450, car: 2200, sag: 800, sub: 1000, amp: 700, ptl: 120 };
+function milEconomy(c, dt, mine) {
+  const m = c.mil; if (!m) return;
+  let milAid = 0; for (const a of G.aid) if (a.type === 'm' && a.to === c.i) milAid += a.amt;
+  const eff = .5 + .5 * Math.min(1, c.avail[GI.ARMS]);
+  // at war the economy is mobilised: emergency budgets and conscripts keep the ranks filled
+  const atWar = WARM && c.warIntensity > 0 && G.wars.some(w => !w.over && (w.A.includes(c.i) || w.D.includes(c.i)) && (w.fight && G.day - w.fight < 30));
+  const B = (c.sp.mil * c.Y * c.costF * eff * (atWar ? 1.6 : 1) + milAid * 1.2) * dt;
+  const V = c.M || milValue(c), U = .08 * V * dt * (atWar ? .8 : 1);
+  let S = B - U;
+  if (S < 0) { const f = -S / Math.max(1, V); for (const u of mine) u.n = Math.max(0, u.n * (1 - f)); S = 0; }
+  // repair and replace losses first; at war, reservists refill land units for free while manpower lasts
+  let rep = S * .5;
+  if (atWar) { m.pool = m.pool == null ? c.pop * 2500 : m.pool; for (const u of mine) if (UT[u.t].d === 'L' && u.n < 1 && m.pool > 0) { const add = Math.min(.003, 1 - u.n); u.n += add; m.pool -= add * UT[u.t].per; } }
+  else if (m.pool != null) m.pool = Math.min(c.pop * 2500, m.pool + c.pop * 2500 * dt / 3);
+  for (const u of mine) {
+    if (!u.fight || G.day - u.fight > 2) u.org = Math.min(1, u.org + .04);
+    if (u.n < 1 && rep > 0 && (u.base >= 0 || u.host === c.i || hostile(c.i, u.host))) { const need = Math.min(u.fight && G.day - u.fight < 3 ? .002 : .004, 1 - u.n), cost = need * UT[u.t].cost; if (cost <= rep) { u.n += need; rep -= cost; } }
+  }
+  m.bank = Math.min(m.bank + S * .5 + rep, 2.5 * B / dt);
+  // production queue
+  const q = m.q[0];
+  if (q) {
+    const pay = Math.min(m.bank, UT[q.t].cost * dt * 365 / BUILD_DAYS[q.t] * 1.2);
+    q.paid = (q.paid || 0) + pay; m.bank -= pay;
+    if (q.paid >= UT[q.t].cost && G.day >= (q.ready || 0)) {
+      const b = G.bases.find(x => x.id === q.base) || G.bases.find(x => x.o === c.i && x.host === c.i && (UT[q.t].d !== 'N' || x.k === 'naval')) || G.bases.find(x => x.o === c.i);
+      if (b) { const u = newUnit(c, q.t, 1, b.lat, b.lon, b.host, b.id); u.exp = .1; u.org = .7; if (isHuman(c.i)) intelLog(c.i, 'prod', `${u.nm} is ready at ${b.nm}.`); }
+      m.q.shift();
+    }
+  }
+  for (const b of G.bases) if (b.o === c.i && b.dmg > 0) b.dmg = Math.max(0, b.dmg - .004);
+}
+function queueUnit(c, t, baseId) {
+  if (UT[t].tech > (c.tech || 0) + 3) return { ok: false, msg: `Needs technology ${UT[t].tech}.` };
+  if (UT[t].d === 'N' && !G.bases.some(b => b.o === c.i && b.k === 'naval')) return { ok: false, msg: 'You need a naval base.' };
+  if (t === 'car' && (c.tech || 0) < 60) return { ok: false, msg: 'Carriers need technology 60.' };
+  c.mil.q.push({ t, base: baseId, ready: G.day + BUILD_DAYS[t] });
+  return { ok: true, msg: `${UT[t].n} ordered. Ready in about ${Math.round(BUILD_DAYS[t] / 30)} months if the budget allows.` };
+}
+
+// ---------- nuclear forces, the NPT and the IAEA ----------
+const NUKES = { USA: [3700, 'nws', 'amb'], RUS: [4300, 'nws', 'amb'], CHN: [600, 'nws', 'nfu'], FRA: [290, 'nws', 'amb'], GBR: [225, 'nws', 'amb'], IND: [180, 'out', 'nfu'], PAK: [170, 'out', 'first'], ISR: [90, 'out', 'amb'], PRK: [50, 'left', 'first'] };
+const NUKE_DOC = { nfu: ['No first use', 'Nuclear weapons only answer a nuclear attack.'], amb: ['Calculated ambiguity', 'Keeps every option open. The standard for most nuclear powers.'], first: ['First use if threatened', 'Will use nuclear weapons to stop an invasion that threatens the state.'] };
+const NPT_N = { nws: 'Recognised nuclear-weapon state (NPT)', member: 'NPT member, non-nuclear', out: 'Never joined the NPT', left: 'Withdrew from the NPT' };
+function initNuclear(c) {
+  const d = NUKES[c.iso];
+  if (d) return { w: d[0], npt: d[1], doc: d[2], prog: 1, iaea: d[1] === 'nws' ? .5 : .1, covert: 0, alert: 0, tested: 1 };
+  const threshold = { IRN: .75, JPN: .3, KOR: .25, SAU: .1, TUR: .1, EGY: .05, BRA: .1, DEU: .2, TWN: .15 }[c.iso] || 0;
+  return { w: 0, npt: 'member', doc: 'nfu', prog: threshold, iaea: c.iso === 'IRN' ? .35 : 1, covert: 0, alert: 0, tested: 0 };
+}
+function nuclearDaily(dt) {
+  // DEFCON: the world's nuclear temperature
+  let lvl = 5;
+  const nuc = c => c.nk && c.nk.w > 0;
+  for (const w of G.wars) if (!w.over) { const nA = w.A.some(i => nuc(G.C[i])), nD = w.D.some(i => nuc(G.C[i])); if (nA || nD) lvl = Math.min(lvl, 4); if (nA && nD) lvl = Math.min(lvl, 3); for (const i of w.A.concat(w.D)) if (nuc(G.C[i]) && capitalHeld(i)) lvl = Math.min(lvl, 2); }
+  if (G.crises) for (const cr of G.crises) if (!cr.over && cr.lvl >= 4 && (nuc(G.C[cr.a]) || nuc(G.C[cr.b]))) lvl = Math.min(lvl, 4);
+  for (const c of G.C) if (c.nk && c.nk.alert >= 2) lvl = Math.min(lvl, 3);
+  if (G.lastNuke && G.day - G.lastNuke < 60) lvl = 1;
+  if (lvl !== G.defcon) { const up = lvl < G.defcon; G.defcon = lvl; if (lvl <= 3 || !up) news('SECURITY', lvl <= 2 ? 3 : 2, [], up ? `Nuclear alert: world tension rises to DEFCON ${lvl}` : `Nuclear tension eases to DEFCON ${lvl}`, up ? 'Strategic forces move to higher readiness.' : ''); }
+}
+function nuclearMonthly(c) {
+  const k = c.nk; if (!k) return;
+  // weapons programmes move with money and technology; inspectors and spies can find them
+  if (k.covert && k.prog < 1) {
+    k.prog = Math.min(1, k.prog + (.012 + (c.tech || 20) / 2500) * (c.sp.research > .005 ? 1.2 : 1));
+    const find = clamp(.03 + .25 * k.iaea + .05 * G.C.filter(o => o.intelScore > 55 && getRel(o.i, c.i) < 0).length / 5, 0, .5);
+    if (!k.exposed && rng() < find) {
+      k.exposed = 1; news('SECURITY', 3, [c.iso], `IAEA and foreign intelligence expose a secret nuclear weapons programme in ${c.name}`, 'Satellite images show enrichment halls and a test site.', { mine: isHuman(c.i) ? 1 : 0 });
+      for (const o of G.C) if (o.i !== c.i) bumpRel(o.i, c.i, -(o.gov === 'D' ? 12 : 5));
+      if (G.org && typeof unPropose === 'function') { const sp = G.C.filter(o => P5.includes(o.iso) && getRel(o.i, c.i) < 0).sort((a, b) => getRel(a.i, c.i) - getRel(b.i, c.i))[0]; if (sp) unPropose('nuclear', c.i, sp.i, 'sc'); }
+      for (const o of G.C) if (o.nk && o.nk.w > 0 && getRel(o.i, c.i) < -40 && DIST[o.i * G.n + c.i] < 3500 && G.crises) startCrisis(c.i, o.i, 'territorial', 3, { fault: c.i });
+    }
+    if (k.prog >= 1) { k.w = 5; k.tested = 0; if (isHuman(c.i)) intelLog(c.i, 'nuke', 'Our scientists report the first weapons are ready. A test would prove it to the world.'); }
+  }
+  if (k.w > 0 && k.npt !== 'nws' && k.build) k.w += Math.max(1, Math.round((c.tech || 20) / 25));
+  if (k.leaving && G.day >= k.leaving) { k.npt = 'left'; k.leaving = 0; news('SECURITY', 3, [c.iso], `${c.name} completes its withdrawal from the NPT`, '', { mine: isHuman(c.i) ? 1 : 0 }); }
+  if (k.alert > 0 && !warsOf(c.i).length && rng() < .3) k.alert--;
+  c.nuclear = k.w > 0 && (k.tested || k.npt === 'out' || k.npt === 'nws');
+}
+function nukeTest(c) {
+  const k = c.nk; if (!k.w || k.tested) return;
+  k.tested = 1; c.nuclear = true; G.lastTest = G.day;
+  news('SECURITY', 3, [c.iso], `${c.name} conducts a nuclear test`, 'Seismic stations around the world register the blast. It is now a nuclear power.', { mine: isHuman(c.i) ? 1 : 0 });
+  for (const o of G.C) if (o.i !== c.i) { bumpRel(o.i, c.i, -(o.nk && o.nk.w > 0 ? 15 : 10)); if (!isHuman(o.i) && o.gov === 'D' && o.Y > 300 && sancLevel(o.i, c.i) < 2) setSanction(o.i, c.i, 2, true); }
+  c.rally += 10; c.prestigeHit = (c.prestigeHit || 0) - 5;
+  if (G.org && typeof unPropose === 'function') { const sp = G.C.find(o => P5.includes(o.iso) && getRel(o.i, c.i) < 10); if (sp) unPropose('nuclear', c.i, sp.i, 'sc'); }
+}
+// the effects of a nuclear detonation, kept at the level of a strategy game
+function nuclearStrike(o, lat, lon, s) {
+  const A = G.C[o]; if (!A.nk || A.nk.w <= 0) return;
+  A.nk.w--; G.lastNuke = G.day;
+  const city = cityNear(lat, lon, 60), host = city ? G.idx[city.c.iso] : hostAt(lat, lon), V = host >= 0 ? G.C[host] : null;
+  let dead = 0;
+  if (city) { dead = Math.round(city.c.pop * 1e6 * clamp(.35 - city.d / 300, .05, .35)); const C = V; C.pop = Math.max(.1, C.pop - dead / 1e6); for (let g = 0; g < NG; g++) C.dmg[g] = Math.max(.25, C.dmg[g] * (city.c.cap ? .72 : .85)); C.infraI = Math.max(1, C.infraI - 15); C.shock.stab -= 30; C.shock.gap -= .08; }
+  for (const x of G.units) if (x.o !== o && kmU(x, lat, lon) < 60) x.n *= .1;
+  G.strikes.unshift({ day: G.day, o, v: host, lat, lon, k: 'nuke', u: 'nuc', civ: dead });
+  news('WAR', 3, [A.iso, V ? V.iso : A.iso], `${A.name} uses a nuclear weapon${city ? ' on ' + city.c.n : ''}`, city ? `Early estimates: ${fmtInt(dead)} dead. The world is in shock.` : 'A detonation over military forces.', { mine: 1, ll: [lat, lon] });
+  if (V) addIncident(o, V.i, 'nuclear', dead, city ? city.c.n : 'battlefield', lat, lon, 1);
+  // everyone reacts
+  for (const c of G.C) if (c.i !== o) { bumpRel(c.i, o, -(c.i === host ? 100 : 45)); if (!isHuman(c.i) && c.Y > 50 && sancLevel(c.i, o) < 3 && !hasFlag(c.i, o, F_ALLY)) setSanction(c.i, o, 3, true); c.shock.gap -= .01; }
+  G.gf && (G.gf.shock += .6);
+  A.shock.appr -= 10; A.shock.stab -= 10;
+  // mutual assured destruction: the victim, or its nuclear protector, answers in kind
+  if (!V) return;
+  if (isHuman(V.i)) { if (V.nk.w > 0 && !s.retal) withPlayer(V.i, () => inboxAdd({ kind: 'event', ev: 'nukeretal', from: o, head: `${A.name} has used a nuclear weapon against us`, body: 'Our forces are ready. Retaliation will hit their cities; restraint may keep the world on our side.', choices: [{ n: 'Retaliate', d: 'Strike two of their cities.' }, { n: 'Hold fire', d: 'Absorb the blow. The world rallies to us.' }], _fx: ECON_FX.nukeretal({ from: o }), ttl: 3 })); return; }
+  const avengers = [V].concat(G.C.filter(c => c.i !== o && hasFlag(c.i, V.i, F_ALLY))).filter(c => c.nk && c.nk.w > 0 && !isHuman(c.i));
+  const av = avengers.sort((a, b) => b.nk.w - a.nk.w)[0];
+  if (av && !s.retal) {
+    const tg = (CITY_OF[A.iso] || []).slice(0, Math.min(3, Math.ceil(av.nk.w / 300) + 1));
+    for (const k of tg) G.strikeQ.push({ id: nextId('nid'), u: (G.units.find(x => x.o === av.i && (x.t === 'msl' || x.t === 'sub' || x.t === 'str')) || {}).id, o: av.i, lat: CITIES[k].lat, lon: CITIES[k].lon, day: G.day + 1, kind: 'nuke', retal: 1 });
+    news('WAR', 3, [av.iso, A.iso], `${av.name} launches a nuclear retaliation against ${A.name}`, 'Deterrence has failed.', { mine: 1 });
+  }
+}
+// ---------- orders (used by the player and by the computer) ----------
+function canEnter(u, X) {
+  const o = u.o; if (X === o || X < 0) return 'own';
+  if (hostile(o, X)) return 'enemy';
+  if (hasFlag(o, X, F_ACCESS) || hasFlag(o, X, F_ALLY) || G.bases.some(b => b.o === o && b.host === X)) return 'access';
+  return null;
+}
+function orderMove(u, lat, lon, host, opts = {}) {
+  const t = UT[u.t];
+  if (u.embarked) return { ok: false, msg: 'Aboard ship.' };
+  if (t.d === 'A') {
+    const b = G.bases.find(x => x.id === opts.base); if (!b) return { ok: false, msg: 'Air units move between bases or carriers.' };
+    const mode = canEnter(u, b.host); if (!mode || mode === 'enemy') return { ok: false, msg: 'No basing rights there.' };
+    u.dest = { lat: b.lat, lon: b.lon, host: b.host, base: b.id }; u.st = 'move'; return { ok: true, msg: `${u.nm} redeploys to ${b.nm}.` };
+  }
+  if (t.d === 'N') {
+    if (host >= 0 && CITIES.length && !opts.sea) { const mode = canEnter(u, host); if (!mode) return { ok: false, msg: 'No right to enter their waters.' }; }
+    u.dest = { lat, lon, host: opts.base != null ? host : -1, patrol: 1 }; if (opts.base != null) u.dest.base = opts.base; u.st = 'move'; u.blk = null; return { ok: true, msg: `${u.nm} sails.` };
+  }
+  // land
+  const from = u.host, mode = canEnter(u, host);
+  if (!mode) return { ok: false, msg: `You have no military access to ${G.C[host].name}.` };
+  if (from !== host && from >= 0 && !adjacent(from, host) && !(u.t === 'sf')) {
+    // need a land route through friendly or enemy territory: allow one hop through an adjacent country we can enter
+    const via = G.C.some(c => adjacent(from, c.i) && adjacent(c.i, host) && canEnter(u, c.i));
+    if (!via) return { ok: false, msg: `${G.C[host].name} cannot be reached over land. Use an amphibious group or airlift.` };
+  }
+  u.dest = { lat, lon, host }; if (opts.base != null) u.dest.base = opts.base; u.st = mode === 'enemy' ? 'attack' : 'move'; u.tgt = mode === 'enemy' ? host : null;
+  return { ok: true, msg: mode === 'enemy' ? `${u.nm} advances into ${G.C[host].name}.` : `${u.nm} moves out.` };
+}
+function orderAmphib(amp, landIds, lat, lon, host) {
+  if (amp.t !== 'amp' && amp.t !== 'car') return { ok: false, msg: 'Needs an amphibious group.' };
+  const cap = UT[amp.t].lift || 1; const ids = landIds.slice(0, cap);
+  const lu = ids.map(id => G.units.find(x => x.id === id)).filter(x => x && UT[x.t].d === 'L' && kmU(x, amp.lat, amp.lon) < 400);
+  if (!lu.length) return { ok: false, msg: 'No land units close enough to the ships.' };
+  for (const x of lu) { x.embarked = 1; x.lat = amp.lat; x.lon = amp.lon; x.dest = null; }
+  amp.dest = { lat, lon, host, lift: lu.map(x => x.id) }; amp.st = 'move';
+  return { ok: true, msg: `${lu.length} unit${lu.length > 1 ? 's' : ''} embark for a landing in ${G.C[host].name}.` };
+}
+function orderBlockade(u, target) {
+  if (UT[u.t].d !== 'N') return { ok: false, msg: 'Only ships can blockade.' };
+  let lat, lon;
+  if (target.cp) { const N = SEA_NODES[target.cp]; lat = N[1]; lon = N[0]; }
+  else { const s = seaNodeOf(G.C[target.c]); if (!s) return { ok: false, msg: 'Landlocked.' }; lat = s[1]; lon = s[0]; }
+  u.dest = { lat, lon, host: -1, patrol: 1 }; u.st = 'blockade'; u.blk = target;
+  return { ok: true, msg: `${u.nm} sails to enforce a blockade.` };
+}
+
+// ---------- upgrading older worlds ----------
+function migrateMil() {
+  if (G.units) return false;
+  if (!G.C[0].ports) { buildPorts(); }
+  if (!DIST) computeDist();
+  for (const c of G.C) { if (!c.M) c.M = c.mil0 * c.Y * (c.costF || 1) / .08; }
+  initMilitary(); for (const c of G.C) initIntel(c); computeCoverage();
+  for (const w of G.wars) if (!w.over) warInit(w);
+  return true;
+}
+// ---------- diplomacy: military access and real bases ----------
+DITEMS.push(
+  { id: 'access', n: (g, r) => `${g.name} grants ${r.name} military access`, ok: (g, r) => !hasFlag(g.i, r.i, F_ACCESS) && !atWar(g.i, r.i),
+    val: (c, g, r) => c === r ? 3 + imp(r, 'security') * .8 + (warsOf(r.i).some(w => w.A.concat(w.D).some(i => i !== r.i && adjacent(g.i, i))) ? 8 : 0) : -(imp(g, 'sovereignty') * 1.2 + 1.5) - warsOf(r.i).length * 6,
+    exec: (g, r) => { addFlag(g.i, r.i, F_ACCESS); } },
+  { id: 'jointex', mutual: 1, n: () => 'Joint military exercises', ok: (g, r) => !atWar(g.i, r.i),
+    val: (c, g, r) => { const o = c === g ? r : g; return 1 + imp(c, 'security') * .6 + (getRel(c.i, o.i) > 40 ? 2 : -2); },
+    exec: (g, r) => { for (const u of G.units) if (u.o === g.i || u.o === r.i) { u.exp = Math.min(1, u.exp + .03); } for (const x of G.C) if (x.i !== g.i && x.i !== r.i && (getRel(x.i, g.i) < -30 || getRel(x.i, r.i) < -30) && DIST[x.i * G.n + g.i] < 3000) bumpRel(x.i, g.i, -3); } },
+);
+DI.access = DITEMS.find(d => d.id === 'access'); DI.jointex = DITEMS.find(d => d.id === 'jointex');
+// hosting forces now means an actual base
+DI.basing.exec = (g, r) => { g.basedBy = r.i; addFlag(g.i, r.i, F_INTEL | F_ACCESS); const ks = CITY_OF[g.iso] || []; const k = ks[Math.min(1, ks.length - 1)]; if (G.units && k != null) { const b = newBase(r.i, g.i, k, coastal(g) ? 'naval' : 'air', `${CITIES[k].n} (${r.name})`); for (const c of G.C) if (getRel(c.i, r.i) < -30 && DIST[c.i * G.n + g.i] < 3000) bumpRel(c.i, g.i, -10); } };
+DITEMS.find(d => d.id === 'basing').exec = DI.basing.exec;
+Object.assign(ECON_FX, {
+  spycaught: it => SPY_FX({ o: it.from }),
+  nukeretal: it => [{ fx: c => { const A = G.C[it.from]; for (const k of (CITY_OF[A.iso] || []).slice(0, 2)) G.strikeQ.push({ id: nextId('nid'), u: 0, o: c.i, lat: CITIES[k].lat, lon: CITIES[k].lon, day: G.day + 1, kind: 'nuke', retal: 1 }); } }, { fx: c => { c.rally += 10; for (const o of G.C) if (o.i !== c.i && o.i !== it.from) bumpRel(o.i, c.i, 8); } }],
+});
+
+// ============================================================================ INTELLIGENCE 2.0 (v7)
+// Five disciplines built up by the intelligence budget: human sources (HUMINT), signals (SIGINT),
+// imagery and satellites (IMINT), cyber, and counter-intelligence. Together they decide how well each
+// country sees each other one (coverage), which drives the fog of war in the War Room, insight in
+// negotiations, and whether operations succeed or get caught.
+const IDISC = { hum: 'Human sources', sig: 'Signals', img: 'Imagery & satellites', cyb: 'Cyber', ci: 'Counter-intelligence' };
+function initIntel(c) {
+  const base = clamp(c.intelScore || 10, 3, 95), t = c.tech || 20;
+  c.int = { hum: base * .9, sig: base * (.6 + t / 150), img: base * (.4 + t / 110), cyb: base * (.5 + t / 140), ci: base * .95,
+    al: { hum: .22, sig: .22, img: .2, cyb: .16, ci: .2 } };
+  if (['USA', 'CHN', 'RUS', 'GBR', 'ISR', 'FRA'].includes(c.iso)) { c.int.img *= 1.2; c.int.sig *= 1.15; }
+  for (const k in IDISC) c.int[k] = clamp(c.int[k], 2, 99);
+}
+function intelMonthly(c) {
+  const I = c.int; if (!I) return;
+  const spend = c.sp.intel * c.Y * c.costF;
+  const scale = 10 * Math.log(1 + spend) + (c.tech || 20) * .25;
+  for (const k in IDISC) { const tgt = clamp(scale * (.5 + 2.5 * I.al[k]) * (k === 'img' || k === 'cyb' ? .7 + (c.tech || 20) / 150 : 1), 2, 99); I[k] += (tgt - I[k]) / 18; }
+  c.intelScore = clamp(.25 * I.hum + .25 * I.sig + .2 * I.img + .15 * I.cyb + .15 * I.ci + polFx(c, 'intel'), 0, 99);
+}
+// how well i sees j: 0 blind … 1 transparent
+function covOf(i, j) { if (i === j) return 1; return G.cov ? G.cov[i * G.n + j] : .3; }
+function computeCoverage() {
+  const n = G.n; if (!G.cov || G.cov.length !== n * n) G.cov = new Float32Array(n * n);
+  const net = new Map(); for (const x of G.nets || []) if (!x.burned) net.set(x.o * n + x.t, Math.max(net.get(x.o * n + x.t) || 0, x.sz));
+  for (let i = 0; i < n; i++) {
+    const A = G.C[i], I = A.int || { hum: 10, sig: 10, img: 10, cyb: 10 };
+    for (let j = 0; j < n; j++) {
+      if (i === j) { G.cov[i * n + j] = 1; continue; }
+      const B = G.C[j], ci = B.int ? B.int.ci : 20;
+      let v = .08 + I.img / 190 + I.sig / 260 * (1 - ci / 160) + (net.get(i * n + j) || 0) * .35 + (DIST[i * n + j] < 1500 ? .08 : 0);
+      if (G.track && G.track[i + ':' + j] > G.day) v += .45;
+      if (B.revealed > G.day && isHuman(i)) v += .2;
+      G.cov[i * n + j] = clamp(v, 0, 1);
+    }
+  }
+  // allies and partners share what they see
+  const copy = Float32Array.from(G.cov);
+  for (let i = 0; i < n; i++) for (let p = 0; p < n; p++) { if (p === i || !hasFlag(i, p, F_INTEL)) continue; for (let j = 0; j < n; j++) { const v = copy[p * n + j] * .7; if (v > G.cov[i * n + j]) G.cov[i * n + j] = v; } }
+}
+function intelLog(o, k, t) { if (o == null || o < 0) return; G.ilog = G.ilog || []; G.ilog.unshift({ id: nextId('nid'), day: G.day, o, k, t }); if (G.ilog.length > 400) G.ilog.length = 400; }
+
+// ---------- operations ----------
+// disc: the discipline that drives success. days: how long it runs. pc: political capital. cost: $B from the intelligence budget.
+// net: needs an agent network in the target. risk: base chance of being caught. hard: how much harder than a routine job.
+const IOPS = {
+  recruit: { n: 'Recruit agents', g: 'Collection', disc: 'hum', days: 60, pc: 3, cost: .3, risk: .12, hard: 0, d: 'Build a network of sources inside their government and military. Networks make every other operation easier.' },
+  surveil: { n: 'Track their forces', g: 'Collection', disc: 'img', days: 10, pc: 3, cost: .2, risk: .03, hard: -5, d: 'Satellites and signals follow their units for 90 days. You see their movements in the War Room.' },
+  dossier: { n: 'Leadership dossier', g: 'Collection', disc: 'hum', days: 45, pc: 3, cost: .2, risk: .08, hard: 5, d: 'Their true strength, war plans and intentions, and what they want most in talks.' },
+  intercept: { n: 'Intercept communications', g: 'Collection', disc: 'sig', days: 30, pc: 4, cost: .3, risk: .06, hard: 5, d: 'Read their diplomatic and military traffic: you learn their bottom line in negotiations and any plans for war.' },
+  steal: { n: 'Steal technology', g: 'Theft', disc: 'cyb', days: 60, pc: 8, cost: .5, risk: .2, hard: 12, net: .1, d: 'Closes part of any technology gap.' },
+  sabnuke: { n: 'Sabotage nuclear programme', g: 'Sabotage', disc: 'cyb', days: 90, pc: 15, cost: 1, risk: .3, hard: 25, net: .2, d: 'Sets back a weapons programme (think Stuxnet). Very hard; very risky.' },
+  sabind: { n: 'Sabotage industry', g: 'Sabotage', disc: 'hum', days: 45, pc: 10, cost: .5, risk: .28, hard: 15, net: .15, d: 'Damages a key sector of their economy.' },
+  sabmil: { n: 'Sabotage military bases', g: 'Sabotage', disc: 'hum', days: 45, pc: 12, cost: .6, risk: .3, hard: 18, net: .2, d: 'Fires and "accidents" at bases lower the readiness of their forces.' },
+  cybinf: { n: 'Cyberattack: infrastructure', g: 'Cyber', disc: 'cyb', days: 20, pc: 8, cost: .4, risk: .22, hard: 8, d: 'Power grids and pipelines go down for weeks.' },
+  cybmil: { n: 'Cyberattack: command networks', g: 'Cyber', disc: 'cyb', days: 20, pc: 10, cost: .5, risk: .2, hard: 15, d: 'Scrambles their military communications: every unit loses readiness for a month.' },
+  cybfin: { n: 'Cyberattack: banks', g: 'Cyber', disc: 'cyb', days: 20, pc: 8, cost: .4, risk: .22, hard: 10, d: 'Freezes payments and shakes confidence.' },
+  influence: { n: 'Influence campaign', g: 'Political', disc: 'cyb', days: 90, pc: 8, cost: .4, risk: .25, hard: 5, d: 'Disinformation and bots erode trust in their government. Stronger against open societies.' },
+  destab: { n: 'Fund the opposition', g: 'Political', disc: 'hum', days: 120, pc: 12, cost: .8, risk: .3, hard: 10, net: .15, d: 'Money and training for opponents of the regime. Lowers their stability.' },
+  insurg: { n: 'Arm insurgents', g: 'Political', disc: 'hum', days: 120, pc: 15, cost: 1, risk: .35, hard: 12, net: .2, d: 'Supplies rebels or resistance fighters. Drains their army and stability; works best in occupied or unstable land.' },
+  falseflag: { n: 'False-flag operation', g: 'Political', disc: 'hum', days: 60, pc: 18, cost: .8, risk: .4, hard: 20, net: .25, third: 1, d: 'Stage an incident and pin it on a third country. If exposed, the scandal is enormous.' },
+  defector: { n: 'Extract a defector', g: 'Collection', disc: 'hum', days: 90, pc: 10, cost: .5, risk: .25, hard: 15, net: .2, d: 'A senior official switches sides: a flood of secrets, and a propaganda win.' },
+  sfraid: { n: 'Special forces raid', g: 'Special operations', disc: 'hum', days: 7, pc: 10, cost: .3, risk: .35, hard: 10, sf: 1, d: 'Needs a special forces group within 1,500 km. Destroys a key target; the team may not come back.' },
+  sweep: { n: 'Counter-intelligence sweep', g: 'Defence', disc: 'ci', days: 60, pc: 4, cost: .3, risk: 0, hard: -10, self: 1, d: 'Hunt for foreign spies at home. Rolls up their networks.' },
+};
+function opOdds(o, t, k) {
+  const O = G.C[o], T = G.C[t], op = IOPS[k];
+  const my = O.int ? O.int[op.disc] : O.intelScore || 10, their = T.int ? T.int.ci : T.intelScore || 10;
+  const net = netSize(o, t);
+  const partners = G.C.filter(x => hasFlag(o, x.i, F_INTEL)).length;
+  const succ = op.self ? clamp(.35 + my / 150, .1, .95) : clamp(sig((my + net * 40 + Math.min(8, partners * 1.5) - their * .9 - op.hard) / 10), .03, .95);
+  const expo = op.self ? 0 : clamp(op.risk + (their - my) / 180 - net * .1, .02, .85);
+  return { succ, expo, net, can: !op.net || net >= op.net };
+}
+function netSize(o, t) { let s = 0; for (const x of G.nets || []) if (x.o === o && x.t === t && !x.burned) s = Math.max(s, x.sz); return s; }
+function launchOp(o, t, k, opts = {}) {
+  const O = G.C[o], op = IOPS[k];
+  if (op.self) t = o;
+  const odds = opOdds(o, t, k);
+  if (!odds.can) return { ok: false, msg: `Needs an agent network in ${G.C[t].name} (recruit first).` };
+  if (op.sf) { const sf = G.units.find(u => u.o === o && u.t === 'sf' && u.n > .2 && kmBetween(u.lat, u.lon, G.C[t].lat, G.C[t].lon) < 1500); if (!sf) return { ok: false, msg: 'No special forces group within 1,500 km.' }; opts.sf = sf.id; }
+  if ((G.iops || []).some(x => x.o === o && x.t === t && x.k === k && !x.done)) return { ok: false, msg: 'Already running.' };
+  if (isHuman(o)) { if (O.pc_ < op.pc) return { ok: false, msg: `Needs ${op.pc} PC.` }; O.pc_ -= op.pc; }
+  O.oneOff += op.cost * Math.max(.2, O.sp.intel * O.Y * 20);
+  G.iops = G.iops || [];
+  const job = { id: nextId('nid'), o, t, k, start: G.day, end: G.day + op.days }; if (opts.x != null) job.x = opts.x; if (opts.sf != null) job.sf = opts.sf; G.iops.push(job);
+  return { ok: true, msg: `${op.n} under way. Results in about ${op.days} days.` };
+}
+function intelDaily() {
+  if (!G.iops || !G.iops.length) return;
+  for (const x of G.iops) if (!x.done && G.day >= x.end) resolveOp(x);
+  if (G.iops.length > 200) G.iops = G.iops.filter(x => !x.done || G.day - x.end < 120);
+}
+function resolveOp(x) {
+  x.done = 1;
+  const O = G.C[x.o], T = G.C[x.t], op = IOPS[x.k], odds = opOdds(x.o, x.t, x.k);
+  const ok = rng() < odds.succ, caught = rng() < odds.expo * (ok ? .8 : 1.3);
+  x.ok = ok; x.caught = caught;
+  let msg = '';
+  if (ok) switch (x.k) {
+    case 'recruit': { let nt = (G.nets || (G.nets = [])).find(q => q.o === x.o && q.t === x.t && !q.burned); if (!nt) { nt = { id: nextId('nid'), o: x.o, t: x.t, sz: 0, since: G.day }; G.nets.push(nt); } nt.sz = Math.min(1, nt.sz + .2 + O.int.hum / 500); msg = `Network in ${T.name} grows to ${Math.round(nt.sz * 100)}%.`; break; }
+    case 'surveil': (G.track || (G.track = {}))[x.o + ':' + x.t] = G.day + 90; msg = `We are tracking ${T.name}'s forces for 90 days.`; break;
+    case 'dossier': T.revealed = G.day + 365; msg = `Dossier complete: ${T.name}'s power ${(powerOf(T) / 1000).toFixed(2)}, aggression ${(T.aggr * 100).toFixed(0)}/100, ${warPlanText(T)}.`; break;
+    case 'intercept': T.probed = G.day + 365; T.revealed = Math.max(T.revealed || 0, G.day + 120); msg = `Their cables are open to us. ${warPlanText(T)}.`; break;
+    case 'steal': { const gain = Math.max(.3, (T.tech - O.tech) * .12); O.tech += gain; msg = `Stolen designs raise our technology by ${gain.toFixed(1)}.`; break; }
+    case 'sabnuke': if (T.nk && T.nk.w === 0 && T.nk.prog > 0) { T.nk.prog = Math.max(0, T.nk.prog - .2); msg = `Centrifuges tear themselves apart. ${T.name}'s programme is set back by about two years.`; } else msg = 'There was no weapons programme to hit.'; break;
+    case 'sabind': { const g = pick([GI.SEMI, GI.CHEM, GI.OIL, GI.ARMS, GI.MACH, GI.ELEC].filter(g => T.cap[g] > .5)) ?? GI.CHEM; T.dmg[g] *= .85; msg = `Sabotage hits ${T.name}'s ${GOODS[g].n.toLowerCase()} sector.`; break; }
+    case 'sabmil': { let k = 0; for (const u of G.units) if (u.o === x.t && u.base >= 0) { u.org = Math.max(.3, u.org - .25); if (++k > 30) break; } msg = `Explosions and fires at ${T.name}'s bases; readiness falls.`; break; }
+    case 'cybinf': T.shock.gap -= .005; T.infraI -= .6; msg = `Blackouts across ${T.name}.`; break;
+    case 'cybmil': for (const u of G.units) if (u.o === x.t) u.org = Math.max(.35, u.org - .2); msg = `${T.name}'s military networks are down. Their units are confused.`; break;
+    case 'cybfin': T.shock.gap -= .004; if (T.ec) T.ec.eq *= .95; msg = `Payments freeze across ${T.name}.`; break;
+    case 'influence': T.shock.appr -= T.gov === 'D' ? 4 : 1.5; T.shock.stab -= 2; msg = `Our stories dominate ${T.name}'s social media.`; break;
+    case 'destab': T.shock.stab -= 7; T.shock.appr -= 3; msg = `Protests spread in ${T.name}.`; break;
+    case 'insurg': { T.shock.stab -= 6; const occ = occShare(T.i) > 0; for (const u of G.units) if ((occ ? u.host === T.i && u.o !== T.i : u.o === T.i && UT[u.t].d === 'L')) u.n *= .985; msg = occ ? `Resistance fighters in ${T.name} ambush the occupiers.` : `Rebels in ${T.name} are better armed.`; break; }
+    case 'falseflag': { const X = G.C[x.x != null ? x.x : x.t]; if (x.x != null) { bumpRel(T.i, X.i, -20); if (G.crises) startCrisis(T.i, X.i, 'spy', 3, { fault: X.i }); msg = `${T.name} blames ${X.name} for the attack we staged.`; } break; }
+    case 'defector': O.tech += Math.max(.2, (T.tech - O.tech) * .06); T.revealed = G.day + 540; T.probed = G.day + 540; T.shock.appr -= 2; netBurn(x.t, x.o, .3); msg = `A senior ${T.name} official is safe with us. Secrets pour in.`; news('INTEL', 2, [T.iso, O.iso], `Senior ${T.name} official defects to ${O.name}`, '', { mine: isHuman(x.o) || isHuman(x.t) ? 1 : 0 }); break;
+    case 'sfraid': { const sf = G.units.find(u => u.id === x.sf); const tg = G.units.filter(u => u.o === x.t && u.n > .05).sort((a, b) => kmBetween(a.lat, a.lon, sf ? sf.lat : T.lat, sf ? sf.lon : T.lon) - kmBetween(b.lat, b.lon, sf ? sf.lat : T.lat, sf ? sf.lon : T.lon))[0]; if (tg) { tg.n *= .75; tg.org *= .6; msg = `Our commandos hit ${T.name}'s ${tg.nm}.`; } if (sf) sf.n *= caught ? .6 : .9; if (!hostile(x.o, x.t) && caught) actOfWar(x.o, x.t, 'commando raid'); break; }
+    case 'sweep': { let found = 0; for (const nt of G.nets || []) if (nt.t === x.o && !nt.burned && rng() < .4 + O.int.ci / 200) { found++; netBurn(nt.o, x.o, 1, true); } msg = found ? `Counter-intelligence rolls up ${found} foreign network${found > 1 ? 's' : ''}.` : 'The sweep finds nothing.'; break; }
+  } else msg = `${op.n} failed.`;
+  if (isHuman(x.o)) intelLog(x.o, 'op', `${T.flag} ${op.n} vs ${T.name}: ${msg}${caught ? ' Our people were caught.' : ''}`);
+  if (caught && !op.self) opCaught(x);
+}
+function netBurn(o, t, frac, silent) {
+  for (const nt of G.nets || []) if (nt.o === o && nt.t === t && !nt.burned) { nt.sz -= frac; if (nt.sz <= .05) nt.burned = G.day; }
+  if (!silent && isHuman(o)) intelLog(o, 'net', `Our network in ${G.C[t].name} is compromised.`);
+}
+function opCaught(x) {
+  const O = G.C[x.o], T = G.C[x.t], op = IOPS[x.k];
+  netBurn(x.o, x.t, .3, true);
+  const serious = ['sabnuke', 'sabind', 'sabmil', 'cybinf', 'cybmil', 'cybfin', 'destab', 'insurg', 'falseflag', 'sfraid'].includes(x.k);
+  if (isHuman(x.t)) {
+    const fx = SPY_FX(x);
+    withPlayer(x.t, () => inboxAdd({ kind: 'event', ev: 'spycaught', from: x.o, spy: x.id, head: `We caught ${O.name} ${serious ? 'running a covert operation' : 'spying'} on us`, body: `Our counter-intelligence ${x.k === 'recruit' ? 'broke up an agent network' : `foiled ${op.n.toLowerCase()}`}. What do we do with it?`, choices: fx.map(o => ({ n: o.n, d: o.d })), _fx: fx, ttl: 20 }));
+  } else {
+    bumpRel(x.t, x.o, serious ? -18 : -6);
+    if (serious && G.crises && !isHuman(x.o)) startCrisis(x.t, x.o, x.k.startsWith('cyb') ? 'cyber' : 'spy', 2, { fault: x.o });
+    if (serious || isHuman(x.o)) news('INTEL', serious ? 2 : 1, [T.iso, O.iso], `${T.name} exposes ${O.name} ${op.n.toLowerCase()}`, serious ? 'Diplomats expelled; retaliation promised.' : 'Diplomats expelled.', { mine: isHuman(x.o) ? 1 : 0 });
+    if (serious && G.dipl && diplOf(x.t, x.o) === 2 && rng() < .5) setDipl(x.t, x.o, 1);
+  }
+}
+function SPY_FX(x) {
+  return [
+    { n: 'Go public and expel diplomats', d: 'Relations fall sharply; the world sees who did it.', fx: c => { const O = G.C[x.o]; bumpRel(c.i, x.o, -15); if (G.dipl && diplOf(c.i, x.o) === 2) setDipl(c.i, x.o, 1); c.rally += 2; news('INTEL', 2, [c.iso, O.iso], `${c.name} exposes ${O.name} spying and expels diplomats`, '', { mine: 1 }); for (const o of G.C) if (o.gov === 'D' && o.i !== c.i && o.i !== x.o) bumpRel(o.i, x.o, -2); } },
+    { n: 'Turn them into double agents', d: 'Feed them lies and learn what they want to know. Our view of them improves.', fx: c => { (G.nets || (G.nets = [])).push({ id: nextId('nid'), o: c.i, t: x.o, sz: .35, since: G.day }); G.C[x.o].revealed = G.day + 180; } },
+    { n: 'Quiet swap', d: 'Trade the spies back in private. No crisis; they owe us.', fx: c => { bumpRel(c.i, x.o, 2); if (G.trust) bumpTrust(x.o, c.i, 4); } },
+  ];
+}
+function warPlanText(T) {
+  const w = warsOf(T.i)[0]; if (w) return `their war goal is ${WAR_GOALS[w.a === T.i ? w.goalA || 'territory' : 'defend'].n.toLowerCase()}`;
+  const cr = G.crises && G.crises.find(c => !c.over && (c.a === T.i || c.b === T.i)); if (cr) return cr.intent === T.i ? `they intend to escalate the ${cr.name.toLowerCase()}` : `they want to end the ${cr.name.toLowerCase()} without losing face`;
+  return T.aggr > .6 ? 'they are weighing military options against a neighbour' : 'no plans for war';
+}
+// the computer's intelligence services
+function aiIntelMonthly(c) {
+  if (isHuman(c.i) || !c.int || c.intelScore < 18 || rng() > .35) return;
+  const cands = G.C.filter(o => o.i !== c.i && (getRel(c.i, o.i) < -25 || (o.Y > 600 && getRel(c.i, o.i) < 20)));
+  if (!cands.length) return;
+  const T = cands[Math.floor(rng() * cands.length)], rel = getRel(c.i, T.i);
+  const net = netSize(c.i, T.i);
+  let k = net < .3 ? 'recruit' : pick(['surveil', 'dossier', 'intercept', 'steal', 'influence']);
+  if (rel < -55 && rng() < .35) k = pick(['cybinf', 'cybfin', 'sabind', 'destab', 'cybmil']);
+  if (hostile(c.i, T.i)) k = pick(['cybmil', 'sabmil', 'surveil', 'insurg']);
+  if (T.nk && T.nk.covert && T.nk.prog > .5 && getRel(c.i, T.i) < -40 && c.int.cyb > 50) k = 'sabnuke';
+  if (IOPS[k].net && net < IOPS[k].net) k = 'recruit';
+  launchOp(c.i, T.i, k);
+  // counter-intelligence at home
+  if (rng() < .15) launchOp(c.i, c.i, 'sweep');
+}
+// warnings for a human leader when a rival masses forces nearby
+function intelWarnings(h) {
+  const P = G.C[h]; const my = CITY_OF[P.iso] || [];
+  const seen = P.warnSeen || (P.warnSeen = {});
+  const by = {};
+  for (const u of G.units) {
+    if (u.o === h || UT[u.t].d !== 'L' || u.n < .1 || hasFlag(u.o, h, F_ALLY)) continue;
+    if (getRel(u.o, h) > -20 && !hostile(u.o, h)) continue;
+    if (covOf(h, u.o) < .3) continue;
+    let near = false; for (const k of my) if (kmBetween(u.lat, u.lon, CITIES[k].lat, CITIES[k].lon) < 350 && u.host !== h) { near = true; break; }
+    if (near) by[u.o] = (by[u.o] || 0) + u.n;
+  }
+  for (const k in by) if (by[k] >= 2 && !(seen[k] > G.day)) { seen[k] = G.day + 60; const O = G.C[+k]; intelLog(h, 'warn', `${O.name} is massing ${Math.round(by[k])} brigades near our border.`); withPlayer(h, () => inboxAdd({ kind: 'notice', from: +k, head: `Intelligence warning: ${O.name} masses troops near our border`, body: `Satellites show about ${Math.round(by[k])} brigades within striking distance. Consider moving forces to the border.`, ttl: 15 })); }
+}
+
+// ============================================================================ LAWS OF WAR, ICC AND ICJ (v7)
+// Incidents are logged whether or not anyone sees them. Evidence decides whether they come out: a free press,
+// foreign satellites, journalists on the ground. Exposed incidents feed UN inquiries, the International
+// Criminal Court (prosecutes leaders) and the International Court of Justice (rules between states).
+const ROME = new Set('AFG ALB ARG AUS AUT BGD BEL BLZ BEN BOL BIH BWA BRA BGR KHM CAN CAF TCD CHL COL COG CRI CIV HRV CYP CZE COD DNK DJI DOM ECU SLV EST FJI FIN FRA GAB GMB GEO DEU GHA GRC GTM GIN GUY HND ISL IRL ITA JPN JOR KEN KOR LVA LSO LBR LTU LUX MDG MWI MLT MUS MEX MNG MNE NAM NLD NZL NGA MKD NOR PAN PRY PER POL PRT MDA ROU SEN SRB SLE SVK SVN ZAF ESP PSE SUR SWE CHE TJK TZA TLS TTO TUN UGA GBR URY VUT VEN ZMB ARM UKR'.split(' '));
+const INC = {
+  civilians: ['Civilians killed', 1, 'Strikes or fighting that killed large numbers of civilians.'],
+  hospital: ['Hospital hit', 1.6, 'Medical facilities are protected under the Geneva Conventions.'],
+  press: ['Journalists killed', 1.5, 'Journalists are civilians; killing them is a war crime.'],
+  aid: ['Aid workers or convoy hit', 1.5, 'Humanitarian relief is protected.'],
+  school: ['School hit', 1.5, 'Schools are civilian objects.'],
+  starvation: ['Starvation of civilians', 2, 'Using hunger as a weapon, through blockade or siege.'],
+  occupation: ['Abuses under occupation', 1.3, 'Detentions, deportations and reprisals in occupied land.'],
+  pow: ['Mistreatment of prisoners', 1.2, 'Prisoners of war must be treated humanely.'],
+  nuclear: ['Use of nuclear weapons', 5, 'Indiscriminate by nature.'],
+};
+function pressOf(c) { return c.pl && c.pl.press ? c.pl.press.x / 100 : c.gov === 'D' ? .8 : .2; }
+function addIncident(by, vs, type, deaths, place, lat, lon, vis) {
+  if (by < 0 || vs < 0 || by === vs) return;
+  const V = G.C[vs], B = G.C[by];
+  const sev = Math.log10(Math.max(10, deaths) + 10) * INC[type][1];
+  // who sees it: the victim's press, foreign satellites, and anyone with good coverage of the attacker
+  let eyes = .25 + .35 * pressOf(V) + .15 * Math.min(1, G.C.filter(c => c.i !== by && (c.intelScore || 0) > 55).length / 6) + (deaths > 1000 ? .25 : deaths > 200 ? .1 : 0);
+  if (type === 'nuclear') eyes = 1;
+  const p = clamp(eyes * (vis == null ? .7 : vis) * (B.mil && B.mil.roe === 'tight' ? .8 : 1), .05, 1);
+  const inc = { id: nextId('nid'), day: G.day, by, vs, type, deaths, place, lat, lon, sev: +sev.toFixed(2), exp: rng() < p ? 1 : 0 };
+  G.warc.unshift(inc); if (G.warc.length > 400) G.warc.length = 400;
+  B.wcs = (B.wcs || 0) + sev * (inc.exp ? 1 : .25);
+  if (inc.exp) exposeIncident(inc);
+  else if (isHuman(by)) intelLog(by, 'law', `${INC[type][0]} in ${place} (${fmtInt(deaths)} dead). No journalists or foreign satellites caught it, yet.`);
+}
+function exposeIncident(inc) {
+  inc.exp = 1; inc.expDay = G.day;
+  const B = G.C[inc.by], V = G.C[inc.vs];
+  news('LAW', inc.sev > 4 ? 3 : 2, [B.iso, V.iso], `${INC[inc.type][0]}: ${B.name} accused over ${inc.place}`, `${fmtInt(inc.deaths)} dead, according to ${pressOf(V) > .5 ? 'local journalists' : 'satellite images and witnesses'}. Rights groups call it a possible war crime.`, { mine: isHuman(inc.by) || isHuman(inc.vs) ? 1 : 0, ll: [inc.lat, inc.lon] });
+  for (const c of G.C) { if (c.i === inc.by) continue; const d = c.i === inc.vs ? 6 : c.gov === 'D' ? 1 + inc.sev * .6 : .3 * inc.sev; bumpRel(c.i, inc.by, -d); }
+  B.shock.appr -= B.gov === 'D' ? inc.sev * .6 : .2; B.repRel = clamp((B.repRel || 50) - inc.sev * .8, 0, 100);
+  if (G.org && typeof unPropose === 'function' && inc.sev > 3.5 && rng() < .35 && !G.org.un.res.some(r => r.status === 'pending' && r.target === inc.by)) {
+    const sp = G.C.filter(c => c.i !== inc.by && getRel(c.i, inc.by) < -20 && c.gov === 'D' && c.Y > 200).sort((a, b) => getRel(a.i, inc.by) - getRel(b.i, inc.by))[0];
+    if (sp) unPropose('condemn', inc.by, sp.i, 'ga', warsOf(inc.by)[0] ? warsOf(inc.by)[0].id : null, { victim: inc.vs });
+  }
+}
+function lawMonthly() {
+  // unreported incidents can still come out later
+  for (const inc of G.warc) if (!inc.exp && G.day - inc.day < 540 && rng() < .03 + .05 * pressOf(G.C[inc.vs])) exposeIncident(inc);
+  // occupation abuses and blockade famine
+  for (const k in G.occ) { const X = +k; for (const o in G.occ[k]) { const O = G.C[+o]; if (G.occ[k][o] > .1 && rng() < (O.mil && O.mil.roe === 'loose' ? .25 : .06) * (O.gov === 'D' ? .5 : 1)) addIncident(+o, X, 'occupation', Math.round(200 + G.occ[k][o] * 3000 * rng()), G.C[X].name, G.C[X].lat, G.C[X].lon, .5); } }
+  for (const k in G.blk || {}) { const T = G.C[+k]; if ((T.foodShort || 0) > .08 && rng() < .3) addIncident(G.blk[k].by, T.i, 'starvation', Math.round(T.pop * 1e6 * T.foodShort * .0005), T.name, T.lat, T.lon, .7); }
+  for (const c of G.C) { c.wcs = (c.wcs || 0) * .97; iccCheck(c); }
+  icjMonthly();
+}
+// ---------- International Criminal Court ----------
+function iccJuris(c) {
+  if (ROME.has(c.iso) || c.icc) return true;
+  return G.warc.some(inc => inc.by === c.i && inc.exp && ROME.has(G.C[inc.vs].iso));
+}
+function iccCheck(c) {
+  const s = c.iccS || (c.iccS = { st: 0, since: 0 });
+  if (s.st === 0 && (c.wcs || 0) > 7 && iccJuris(c)) { s.st = 1; s.since = G.day; news('LAW', 2, [c.iso], `ICC prosecutor opens a preliminary examination into ${c.name}`, 'Evidence of war crimes will be assessed.', { mine: isHuman(c.i) ? 1 : 0 }); }
+  else if (s.st === 1 && G.day - s.since > 180 && (c.wcs || 0) > 10) { s.st = 2; s.since = G.day; news('LAW', 2, [c.iso], `ICC opens a formal investigation into ${c.name}`, '', { mine: isHuman(c.i) ? 1 : 0 }); }
+  else if (s.st === 2 && G.day - s.since > 300 && (c.wcs || 0) > 13) {
+    s.st = 3; s.since = G.day; c.warrant = G.day;
+    news('LAW', 3, [c.iso], `ICC issues an arrest warrant for ${c.name}'s ${leaderTitle(c).toLowerCase()}`, 'The 125 member states are obliged to arrest the leader on their soil.', { mine: isHuman(c.i) ? 1 : 0 });
+    for (const o of G.C) if (ROME.has(o.iso) && o.i !== c.i) bumpRel(o.i, c.i, -6);
+    c.shock.appr += c.gov === 'D' ? -4 : 2;
+  } else if (s.st === 1 && G.day - s.since > 720 && (c.wcs || 0) < 4) { s.st = 0; }
+}
+function clearWarrant(c, why) { if (!c.warrant) return; c.warrant = 0; if (c.iccS) c.iccS.st = 1; news('LAW', 1, [c.iso], `ICC warrant no longer applies to ${c.name}'s new leadership`, why || '', { mine: isHuman(c.i) ? 1 : 0 }); }
+// ---------- International Court of Justice ----------
+const ICJ_CLAIM = { force: 'unlawful use of force', genocide: 'violations of the Genocide Convention', occupation: 'unlawful occupation', blockade: 'an unlawful blockade' };
+function icjFile(app, resp, claim) {
+  if (G.icj.cases.some(k => k.app === app && k.resp === resp && k.st !== 'done')) return null;
+  const k = { id: nextId('nid'), app, resp, claim, filed: G.day, st: 'filed', next: G.day + 40 + Math.floor(rng() * 30) };
+  G.icj.cases.unshift(k);
+  news('LAW', 2, [G.C[app].iso, G.C[resp].iso], `${G.C[app].name} takes ${G.C[resp].name} to the International Court of Justice`, `The case alleges ${ICJ_CLAIM[claim]}.`, { mine: isHuman(app) || isHuman(resp) ? 1 : 0 });
+  return k;
+}
+function icjMonthly() {
+  // victims of aggression and war crimes go to court
+  for (const w of G.wars) if (!w.over && !isHuman(w.d) && G.day - w.start > 60 && rng() < .06) { const cl = (G.C[w.a].wcs || 0) > 8 ? 'genocide' : occShare(w.d) > .05 ? 'occupation' : 'force'; icjFile(w.d, w.a, cl); }
+  for (const k of G.icj.cases) {
+    if (k.st === 'done' || G.day < k.next) continue;
+    const A = G.C[k.app], R = G.C[k.resp], w = warBetween(k.app, k.resp);
+    const merit = (w && w.a === k.resp ? .6 : .15) + Math.min(.4, (R.wcs || 0) / 25) + (k.claim === 'occupation' && occShare(k.app) > 0 ? .2 : 0);
+    if (k.st === 'filed') {
+      k.st = 'provisional'; k.next = G.day + 700 + Math.floor(rng() * 400);
+      if (merit > .4) { k.order = 1; news('LAW', 2, [A.iso, R.iso], `ICJ orders ${R.name} to ${w ? 'suspend military operations against' : 'refrain from actions against'} ${A.name}`, 'Provisional measures are legally binding.', { mine: isHuman(k.resp) || isHuman(k.app) ? 1 : 0 });
+        if (isHuman(k.resp)) withPlayer(k.resp, () => inboxAdd({ kind: 'icj', case: k.id, from: k.app, head: `The ICJ orders you to halt operations against ${A.name}`, body: 'Complying means seeking a ceasefire. Ignoring the order costs standing and invites sanctions.', ttl: 30 }));
+        else if (w && rng() < .25 + (R.gov === 'D' ? .25 : 0)) { w.exA += .2; }
+      } else news('LAW', 1, [A.iso, R.iso], `ICJ declines provisional measures in ${A.name} v. ${R.name}`, '', {});
+    } else if (k.st === 'provisional') {
+      k.st = 'done'; k.win = merit > .5 ? k.app : k.resp;
+      news('LAW', 2, [A.iso, R.iso], `ICJ rules in ${A.name} v. ${R.name}: ${k.win === k.app ? `${R.name} violated international law` : 'claims dismissed'}`, k.win === k.app ? 'The Court orders reparation.' : '', { mine: isHuman(k.resp) || isHuman(k.app) ? 1 : 0 });
+      if (k.win === k.app) { for (const c of G.C) if (c.gov === 'D' && c.i !== k.resp) bumpRel(c.i, k.resp, -3); if (!isHuman(k.resp) && rng() < .3) G.aid.push({ from: k.resp, to: k.app, amt: +(R.Y * .002).toFixed(2), type: 'e', until: G.day + 1825, rep: 1 }); }
+    }
+  }
+}
+
+// ============================================================================ WAR AIMS, CONDUCT AND ENDINGS (v7)
+const WAR_GOALS = {
+  territory: { n: 'Seize territory', d: 'Take and keep the border regions.', ai: 1 },
+  punitive: { n: 'Punish and degrade', d: 'Destroy their military capacity, then stop.', ai: 1 },
+  regime: { n: 'Regime change', d: 'Take the capital and install a friendly government.', ai: 1 },
+  puppet: { n: 'Client state', d: 'Force them to become your dependant.', ai: 1 },
+  conquer: { n: 'Conquest', d: 'Occupy and annex the whole country. The world will not recognise it.', ai: 1 },
+  defend: { n: 'Defend the homeland', d: 'Throw the invader out.' },
+};
+function goalProgress(w, side) {
+  const me = side === 'A' ? w.a : w.d, en = side === 'A' ? w.d : w.a, g = side === 'A' ? w.goalA || 'territory' : w.goalD || 'defend';
+  const held = (G.occ[en] || {})[me] || 0, cap = capitalHeld(en) && G.cityOcc[capOf(G.C[en])] === me;
+  const v0 = side === 'A' ? w.v0D : w.v0A, lost = side === 'A' ? w.lostD : w.lostA;
+  switch (g) {
+    case 'territory': return clamp(held / .2, 0, 1);
+    case 'punitive': return clamp(lost / Math.max(1, v0 * .35), 0, 1);
+    case 'regime': case 'puppet': return cap ? 1 : clamp(held / .5, 0, .9);
+    case 'conquer': return clamp(held / .85, 0, cap ? 1 : .9);
+    case 'defend': return clamp(1 - occShare(me) * 3, 0, 1) * clamp(.5 + (side === 'A' ? w.exD : w.exA) / 2, 0, 1);
+  }
+  return 0;
+}
+function chooseGoal(a, d) {
+  const A = G.C[a], D = G.C[d], r = powerOf(A) / Math.max(1, powerOf(D));
+  if (!adjacent(a, d) && !ISLANDS.has(D.iso)) return 'punitive';
+  if (D.nuclear) return r > 1.5 ? 'territory' : 'punitive';
+  if (r > 5 && A.aggr > .75 && A.gov !== 'D') return 'conquer';
+  if (r > 3.5 && A.aggr > .55) return A.gov === 'D' ? 'regime' : pick(['regime', 'puppet']);
+  return 'territory';
+}
+// called from startWar
+function warInit(w) {
+  w.casA = w.casA || 0; w.casD = w.casD || 0; w.lostA = w.lostA || 0; w.lostD = w.lostD || 0; w.civ = w.civ || 0;
+  w.v0A = w.A.reduce((s, i) => s + (G.C[i].M || 1), 0); w.v0D = w.D.reduce((s, i) => s + (G.C[i].M || 1), 0);
+  if (!w.goalA) w.goalA = isHuman(w.a) ? (WAR_GOALS[G.C[w.a].warGoal] ? G.C[w.a].warGoal : 'territory') : chooseGoal(w.a, w.d);
+  w.goalD = 'defend'; w.talks = null;
+}
+// the daily war step: exhaustion, economic toll and the war score come from what actually happened
+function warStep(dt) {
+  for (const c of G.C) { c.warDrag = 0; c.warStab = 0; c.warProd = 1; c.warIntensity = 0; }
+  for (const w of G.wars) {
+    if (w.over) continue;
+    if (w.v0A == null) warInit(w);
+    const fighting = w.fight && G.day - w.fight < 4 ? 1 : .25;
+    const yrs = (G.day - w.start) / 365;
+    const sideOcc = (list, by) => { let s = 0, p = 0; for (const i of list) { const c = G.C[i]; let o = 0; for (const b of by) o += (G.occ[i] || {})[b] || 0; s += o * c.pop; p += c.pop; } return p ? s / p : 0; };
+    const oD = sideOcc(w.D, w.A), oA = sideOcc(w.A, w.D);
+    const attr = (w.lostD / Math.max(1, w.v0D)) - (w.lostA / Math.max(1, w.v0A));
+    const capD = capitalHeld(w.d) && w.A.includes(G.cityOcc[capOf(G.C[w.d])]), capA = capitalHeld(w.a) && w.D.includes(G.cityOcc[capOf(G.C[w.a])]);
+    const blkD = 1 - blockF(w.d), blkA = 1 - blockF(w.a);
+    w.score = clamp(100 * Math.tanh(2.2 * (oD - oA) + 1.4 * attr + (capD ? .8 : 0) - (capA ? .8 : 0) + .4 * (blkD - blkA)), -100, 100);
+    const A = G.C[w.a], D = G.C[w.d];
+    const rate = (cas, c) => cas / Math.max(1, c.pop * 1e6);
+    w.exA += dt * (.05 + 400 * rate(w.casA, A) / Math.max(.3, yrs + .3) + 1.2 * oA + .5 * blkA + (A.gov === 'D' ? .07 : 0) + .15 * Math.max(0, -w.score) / 100) * (w.truce > G.day ? .3 : 1);
+    w.exD += dt * (.035 + 300 * rate(w.casD, D) / Math.max(.3, yrs + .3) + .3 * oD + .5 * blkD + .12 * Math.max(0, w.score) / 100) * (w.truce > G.day ? .3 : 1);
+    if (w.unCF) { w.exA += .05 * dt; w.exD += .03 * dt; }
+    const front = (list, lead, def) => {
+      for (const i of list) {
+        const c = G.C[i], main = i === lead, k = main ? 1 : .3, occ = occShare(i), battle = c.battle && G.day - c.battle < 3;
+        const inten = fighting * k;
+        c.warIntensity = Math.max(c.warIntensity, inten);
+        c.warDrag += (battle ? .05 : .012) * k / (1 + yrs * .5);
+        c.warStab += (def ? 6 : 3) * k + occ * 25;
+        c.warProd = Math.min(c.warProd, 1 - .85 * occ - (battle ? .05 : 0));
+        if (battle) { for (let g = 0; g < NG; g++) c.dmg[g] = Math.max(.6, c.dmg[g] - .06 * (c.bInt || 1) * dt); c.infraI -= .6 * dt; }
+        if (main) c.fatigue = clamp(c.fatigue + (def ? .8 : 2.2) * dt * (c.gov === 'D' ? 1.5 : .7) * fighting, 0, 22);
+      }
+    };
+    front(w.A, w.a, false); front(w.D, w.d, true);
+  }
+  for (const c of G.C) { if (!warsOf(c.i).length) { c.fatigue *= Math.exp(-dt / .7); c.warCas = 0; } else c.warCas = (c.warCas || 0) * .9; }
+}
+
+// ---------- how the computer fights ----------
+function landUnits(i, home) { return G.units.filter(u => u.o === i && UT[u.t].d === 'L' && u.t !== 'ad' && u.t !== 'msl' && u.n > .15 && !u.embarked && (home == null || u.host === home)); }
+function aiWarPlan(c) {
+  const wars = warsOf(c.i); if (!wars.length) return;
+  for (const w of wars) {
+    if (w.truce > G.day) continue;
+    const isA = w.A.includes(c.i), enemies = isA ? w.D : w.A, lead = isA ? w.a : w.d, E = G.C[isA ? w.d : w.a];
+    // 1. defend the homeland: everything at home that is idle joins the fight (it is already in the theatre)
+    const invaded = G.units.some(u => u.host === c.i && enemies.includes(u.o) && UT[u.t].d === 'L');
+    // 2. go on the offensive if strong enough, or push invaders back out of an ally
+    const mine = landUnits(c.i, c.i).filter(u => !u.dest);
+    let target = -1;
+    for (const e of enemies) { if (adjacent(c.i, e) || G.units.some(u => u.o === c.i && u.host === e)) { target = e; break; } }
+    if (target < 0) for (const e of enemies) for (const x of G.C) if (adjacent(x.i, e) && (x.i === c.i || hasFlag(c.i, x.i, F_ALLY) || hasFlag(c.i, x.i, F_ACCESS)) && adjacent(c.i, x.i)) { target = e; break; }
+    const myP = landUnits(c.i).reduce((s, u) => s + UT[u.t].atk * u.n * u.org, 0) * techF(c);
+    const enP = target >= 0 ? G.units.filter(u => u.o === target && u.host === target && UT[u.t].d === 'L').reduce((s, u) => s + UT[u.t].def * u.n * u.org, 0) * techF(G.C[target]) * 1.3 : 1e9;
+    const offensive = target >= 0 && (lead === c.i ? (isA ? w.goalA !== 'punitive' || myP > enP * 2 : occShare(c.i) === 0 && myP > enP * 1.4) : myP > enP * .6) && myP > enP * (isA ? 1.05 : 1.4);
+    if (offensive && !invaded) {
+      const share = lead === c.i ? .7 : .3;
+      const go = mine.slice(0, Math.ceil(mine.length * share));
+      const cities = citiesByFront(target, c.i).filter(k => G.cityOcc[k] == null);
+      const k = cities[0] != null ? cities[0] : capOf(G.C[target]);
+      for (const u of go) orderMove(u, CITIES[k].lat + (rng() - .5) * .6, CITIES[k].lon + (rng() - .5) * .6, target);
+    }
+    // units stranded abroad with nothing to do come home when the country is invaded
+    if (invaded) for (const u of landUnits(c.i).filter(u => u.host !== c.i && !u.dest && hostile(c.i, u.host) === false)) { const h = capLL(c); orderMove(u, h[0], h[1], c.i); }
+    // 3. strikes: aircraft, drones and missiles hit enemy formations, then bases, then (for ruthless regimes) cities
+    const strikers = G.units.filter(u => u.o === c.i && canStrike(u) && UT[u.t].d !== 'L' || (u.o === c.i && u.t === 'msl' && canStrike(u)));
+    const eu = G.units.filter(u => enemies.includes(u.o) && u.n > .05 && !u.embarked);
+    const ruthless = c.mil.roe === 'loose' && c.gov !== 'D' && c.aggr > .6;
+    for (const s of strikers) {
+      if (rng() < .8) continue;
+      const r = strikeRange(s);
+      let best = null, bv = 0;
+      for (const x of eu) { const d = kmU(s, x.lat, x.lon); if (d > r) continue; const v = uval(x) * (x.host === c.i ? 2 : 1) * (x.fight && G.day - x.fight < 5 ? 1.5 : 1); if (v > bv) { bv = v; best = x; } }
+      if (best) { queueStrike(s, best.lat, best.lon); continue; }
+      const eb = G.bases.filter(b => enemies.includes(b.o) && kmBetween(s.lat, s.lon, b.lat, b.lon) < r)[0];
+      if (eb) { queueStrike(s, eb.lat, eb.lon); continue; }
+      if (ruthless && rng() < .3) { const ec = (CITY_OF[E.iso] || []).filter(k => kmBetween(s.lat, s.lon, CITIES[k].lat, CITIES[k].lon) < r); if (ec.length) { const k = ec[Math.floor(rng() * ec.length)]; queueStrike(s, CITIES[k].lat, CITIES[k].lon); } }
+    }
+    // 4. navies: blockade a weaker enemy's coast
+    if (lead === c.i || rng() < .3) {
+      const ships = G.units.filter(u => u.o === c.i && UT[u.t].d === 'N' && u.n > .2 && !u.dest && u.st !== 'blockade');
+      const myN = ships.reduce((s, u) => s + UT[u.t].sea * u.n, 0), enN = G.units.filter(u => enemies.includes(u.o) && UT[u.t].d === 'N').reduce((s, u) => s + UT[u.t].sea * u.n, 0);
+      const T = enemies.find(e => coastal(G.C[e]) && seaNodeOf(G.C[e]) && kmBetween(c.lat, c.lon, G.C[e].lat, G.C[e].lon) < 9000);
+      if (T != null && myN > enN * 1.3 && ships.length) for (const u of ships.slice(0, Math.ceil(ships.length / 2))) orderBlockade(u, { c: T });
+    }
+  }
+}
+// in a crisis at "military posturing", both sides move troops to the border
+function mobiliseToward(a, b) {
+  const A = G.C[a], B = G.C[b]; const bc = capLL(B);
+  const mine = CITY_OF[A.iso] || []; if (!mine.length) return;
+  const k = mine.slice().sort((x, y) => kmBetween(CITIES[x].lat, CITIES[x].lon, bc[0], bc[1]) - kmBetween(CITIES[y].lat, CITIES[y].lon, bc[0], bc[1]))[0];
+  const us = landUnits(a, a).filter(u => !u.dest); const go = us.slice(0, Math.ceil(us.length * .4));
+  for (const u of go) orderMove(u, CITIES[k].lat + (rng() - .5) * .8, CITIES[k].lon + (rng() - .5) * .8, a);
+  A.mil.post = 'mobilised'; A.mil.postDay = G.day;
+}
+
+// ---------- peace: terms, value, talks ----------
+// Each term has a giver (by) and a receiver (to). Values are from the point of view of one side.
+const PT = {
+  withdraw: { n: (b, t) => `${b.name} withdraws from ${t.name}'s territory`, ok: (b, t) => ((G.occ[t.i] || {})[b.i] || 0) > 0 },
+  cede: { n: (b, t, s, it) => `${b.name} cedes the land ${t.name} holds (${Math.round((it && it.sh != null ? it.sh : ((G.occ[b.i] || {})[t.i] || 0)) * 100)}%)`, ok: (b, t) => ((G.occ[b.i] || {})[t.i] || 0) > .01 },
+  freeze: { n: (b, t) => `Ceasefire along the current front line (no recognition)`, ok: (b, t) => occShare(b.i) > 0 || occShare(t.i) > 0, mutual: 1 },
+  repar: { n: (b, t, s) => `${b.name} pays ${t.name} reparations of ${pct(s, 1)} of GDP a year for 10 years`, ok: () => true, sized: [.005, .01, .02] },
+  dmz: { n: (b, t) => `${b.name} keeps no troops within 200 km of the border for 10 years`, ok: (b, t) => adjacent(b.i, t.i) },
+  armscap: { n: (b, t) => `${b.name} caps defence spending at 1.5% of GDP for 10 years`, ok: (b) => b.sp.mil > .012 },
+  neutral: { n: (b, t) => `${b.name} leaves its military alliances and stays neutral`, ok: (b, t) => G.C.some(x => x.i !== t.i && hasFlag(b.i, x.i, F_ALLY)) },
+  nobase: { n: (b, t) => `${b.name} closes foreign military bases on its soil`, ok: (b) => G.bases.some(x => x.host === b.i && x.o !== b.i) },
+  denuke: { n: (b, t) => `${b.name} ends its nuclear programme under IAEA inspection`, ok: (b) => b.nk && (b.nk.prog > .2 && b.nk.w === 0 || b.nk.covert) },
+  regime: { n: (b, t) => `${b.name}'s government resigns; a new one friendly to ${t.name} takes over`, ok: (b, t) => true },
+  puppet: { n: (b, t) => `${b.name} becomes a client state of ${t.name}`, ok: (b, t) => !b.overlord },
+  annex: { n: (b, t) => `${t.name} annexes ${b.name}`, ok: (b, t) => !b.overlord },
+  liftsanc: { n: (b, t) => `${b.name} lifts its sanctions on ${t.name}`, ok: (b, t) => sancLevel(b.i, t.i) > 0 },
+  tribunal: { n: (b, t) => `${b.name} hands suspected war criminals to the ICC`, ok: (b) => (b.wcs || 0) > 3 },
+  recog: { n: (b, t) => `${b.name} recognises ${t.name}'s borders and signs a non-aggression pact`, ok: (b, t) => !hasFlag(b.i, t.i, F_NAP) },
+  aid: { n: (b, t, s) => `${b.name} funds reconstruction in ${t.name}: ${pct(s, 1)} of GDP a year for 5 years`, ok: () => true, sized: [.002, .005] },
+  pows: { n: () => `Exchange of all prisoners of war`, ok: () => true, mutual: 1 },
+};
+function termVal(me, it) {
+  // value of a term to country `me` (positive = good for me)
+  const b = G.C[it.by], t = G.C[it.to], give = it.by === me, get = it.to === me, s = it.s || 0;
+  if (!give && !get && !PT[it.k].mutual) return 0;
+  const cap = k => capitalHeld(k) ? 1 : 0;
+  switch (it.k) {
+    case 'withdraw': { const o = (G.occ[t.i] || {})[b.i] || 0; return give ? -o * 70 - (G.cityOcc[capOf(t)] === b.i ? 30 : 0) : o * 90 + (G.cityOcc[capOf(t)] === b.i ? 60 : 0); }
+    case 'cede': { const o = (G.occ[b.i] || {})[t.i] || 0; return give ? -o * 170 - (G.cityOcc[capOf(b)] === t.i ? 120 : 0) : o * 95; }
+    case 'freeze': { const mineHeld = (G.occ[me] ? occShare(me) : 0), theirs = 0; let o = 0; for (const k in G.occ) if (+k !== me && G.occ[k][me]) o += G.occ[k][me]; return o * 55 - mineHeld * 110; }
+    case 'repar': return (give ? -1 : 1) * s * (give ? 2200 : 1600);
+    case 'dmz': return give ? -9 : 7;
+    case 'armscap': return give ? -24 : 12;
+    case 'neutral': return give ? -14 - 6 * G.C.filter(x => hasFlag(b.i, x.i, F_ALLY)).length : 16;
+    case 'nobase': return give ? -8 - 5 * G.bases.filter(x => x.host === b.i && x.o !== b.i).length : 10;
+    case 'denuke': return give ? -(b.nk.w > 0 ? 70 : 28) : 22;
+    case 'regime': return give ? -160 : 50;
+    case 'puppet': return give ? -220 : 65;
+    case 'annex': return give ? -500 : 85;
+    case 'liftsanc': return give ? -4 : 10;
+    case 'tribunal': return give ? -26 : 8;
+    case 'recog': return give ? -3 : 6;
+    case 'aid': return (give ? -1 : 1) * s * (give ? 1500 : 1200);
+    case 'pows': return 3;
+  }
+  return 0;
+}
+function pkgVal(me, pkg) { let s = 0; for (const it of pkg) s += termVal(me, it); return s; }
+// what fighting on is worth to `me` right now
+function contVal(w, me) {
+  const isA = w.A.includes(me), pos = isA ? w.score : -w.score, ex = isA ? w.exA : w.exD, exE = isA ? w.exD : w.exA;
+  const C = G.C[me], hawk = (C.aggr || .4) * 12 + (C.dp ? C.dp.skill / 15 : 3);
+  const nukeFear = (isA && G.C[w.d].nuclear && pos > 30) ? 25 : 0;
+  return .7 * pos + 30 * (exE - ex) - 22 * ex + hawk - nukeFear - (w.unCF ? 6 : 0) + (goalProgress(w, isA ? 'A' : 'D') < 1 && pos > 10 ? 10 : 0);
+}
+function aiAcceptsPkg(w, ai, pkg, extra = 0) {
+  const u = pkgVal(ai, pkg) + extra + (w.med != null ? 6 : 0), v = contVal(w, ai);
+  return { ok: u >= v, u, v, p: clamp(sig((u - v) / 8), 0, 1) };
+}
+// the settlement a side would ask for, given how the war stands
+function aiDemand(w, me) {
+  const isA = w.A.includes(me), en = isA ? w.d : w.a, E = G.C[en], M = G.C[me];
+  const pos = isA ? w.score : -w.score, pkg = [], add = (k, by, to, s) => { const it = { k, by, to, s }; if (PT[k].ok(G.C[by], G.C[to], s)) pkg.push(it); };
+  const goal = isA ? w.goalA : 'defend';
+  const heldCap = G.cityOcc[capOf(E)] === me;
+  if (pos > 60 && heldCap) {
+    if (goal === 'conquer') add('annex', en, me);
+    else if (goal === 'puppet') add('puppet', en, me);
+    else if (goal === 'regime') add('regime', en, me);
+    else add('cede', en, me);
+    add('repar', en, me, .01); add('armscap', en, me);
+  } else if (pos > 20) {
+    add('cede', en, me); add('repar', en, me, pos > 40 ? .01 : .005);
+    if (hasFlag(en, en, 0) || G.C.some(x => x.i !== me && hasFlag(en, x.i, F_ALLY))) add('neutral', en, me);
+    add('withdraw', me, en);
+    add('dmz', en, me);
+  } else if (pos > -20) {
+    if (occShare(en) > 0 && ((G.occ[en] || {})[me] || 0) > .02) add('freeze', me, en); else { add('withdraw', me, en); add('withdraw', en, me); }
+    add('recog', en, me); add('recog', me, en);
+  } else {
+    add('withdraw', me, en); if (pos < -45) add('repar', me, en, .005); add('recog', me, en);
+    if (pos < -70) { add('cede', me, en); }
+  }
+  add('pows', me, en);
+  // remove contradictions
+  if (pkg.some(x => x.k === 'cede' && x.by === en) ) for (let k = pkg.length - 1; k >= 0; k--) if (pkg[k].k === 'withdraw' && pkg[k].by === me) pkg.splice(k, 1);
+  if (pkg.some(x => ['annex', 'puppet', 'regime'].includes(x.k))) for (let k = pkg.length - 1; k >= 0; k--) if (pkg[k].k === 'withdraw' || pkg[k].k === 'cede') pkg.splice(k, 1);
+  return pkg;
+}
+// monthly: computer leaders look for a way out, or dictate terms
+function aiWarPeace(w) {
+  for (const me of [w.a, w.d]) {
+    if (isHuman(me) || w.over) continue;
+    const en = me === w.a ? w.d : w.a, E = G.C[en];
+    const pkg = aiDemand(w, me);
+    if (!pkg.length) continue;
+    if (isHuman(en)) {
+      if (G.inbox.some(x => x.kind === 'peace2' && x.war === w.id && !x.done) || rng() > .35) continue;
+      if (contVal(w, me) > pkgVal(me, pkg) + 5 && rng() < .7) continue;
+      const cap = pkg.some(x => ['annex', 'puppet', 'regime'].includes(x.k));
+      withPlayer(en, () => inboxAdd({ kind: 'peace2', war: w.id, from: me, pkg, head: cap ? `${G.C[me].name} demands your capitulation` : `${G.C[me].name} proposes peace terms`, body: pkg.map(it => termText2(it)).join('; ') + '.', ttl: 20 }));
+      continue;
+    }
+    // computer against computer: the other side weighs the offer
+    if (pkgVal(me, pkg) < contVal(w, me) - 4) continue;
+    const r = aiAcceptsPkg(w, en, pkg);
+    const collapse = (en === w.d ? w.exD : w.exA) > 1.8 || G.C[en].stability < 8;
+    if (r.ok || collapse) { concludePeace(w, pkg, me); return; }
+  }
+}
+function termText2(it) { const d = PT[it.k]; return d.n(G.C[it.by], G.C[it.to], it.s, it); }
+// ---------- ending a war with a treaty ----------
+function concludePeace(w, pkg, proposer) {
+  const A = G.C[w.a], D = G.C[w.d];
+  const cedes = pkg.filter(x => x.k === 'cede'), frozen = pkg.some(x => x.k === 'freeze');
+  for (const it of pkg) if (it.k === 'cede') it.sh = +(((G.occ[it.by] || {})[it.to] || 0).toFixed(3));
+  w.over = true; w.end = G.day; w.term = 'treaty'; w.treaty = pkg.map(x => ({ ...x })); w.frozen = frozen ? 1 : 0; w.cede = {};
+  for (const it of pkg) applyTerm(w, it);
+  // everything not ceded or frozen goes back
+  if (!frozen) for (const X of w.A.concat(w.D)) { const occ = G.occ[X]; if (!occ) continue; for (const k in occ) { const o = +k; if (w.cede[X] === o) continue; if (!w.A.includes(o) && !w.D.includes(o)) continue; updateCities(X, o, occ[o], 0); delete occ[o]; } if (!Object.keys(occ).length) delete G.occ[X]; }
+  // armies go home
+  for (const u of G.units) { if (UT[u.t].d === 'L' && u.host !== u.o && (w.A.includes(u.host) || w.D.includes(u.host)) && (w.A.includes(u.o) || w.D.includes(u.o)) && !(frozen || w.cede[u.host] === u.o)) { const h = capLL(G.C[u.o]); u.dest = { lat: h[0], lon: h[1], host: u.o }; u.st = 'move'; } if (u.st === 'blockade' && u.blk && u.blk.c != null && (w.A.includes(u.blk.c) || w.D.includes(u.blk.c))) { u.st = 'patrol'; u.blk = null; } }
+  setRel(w.a, w.d, Math.min(getRel(w.a, w.d) + 25, 0)); G.pfDirty = 1;
+  const winner = w.score > 25 ? A : w.score < -25 ? D : null;
+  if (winner) { winner.shock.appr += 8; }
+  news('WAR', 3, [A.iso, D.iso], `${w.name} ends: ${frozen ? 'an armistice freezes the front' : pkg.some(x => x.k === 'annex') ? 'annexation' : pkg.some(x => x.k === 'puppet') ? `${(pkg.find(x => x.k === 'puppet').by === w.a ? A : D).name} becomes a client state` : pkg.some(x => x.k === 'regime') ? 'regime change' : cedes.length ? 'territory changes hands' : 'a negotiated peace'}`, pkg.map(termText2).join('; ') + `. Military casualties about ${fmtInt(w.casA + w.casD)}; civilians ${fmtInt(w.civ || 0)}.`, { mine: isHuman(w.a) || isHuman(w.d) ? 1 : 0 });
+  if (G.crises) for (const cr of G.crises) if (!cr.over && ((cr.a === w.a && cr.b === w.d) || (cr.a === w.d && cr.b === w.a))) { cr.over = true; cr.end = G.day; }
+}
+function applyTerm(w, it) {
+  const B = G.C[it.by], T = G.C[it.to];
+  switch (it.k) {
+    case 'cede': { const o = (G.occ[B.i] || {})[T.i] || 0; if (o <= 0) break; w.cede[B.i] = T.i; for (const k of CITY_OF[B.iso] || []) if (G.cityOcc[k] === T.i) { G.cityOwn[k] = T.i; } cedeTerritory(B, T, o); delete G.occ[B.i][T.i]; for (const k in G.cityOcc) if (G.cityOcc[k] === T.i && CITIES[k].iso === B.iso) delete G.cityOcc[k]; for (const d of G.C) if (d.gov === 'D' && d.i !== T.i && d.i !== B.i) bumpRel(d.i, T.i, -8); break; }
+    case 'repar': G.aid.push({ from: B.i, to: T.i, amt: +(B.Y * it.s).toFixed(2), type: 'e', until: G.day + 3650, rep: 1 }); break;
+    case 'aid': G.aid.push({ from: B.i, to: T.i, amt: +(B.Y * it.s).toFixed(2), type: 'e', until: G.day + 1825 }); break;
+    case 'dmz': case 'armscap': case 'neutral': (G.treaties || (G.treaties = [])).push({ id: nextId('nid'), k: it.k, by: B.i, to: T.i, until: G.day + 3650, war: w.id }); if (it.k === 'neutral') for (const x of G.C) if (x.i !== T.i && hasFlag(B.i, x.i, F_ALLY)) delFlag(B.i, x.i, F_ALLY); if (it.k === 'armscap') B.sp.mil = Math.min(B.sp.mil, .015); break;
+    case 'nobase': for (const b of G.bases) if (b.host === B.i && b.o !== B.i) closeBase(b); break;
+    case 'denuke': B.nk.covert = 0; B.nk.prog = Math.min(B.nk.prog, .1); B.nk.iaea = 1; if (!B.nk.tested) B.nk.w = 0; break;
+    case 'regime': regimeChange(B, 'imposed'); B.aligned = T.i; setRel(B.i, T.i, 60); if (B.pl && B.pl.alignment) { B.pl.alignment.t = B.pl.alignment.x = T.pl ? T.pl.alignment.x : 50; } clearWarrant(B, 'The old regime is gone.'); break;
+    case 'puppet': makeSubject(B, T, 'puppet'); break;
+    case 'annex': makeSubject(B, T, 'annexed'); break;
+    case 'liftsanc': setSanction(B.i, T.i, 0); break;
+    case 'tribunal': B.wcs = 0; clearWarrant(B, 'Suspects have been handed to The Hague.'); B.shock.appr -= 8; break;
+    case 'recog': addFlag(B.i, T.i, F_NAP); break;
+    case 'pows': bumpRel(B.i, T.i, 3); break;
+  }
+}
+// move a share of a country's people and economy to another (when land is ceded)
+function cedeTerritory(B, T, s) {
+  s = clamp(s * .85, 0, .6); const k = 1 - s, fx = (B.P * B.e) / Math.max(1e-6, T.P * T.e);
+  T.pop += B.pop * s; T.Spot += B.Spot * s * fx; T.Y += B.Y * s * fx; T.Y0 += B.Y0 * s * fx;
+  for (let g = 0; g < NG; g++) { T.cap[g] += B.cap[g] * s; T.fd0[g] += B.fd0[g] * s; B.cap[g] *= k; B.fd0[g] *= k; }
+  B.pop *= k; B.Spot *= k; B.Y *= k; B.Y0 *= k; if (B.popStart) B.popStart *= k; if (B.ec) { B.ec.Y0 *= k; B.ec.pop0 *= k; }
+  if (T.ec) { T.ec.Y0 += 0; }
+}
+function makeSubject(B, T, kind) {
+  B.overlord = T.i; B.subj = kind; B.subjSince = G.day;
+  setRel(B.i, T.i, kind === 'annexed' ? 50 : 70); addFlag(B.i, T.i, F_ACCESS | F_ALLY);
+  for (const x of G.C) if (x.i !== T.i && hasFlag(B.i, x.i, F_ALLY)) delFlag(B.i, x.i, F_ALLY);
+  regimeChange(B, 'imposed'); clearWarrant(B);
+  if (kind === 'annexed') { for (const u of G.units) if (u.o === B.i) u.n *= .15; for (const k of CITY_OF[B.iso] || []) delete G.cityOcc[k]; delete G.occ[B.i]; }
+  for (const d of G.C) if (d.i !== T.i && d.i !== B.i && (d.gov === 'D' || getRel(d.i, B.i) > 30)) { bumpRel(d.i, T.i, kind === 'annexed' ? -20 : -8); if (kind === 'annexed' && !isHuman(d.i) && d.Y > 300 && getRel(d.i, T.i) < 0 && sancLevel(d.i, T.i) < 2) setSanction(d.i, T.i, 2, true); }
+  news('WAR', 3, [T.iso, B.iso], kind === 'annexed' ? `${T.name} declares the annexation of ${B.name}` : `${B.name} becomes a client state of ${T.name}`, kind === 'annexed' ? 'Most of the world refuses to recognise it.' : 'Its foreign and defence policy will be set abroad.', { mine: isHuman(B.i) || isHuman(T.i) ? 1 : 0 });
+  if (isHuman(B.i) && typeof onSubjugated === 'function') atLocal(B.i, () => onSubjugated(kind, T));
+}
+function subjectsMonthly() {
+  for (const c of G.C) {
+    if (c.overlord == null) continue;
+    const T = G.C[c.overlord], annexed = c.subj === 'annexed';
+    if (!G.aid.some(a => a.from === c.i && a.to === T.i && a.trib)) G.aid.push({ from: c.i, to: T.i, amt: +(c.Y * (annexed ? .06 : .025)).toFixed(2), type: 'e', until: G.day + 400, trib: 1 });
+    setRel(c.i, T.i, Math.max(getRel(c.i, T.i), annexed ? 40 : 60));
+    for (const w of warsOf(T.i)) { const side = w.A.includes(T.i) ? w.A : w.D; if (!side.includes(c.i) && !w.A.concat(w.D).includes(c.i)) side.push(c.i); }
+    if (annexed) c.shock.stab -= .5;
+    // subjects slip free when the overlord weakens or the people rise
+    const breakP = (c.stability < 15 ? .02 : 0) + (warsOf(T.i).length && T.stability < 30 ? .02 : 0) + (G.C[T.i].overlord != null ? .05 : 0);
+    if (rng() < breakP) { delete c.overlord; delete c.subj; news('POLITICS', 3, [c.iso, T.iso], `${c.name} throws off ${T.name}'s rule`, 'A new government declares full independence.', { mine: isHuman(c.i) || isHuman(T.i) ? 1 : 0 }); setRel(c.i, T.i, -40); }
+  }
+  // treaty obligations
+  for (const tr of G.treaties || []) {
+    if (tr.until < G.day || tr.broken) continue;
+    const B = G.C[tr.by], T = G.C[tr.to];
+    let broken = false;
+    if (tr.k === 'armscap' && B.sp.mil > .017) broken = true;
+    if (tr.k === 'dmz') { const tc = CITY_OF[T.iso] || []; broken = G.units.some(u => u.o === B.i && UT[u.t].d === 'L' && u.n > .2 && tc.some(k => kmBetween(u.lat, u.lon, CITIES[k].lat, CITIES[k].lon) < 200)); }
+    if (tr.k === 'neutral') broken = G.C.some(x => x.i !== T.i && hasFlag(B.i, x.i, F_ALLY));
+    if (broken) { tr.broken = G.day; bumpRel(T.i, B.i, -25); news('SECURITY', 2, [B.iso, T.iso], `${T.name} accuses ${B.name} of breaking the peace treaty`, `${termText2({ k: tr.k, by: tr.by, to: tr.to })}: violated.`, { mine: isHuman(B.i) || isHuman(T.i) ? 1 : 0 }); if (G.crises) startCrisis(T.i, B.i, 'redline', 3, { fault: B.i }); }
+    if (tr.k === 'armscap' && !isHuman(B.i)) B.sp.mil = Math.min(B.sp.mil, .015);
+  }
+}
+function closeBase(b) { const i = G.bases.indexOf(b); if (i < 0) return; for (const u of G.units) if (u.base === b.id) { const hb = G.bases.find(x => x.o === u.o && x.host === u.o && (UT[u.t].d !== 'N' || x.k === 'naval')) || G.bases.find(x => x.o === u.o && x.host === u.o); if (hb) { u.dest = { lat: hb.lat, lon: hb.lon, host: hb.host, base: hb.id }; u.st = 'move'; } } G.bases.splice(i, 1); if (!G.bases.some(x => x.o === b.o && x.host === b.host)) delFlag(b.o, b.host, F_ACCESS); }
+// compatibility with the classic peace terms (UN demands, trades, older saves)
+function classicToPkg(w, term) {
+  if (term === 'white') { const p = [{ k: 'withdraw', by: w.a, to: w.d }, { k: 'withdraw', by: w.d, to: w.a }, { k: 'pows', by: w.a, to: w.d }]; return p.filter(it => PT[it.k].ok(G.C[it.by], G.C[it.to])); }
+  const win = term === 'repA' || term === 'capA' ? w.a : w.d, los = win === w.a ? w.d : w.a, gA = win === w.a ? w.goalA : 'territory';
+  const p = [];
+  if (term.startsWith('cap')) p.push({ k: gA === 'conquer' ? 'annex' : gA === 'puppet' ? 'puppet' : gA === 'regime' ? 'regime' : 'cede', by: los, to: win });
+  else { p.push({ k: 'cede', by: los, to: win }); }
+  p.push({ k: 'repar', by: los, to: win, s: term.startsWith('cap') ? .02 : .01 }, { k: 'pows', by: los, to: win });
+  return p.filter(it => PT[it.k].ok(G.C[it.by], G.C[it.to], it.s));
+}
+
 // ============================================================================ EXACT SNAPSHOTS (v5)
 // Online play needs every copy of the world to be bit-for-bit identical. These snapshots keep full precision
 // (typed arrays as raw bytes), drop only what can be rebuilt exactly, and never carry local-only settings.
@@ -5396,6 +7457,8 @@ function snapLoad(str) {
   if (!('player' in G)) G.player = -1;
   if (!G.settings) G.settings = { autoPause: false, theme: 'terminal' };
   G.nego = G.nego || null;
+  if (migrateEcon()) G.migratedEcon = 1;
+  migrateMil();
   rebuildDerived();
   return G;
 }
@@ -5404,6 +7467,8 @@ function snapLoad(str) {
 function rebuildDerived() {
   computeDist(); buildPorts(); computeRoutes(true); computeRoutes(false);
   PF = null; TF = null; BF = null; BF0 = null; BF0dirty = true; BANMAP = null; _tSig = '';
+  if (typeof restoreEconFx === 'function') restoreEconFx();
+  if (typeof buildWarMat === 'function' && G.units) buildWarMat();
   buildCutCache(); computePF();
   displayFlows();
 }
@@ -5424,6 +7489,7 @@ function stateHash() {
   for (const c of G.C) { mixN(c.Y); mixN(c.P); mixN(c.debt); mixN(c.approval); mixN(c.stability); mixN(c.e); mixN(c.M); mixN(c.pc_ || 0); mixN(c.rate); }
   for (let g = 0; g < G.price.length; g++) mixN(G.price[g]);
   let r = 0; for (let k = 0; k < G.rel.length; k += 7) r += G.rel[k]; mixN(r);
+  if (G.units) { let un = 0; for (const u of G.units) un += u.n + u.lat * .001; mixN(G.units.length); mixN(un); }
   return h.toString(36);
 }
 
