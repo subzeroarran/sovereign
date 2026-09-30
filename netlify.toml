@@ -1,0 +1,13 @@
+# SOVEREIGN online — Netlify settings. You should not need to change anything here.
+[build]
+  publish = "."
+  command = "echo 'Nothing to build'"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "no-cache"
