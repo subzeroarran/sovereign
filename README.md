@@ -1,4 +1,4 @@
-# SOVEREIGN v5 — shared online world
+# SOVEREIGN v7 — shared online world
 
 This folder is a complete website. Put it on Netlify (free, no card) and SOVEREIGN runs online:
 the world keeps moving at 1× even when nobody is playing, and you and your friends each lead a
@@ -51,18 +51,33 @@ If your first attempt failed, **delete the failed Netlify site first**: in Netli
 - The first browser to open the game runs the world. The others follow it live. If that player leaves, another player's browser takes over by itself.
 - When nobody has the game open, the server moves the world forward every 30 minutes.
 - While you are away, your country keeps its policies. Decisions you miss take their default answer.
-- Up to 4 players. Only one world per site. The player who created it can delete it (Menu → Delete this world).
+- Up to 16 players. Only one world per site. The player who created it can delete it (Menu → Delete this world).
+- The admin can pause the world or change its speed (see below).
+
+## World management (admin)
+Open the game, then **Menu → World management**, and enter the admin key. You can also click **Admin** on the login screen, which works even if you are locked out.
+
+- **The default admin key is `bananas`.** Change it the first time you open World management, because anyone who knows it can manage your world.
+- From there you can: remove a player (they are logged out and their country goes back to the computer), give a player a new PIN, rename a player, set or remove the invite code, pause or resume the world, change its speed (½×, 1×, 2×), free a stuck host, change the admin key, and reset the world.
+- Five wrong keys in a row lock World management for 5 minutes.
+- Forgot the admin key? There is no way to recover it. The player who created the world can still delete the world (Menu → Delete this world), which also clears the key; download a backup first.
 - Backups: Menu → **Download backup**. A backup can also be played offline on its own.
+
+## War in a shared world (new in v7)
+
+Every player commands real forces in the War Room (key 0). Orders you give (moves, strikes, blockades, intelligence operations) are shared with the other players' browsers just like any other decision, so everyone sees the same war. Peace talks and ceasefire proposals between two players arrive in the other player's inbox. When nobody is online, the server keeps the war going: computer-run countries keep fighting, and your own forces hold their last orders.
 
 ## Staying inside the free plan
 Netlify's free plan gives 300 credits a month. Rough use:
 - About 45 credits a month for the half-hourly timer
 - 15 credits each time the site is deployed (including the first time)
-- About 1.5 credits per hour while two players are online, about 0.4 per hour for one
+- About 1.5 credits per hour with two players online, plus roughly 0.5 per extra player. So 8 online ≈ 4.5/hour, 16 online ≈ 9/hour. About 0.4 per hour with one player.
 
 If the credits run out, the site pauses until the next month. The world is kept. You can see your usage in Netlify under your team's **Usage & billing** page.
 
 ## Updating the game later
+Updating from v6 (or older) to v7: your world is kept and upgraded automatically the first time someone opens it. Every country gets its armed forces, bases and nuclear status; wars already under way keep going.
+
 Replace the files in your GitHub repository with the new ones (GitHub Desktop makes this easy: drop the new files into the same local folder, then commit and push). Netlify redeploys automatically. The world is kept.
 
 ## If something goes wrong
